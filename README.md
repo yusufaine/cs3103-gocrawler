@@ -17,16 +17,19 @@ A basic web crawler that crawls a given URL and returns a list of URLs found on 
 
 #### Usage
 
+> [!NOTE]
+> Refer to `example/crawler_report.json` for an example of the output for the command below.
+
 ```bash
 # Building the binary
 make crawler
 
 # Running the binary
-./crawler --seed=https://example.com --depth=20
+./crawler --seed=https://example.com --depth=5 --report example/crawler_report.json
 # ./crawler --help to see all options
 
 # Without binary (requires Go 1.21+)
-go run cmd/crawler/main.go --seed=https://example.com --depth=20
+go run cmd/crawler/main.go --seed=https://example.com --depth=5 --report example/crawler_report.json
 ```
 
 ## Members
