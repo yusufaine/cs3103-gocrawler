@@ -3,11 +3,11 @@ package main
 import (
 	"context"
 	"os/signal"
+	"slices"
 	"syscall"
 	"time"
 
 	"github.com/charmbracelet/log"
-
 	"github.com/yusufaine/cs3203-g46-crawler/internal/crawler"
 	"github.com/yusufaine/cs3203-g46-crawler/pkg/filewriter"
 	"github.com/yusufaine/cs3203-g46-crawler/pkg/logger"
@@ -37,20 +37,36 @@ func main() {
 		crawler.WithMaxRequestsPerSecond(config.MaxRPS),
 	)
 	cr.Crawl(ctx, config.SeedURL, 0)
-	defer exportFiles(config, cr)
+	defer exportReport(config, cr)
 	log.Info("crawl completed")
 }
 
-func exportFiles(config *crawler.Config, cr *crawler.Crawler) {
-	if err := filewriter.ToJSON(cr.VisitedNetInfo, config.RelNetInfoPath); err != nil {
-		log.Error("unable to write to file", "file", config.RelNetInfoPath, "error", err)
-	} else {
-		log.Info("exported network info", "file", config.RelNetInfoPath)
+func exportReport(config *crawler.Config, cr *crawler.Crawler) {
+	bls := make([]string, 0, len(config.BlacklistHosts))
+	for k := range config.BlacklistHosts {
+		bls = append(bls, k)
 	}
+	slices.Sort(bls)
 
-	if err := filewriter.ToJSON(cr.VisitedPageResp, config.RelPagesInfoPath); err != nil {
-		log.Error("unable to write to file", "file", config.RelNetInfoPath, "error", err)
+	var filecontent = struct {
+		Seed      string   `json:"seed"`
+		Depth     int      `json:"max_depth"`
+		Blacklist []string `json:"blacklist"`
+
+		VisitedNetInfo  map[string][]crawler.NetworkInfo `json:"network_info"`
+		VisitedPageResp map[string][]crawler.PageInfo    `json:"page_info"`
+	}{
+		Seed:            config.SeedURL,
+		Depth:           config.MaxDepth,
+		Blacklist:       bls,
+		VisitedNetInfo:  cr.VisitedNetInfo,
+		VisitedPageResp: cr.VisitedPageResp,
+	}
+	if err := filewriter.ToJSON(filecontent, config.RelReportPath); err != nil {
+		log.Error("unable to write to file",
+			"file", config.RelReportPath,
+			"error", err)
 	} else {
-		log.Info("exported page info", "file", config.RelPagesInfoPath)
+		log.Info("exported crawler info", "file", config.RelReportPath)
 	}
 }

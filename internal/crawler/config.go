@@ -9,14 +9,13 @@ import (
 )
 
 type Config struct {
-	BlacklistHosts   map[string]struct{}
-	MaxDepth         int
-	SeedURL          string
-	MaxRPS           float64
-	Timeout          time.Duration
-	Verbose          bool
-	RelNetInfoPath   string
-	RelPagesInfoPath string
+	BlacklistHosts map[string]struct{}
+	MaxDepth       int
+	SeedURL        string
+	MaxRPS         float64
+	Timeout        time.Duration
+	Verbose        bool
+	RelReportPath  string
 }
 
 func NewFlagConfig() *Config {
@@ -24,14 +23,14 @@ func NewFlagConfig() *Config {
 		config  Config
 		blHosts string
 	)
+	config.RelReportPath = "crawler_report.json"
 	flag.StringVar(&blHosts, "bl", "", "Comma separated list of hosts to blacklist")
 	flag.IntVar(&config.MaxDepth, "depth", 20, "Max depth from seed")
 	flag.StringVar(&config.SeedURL, "seed", "", "Seed URL, required (e.g https://example.com)")
 	flag.Float64Var(&config.MaxRPS, "rps", 20, "Max requests per second")
 	flag.DurationVar(&config.Timeout, "timeout", 5*time.Second, "Timeout for HTTP requests")
 	flag.BoolVar(&config.Verbose, "v", false, "Verbose logging, includes debug and caller info")
-	flag.StringVar(&config.RelNetInfoPath, "out-net", "network_info.json", "Relative path to network info file")
-	flag.StringVar(&config.RelPagesInfoPath, "out-page", "pages_info.json", "Relative path to page info file")
+	flag.StringVar(&config.RelReportPath, "report", config.RelReportPath, "Relative path to report file")
 	flag.Parse()
 
 	config.BlacklistHosts = make(map[string]struct{})
@@ -68,6 +67,7 @@ func (c *Config) PrintRunningConfig() {
 		"seed", c.SeedURL,
 		"timeout", c.Timeout,
 		"verbose", c.Verbose,
-		"net_info_rel_path", c.RelNetInfoPath,
-		"page_info_rel_path", c.RelPagesInfoPath)
+		"max_rps", c.MaxRPS,
+		"report_path", c.RelReportPath,
+	)
 }

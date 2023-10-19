@@ -7,6 +7,7 @@ import (
 	"net/http/httptrace"
 	"net/url"
 	"slices"
+	"strings"
 	"sync"
 	"time"
 
@@ -24,8 +25,7 @@ type NetworkInfo struct {
 	VisitedPaths   []string `json:"paths"`
 	RemoteAddrs    []string `json:"remote_addr"`
 	DNSAddrs       []string `json:"dns_addrs"`
-	ResponseTimeMs []int64  `json:"response_ms"`
-	Depths         []int    `json:"depths"`
+	ResponseTimeMs int64    `json:"response_ms"`
 }
 
 type PageInfo struct {
@@ -73,10 +73,7 @@ func (c *Crawler) Crawl(ctx context.Context, link string, currDepth int) {
 
 	log.Info("visiting", "depth", currDepth, "link", link)
 
-	if err := c.rl.Wait(ctx); err != nil {
-		log.Error("unable to wait for rate limiter", "error", err)
-		return
-	}
+	_ = c.rl.Wait(ctx) // ignore error
 
 	resp := c.extractResponseBody(link, currDepth)
 	if resp == nil {
@@ -123,9 +120,10 @@ func (c *Crawler) extractResponseBody(link string, depth int) []byte {
 			remoteAddr = connInfo.Conn.RemoteAddr().String()
 		},
 		DNSDone: func(dnsInfo httptrace.DNSDoneInfo) {
-			addrs := dnsInfo.Addrs
-			for _, addr := range addrs {
-				dnsAddrs = append(dnsAddrs, addr.String())
+			for _, addr := range dnsInfo.Addrs {
+				if !slices.Contains(dnsAddrs, addr.String()) {
+					dnsAddrs = append(dnsAddrs, addr.String())
+				}
 			}
 		},
 	}))
@@ -144,17 +142,20 @@ func (c *Crawler) extractResponseBody(link string, depth int) []byte {
 		return nil
 	}
 	defer resp.Body.Close()
+
+	if !strings.Contains(resp.Header.Get("Content-Type"), "text") {
+		log.Debug("skipping non-text response",
+			"type", resp.Header.Get("Content-Type"),
+			"link", link)
+		return nil
+	}
 	respTime := time.Since(reqStart)
 
 	if infos, ok := c.VisitedNetInfo[parsedUrl.Host]; ok {
 		for _, info := range infos {
-			// host may have multiple remote addresses
+			// host may have multiple remote addresses and DNS addresses
 			if !slices.Contains(info.RemoteAddrs, remoteAddr) {
 				info.RemoteAddrs = append(info.RemoteAddrs, remoteAddr)
-			}
-
-			if !slices.Contains(info.VisitedPaths, parsedUrl.Path) {
-				info.VisitedPaths = append(info.VisitedPaths, parsedUrl.Path)
 			}
 
 			for _, da := range dnsAddrs {
@@ -163,16 +164,19 @@ func (c *Crawler) extractResponseBody(link string, depth int) []byte {
 				}
 			}
 
-			info.ResponseTimeMs = append(info.ResponseTimeMs, respTime.Milliseconds())
-			info.Depths = append(info.Depths, depth)
+			if !slices.Contains(info.VisitedPaths, parsedUrl.Path) {
+				info.VisitedPaths = append(info.VisitedPaths, parsedUrl.Path)
+			}
+
+			info.ResponseTimeMs = respTime.Milliseconds()
 		}
 	} else {
 		c.VisitedNetInfo[parsedUrl.Host] = []NetworkInfo{
 			{
 				RemoteAddrs:    []string{remoteAddr},
 				VisitedPaths:   []string{parsedUrl.Path},
-				ResponseTimeMs: []int64{respTime.Milliseconds()},
-				Depths:         []int{depth},
+				DNSAddrs:       dnsAddrs,
+				ResponseTimeMs: respTime.Milliseconds(),
 			},
 		}
 		log.Debug("visited",
