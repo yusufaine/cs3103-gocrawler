@@ -17,10 +17,11 @@ import (
 )
 
 type NetworkInfo struct {
-	VisitedPaths   []string `json:"paths"`
-	RemoteAddrs    []string `json:"remote_addr"`
-	DNSAddrs       []string `json:"dns_addrs"`
-	ResponseTimeMs int64    `json:"response_ms"`
+	VisitedPaths        []string `json:"paths"`
+	RemoteAddrs         []string `json:"remote_addr"`
+	DNSAddrs            []string `json:"dns_addrs"`
+	TotalResponseTimeMs int64    `json:"-"`
+	AvgResponseMs       int64    `json:"avg_response_ms"`
 }
 
 type PageInfo struct {
@@ -181,16 +182,16 @@ func (c *Crawler) extractResponseBody(link string, depth int) []byte {
 				info.VisitedPaths = append(info.VisitedPaths, parsedUrl.Path)
 			}
 
-			info.ResponseTimeMs = respTime.Milliseconds()
+			info.TotalResponseTimeMs += respTime.Milliseconds()
 			c.VisitedNetInfo[parsedUrl.Host][i] = info
 		}
 	} else {
 		c.VisitedNetInfo[parsedUrl.Host] = []NetworkInfo{
 			{
-				RemoteAddrs:    []string{remoteAddr},
-				VisitedPaths:   []string{parsedUrl.Path},
-				DNSAddrs:       dnsAddrs,
-				ResponseTimeMs: respTime.Milliseconds(),
+				RemoteAddrs:         []string{remoteAddr},
+				VisitedPaths:        []string{parsedUrl.Path},
+				DNSAddrs:            dnsAddrs,
+				TotalResponseTimeMs: respTime.Milliseconds(),
 			},
 		}
 	}
