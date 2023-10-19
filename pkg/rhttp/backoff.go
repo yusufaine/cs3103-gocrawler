@@ -6,7 +6,11 @@ import (
 )
 
 // make randomness deterministic
-var seed = rand.New(rand.NewSource(3230))
+var rng = rand.New(rand.NewSource(3230))
+
+func WithRNGSeed(seed int64) {
+	rng = rand.New(rand.NewSource(seed))
+}
 
 // Determines how long to wait before retrying a request bounded by the minimum
 // and maximum wait times in milliseconds. Jitter should be applied to prevent
@@ -19,7 +23,7 @@ func DefaultLinearBackoff(minMs, maxMs, attempt int) time.Duration {
 	if waitMs > maxMs {
 		waitMs = maxMs
 	}
-	waitMs += seed.Intn(minMs)
+	waitMs += rng.Intn(minMs)
 	return time.Duration(waitMs) * time.Millisecond
 }
 
@@ -29,6 +33,6 @@ func ExponentialBackoff(minMs, maxMs, attempt int) time.Duration {
 	if waitMs > maxMs {
 		waitMs = maxMs
 	}
-	waitMs += seed.Intn(minMs)
+	waitMs += rng.Intn(minMs)
 	return time.Duration(waitMs) * time.Millisecond
 }

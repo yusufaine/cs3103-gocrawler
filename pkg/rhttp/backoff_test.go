@@ -7,8 +7,8 @@ import (
 	"github.com/yusufaine/cs3203-g46-crawler/pkg/rhttp"
 )
 
-// Testing RNG, do not run individually, use `make ci`
 func TestDefaultLinearBackoff(t *testing.T) {
+	rhttp.WithRNGSeed(3230)
 	min, max := 100, 1000
 	exp := []time.Duration{134, 285, 361, 408, 544, 698, 715, 887, 903, 1031}
 	for i, e := range exp {
@@ -23,11 +23,11 @@ func TestDefaultLinearBackoff(t *testing.T) {
 	}
 }
 
-// Testing RNG, do not run individually, use `make ci`
 func TestExponentialBackoff(t *testing.T) {
+	rhttp.WithRNGSeed(3230)
 	min, max := 100, 1_000_000
 	// notice the doubling + jitter
-	exp := []time.Duration{117, 216, 452, 893, 1684, 3212, 6417, 12872, 25627, 51214}
+	exp := []time.Duration{134, 285, 461, 808, 1644, 3298, 6415, 12887, 25603, 51231}
 	for i, e := range exp {
 		exp[i] = e * time.Millisecond
 	}
