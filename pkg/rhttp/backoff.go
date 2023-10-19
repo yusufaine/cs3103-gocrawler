@@ -2,11 +2,13 @@ package rhttp
 
 import (
 	"math/rand"
+	"sync"
 	"time"
 )
 
 // make randomness deterministic
 var rng = rand.New(rand.NewSource(3230))
+var rngMutex sync.Mutex
 
 func WithRNGSeed(seed int64) {
 	rng = rand.New(rand.NewSource(seed))
@@ -23,6 +25,8 @@ func DefaultLinearBackoff(minMs, maxMs, attempt int) time.Duration {
 	if waitMs > maxMs {
 		waitMs = maxMs
 	}
+	rngMutex.Lock()
+	defer rngMutex.Unlock()
 	waitMs += rng.Intn(minMs)
 	return time.Duration(waitMs) * time.Millisecond
 }
@@ -33,6 +37,8 @@ func ExponentialBackoff(minMs, maxMs, attempt int) time.Duration {
 	if waitMs > maxMs {
 		waitMs = maxMs
 	}
+	rngMutex.Lock()
+	defer rngMutex.Unlock()
 	waitMs += rng.Intn(minMs)
 	return time.Duration(waitMs) * time.Millisecond
 }

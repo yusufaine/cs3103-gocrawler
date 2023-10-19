@@ -12,6 +12,7 @@ type Config struct {
 	BlacklistHosts map[string]struct{}
 	MaxDepth       int
 	SeedURL        string
+	MaxRetries     int
 	MaxRPS         float64
 	Timeout        time.Duration
 	Verbose        bool
@@ -23,14 +24,14 @@ func NewFlagConfig() *Config {
 		config  Config
 		blHosts string
 	)
-	config.RelReportPath = "crawler_report.json"
 	flag.StringVar(&blHosts, "bl", "", "Comma separated list of hosts to blacklist")
 	flag.IntVar(&config.MaxDepth, "depth", 20, "Max depth from seed")
 	flag.StringVar(&config.SeedURL, "seed", "", "Seed URL, required (e.g https://example.com)")
-	flag.Float64Var(&config.MaxRPS, "rps", 20, "Max requests per second")
+	flag.IntVar(&config.MaxRetries, "retries", 3, "Max retries for HTTP requests")
+	flag.Float64Var(&config.MaxRPS, "rps", 15, "Max requests per second")
 	flag.DurationVar(&config.Timeout, "timeout", 5*time.Second, "Timeout for HTTP requests")
-	flag.BoolVar(&config.Verbose, "v", false, "Verbose logging, includes debug and caller info")
-	flag.StringVar(&config.RelReportPath, "report", config.RelReportPath, "Relative path to report file")
+	flag.BoolVar(&config.Verbose, "v", false, "For devs -- verbose logging, includes debug and short caller info")
+	flag.StringVar(&config.RelReportPath, "report", "crawler_report.json", "Relative path to report file")
 	flag.Parse()
 
 	config.BlacklistHosts = make(map[string]struct{})
@@ -47,11 +48,11 @@ func (c *Config) MustValidate() {
 	} else if c.MaxDepth < 1 {
 		panic("--depth must be >= 1")
 	} else if c.MaxDepth > 10 {
-		log.Warn("--depth > 10 may take a long time to complete")
+		log.Warn("'--depth' > 10 may take a long time to complete")
 	} else if c.MaxRPS <= 0 {
 		panic("--rps must be > 0")
 	} else if c.MaxRPS > 20 {
-		log.Warn("--rps > 20 may cause rate limiting")
+		log.Warn("'--rps' > 20 may cause unexpected behaviour")
 	}
 }
 
@@ -61,13 +62,13 @@ func (c *Config) PrintRunningConfig() {
 		blhosts = append(blhosts, k)
 	}
 
-	log.Info("Running with config",
-		"blacklist", blhosts,
-		"max_depth", c.MaxDepth,
-		"seed", c.SeedURL,
-		"timeout", c.Timeout,
-		"verbose", c.Verbose,
-		"max_rps", c.MaxRPS,
-		"report_path", c.RelReportPath,
-	)
+	log.Info("Running with config: ")
+	log.Info("  ", "seed", c.SeedURL)
+	log.Info("  ", "depth", c.MaxDepth)
+	log.Info("  ", "blacklist", blhosts)
+	log.Info("  ", "retries", c.MaxRetries)
+	log.Info("  ", "rps", c.MaxRPS)
+	log.Info("  ", "timeout", c.Timeout)
+	log.Info("  ", "verbose", c.Verbose)
+	log.Info("  ", "report", c.RelReportPath)
 }

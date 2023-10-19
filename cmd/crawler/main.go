@@ -11,6 +11,7 @@ import (
 	"github.com/yusufaine/cs3203-g46-crawler/internal/crawler"
 	"github.com/yusufaine/cs3203-g46-crawler/pkg/filewriter"
 	"github.com/yusufaine/cs3203-g46-crawler/pkg/logger"
+	"github.com/yusufaine/cs3203-g46-crawler/pkg/rhttp"
 )
 
 func main() {
@@ -30,15 +31,24 @@ func main() {
 	config.PrintRunningConfig()
 	time.Sleep(3 * time.Second)
 
+	retryClient := rhttp.New(
+		rhttp.WithBackoffPolicy(rhttp.DefaultLinearBackoff),
+		rhttp.WithMaxRetries(config.MaxRetries),
+		rhttp.WithRetryPolicy(rhttp.DefaultRetry),
+		rhttp.WithTimeout(config.Timeout),
+	)
+
 	cr := crawler.New(
 		config.MaxDepth,
 		crawler.WithBlacklist(config.BlacklistHosts),
 		crawler.WithLinkExtractor(crawler.DefaultLinkExtractor),
 		crawler.WithMaxRequestsPerSecond(config.MaxRPS),
+		crawler.WithRHttpClient(retryClient),
 	)
+
 	cr.Crawl(ctx, config.SeedURL, 0)
-	defer exportReport(config, cr)
 	log.Info("crawl completed")
+	exportReport(config, cr)
 }
 
 func exportReport(config *crawler.Config, cr *crawler.Crawler) {
@@ -54,7 +64,7 @@ func exportReport(config *crawler.Config, cr *crawler.Crawler) {
 		Blacklist []string `json:"blacklist"`
 
 		VisitedNetInfo  map[string][]crawler.NetworkInfo `json:"network_info"`
-		VisitedPageResp map[string][]crawler.PageInfo    `json:"page_info"`
+		VisitedPageResp map[string]crawler.PageInfo      `json:"page_info"`
 	}{
 		Seed:            config.SeedURL,
 		Depth:           config.MaxDepth,
@@ -62,11 +72,20 @@ func exportReport(config *crawler.Config, cr *crawler.Crawler) {
 		VisitedNetInfo:  cr.VisitedNetInfo,
 		VisitedPageResp: cr.VisitedPageResp,
 	}
+	for k, v := range cr.VisitedNetInfo {
+		for i, v1 := range v {
+			slices.Sort(v1.DNSAddrs)
+			slices.Sort(v1.RemoteAddrs)
+			slices.Sort(v1.VisitedPaths)
+			filecontent.VisitedNetInfo[k][i] = v1
+		}
+	}
+
 	if err := filewriter.ToJSON(filecontent, config.RelReportPath); err != nil {
 		log.Error("unable to write to file",
 			"file", config.RelReportPath,
 			"error", err)
 	} else {
-		log.Info("exported crawler info", "file", config.RelReportPath)
+		log.Info("exported crawler report", "file", config.RelReportPath)
 	}
 }

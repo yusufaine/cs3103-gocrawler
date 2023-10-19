@@ -3,11 +3,14 @@ package crawler
 import (
 	"bytes"
 	"net/url"
+	"regexp"
 	"slices"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/charmbracelet/log"
 )
+
+var URLRegex = regexp.MustCompile(`[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,24}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)`)
 
 // Takes in a map of blacklisted hosts and the response body and returns a slice of links
 type LinkExtractor func(bl map[string]struct{}, resp []byte) []string
@@ -28,16 +31,19 @@ func DefaultLinkExtractor(bl map[string]struct{}, resp []byte) []string {
 			return
 		}
 
-		// skip link if blacklisted
+		// skip if link cannot be parsed
 		newUrl, err := url.Parse(link)
 		if err != nil {
-			log.Error("unable to parse link",
-				"link", link,
-				"error", err)
 			return
 		}
 
+		// skip if host is blacklisted
 		if _, ok := bl[newUrl.Host]; ok || newUrl.Host == "" {
+			return
+		}
+
+		// skip if link is not a valid URL
+		if !URLRegex.MatchString(link) {
 			return
 		}
 

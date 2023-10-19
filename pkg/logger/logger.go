@@ -10,8 +10,9 @@ import (
 // Simple setup over charmbacelet/log
 func Setup(verbose bool) {
 	loggerOpts := log.Options{
-		TimeFormat: time.Kitchen,
-		Level:      log.InfoLevel,
+		TimeFormat:      time.TimeOnly,
+		Level:           log.InfoLevel,
+		ReportTimestamp: true,
 	}
 
 	if verbose {
