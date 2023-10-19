@@ -78,6 +78,13 @@ func exportReport(config *crawler.Config, cr *crawler.Crawler) {
 			slices.Sort(v1.RemoteAddrs)
 			slices.Sort(v1.VisitedPaths)
 			filecontent.VisitedNetInfo[k][i] = v1
+
+			visitedCount := int64(len(v1.VisitedPaths))
+			if visitedCount == 0 {
+				visitedCount = 1
+			}
+			v1.AvgResponseMs = v1.TotalResponseTimeMs / visitedCount
+			cr.VisitedNetInfo[k][i] = v1
 		}
 	}
 
