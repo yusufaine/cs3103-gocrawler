@@ -1,6 +1,9 @@
 package crawler
 
-import "golang.org/x/time/rate"
+import (
+	"github.com/yusufaine/cs3203-g46-crawler/pkg/rhttp"
+	"golang.org/x/time/rate"
+)
 
 type CrawlerOption func(*Crawler)
 
@@ -8,6 +11,12 @@ type CrawlerOption func(*Crawler)
 func WithBlacklist(blacklist map[string]struct{}) CrawlerOption {
 	return func(c *Crawler) {
 		c.HostBlacklist = blacklist
+	}
+}
+
+func WithRHttpClient(hc *rhttp.Client) CrawlerOption {
+	return func(c *Crawler) {
+		c.hc = hc
 	}
 }
 

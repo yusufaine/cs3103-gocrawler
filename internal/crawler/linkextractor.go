@@ -44,7 +44,6 @@ func DefaultLinkExtractor(bl map[string]struct{}, resp []byte) []string {
 
 		// skip if link is not a valid URL
 		if !URLRegex.MatchString(link) {
-			log.Warn("skipping invalid link", "link", link)
 			return
 		}
 

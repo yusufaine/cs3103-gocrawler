@@ -30,9 +30,13 @@ type PageInfo struct {
 }
 
 type Crawler struct {
-	le              LinkExtractor
-	hc              *rhttp.Client
-	rl              *rate.Limiter
+	le        LinkExtractor
+	hc        *rhttp.Client
+	rl        *rate.Limiter
+	dnsMutex  sync.Mutex
+	netMutex  sync.Mutex
+	pageMutex sync.Mutex
+
 	MaxDepth        int
 	HostBlacklist   map[string]struct{}
 	VisitedNetInfo  map[string][]NetworkInfo
@@ -57,13 +61,17 @@ func New(maxDepth int, opts ...CrawlerOption) *Crawler {
 }
 
 func (c *Crawler) Crawl(ctx context.Context, link string, currDepth int) {
+	c.pageMutex.Lock()
 	if _, ok := c.VisitedPageResp[link]; ok {
+		c.pageMutex.Unlock()
 		return
 	}
 
 	if currDepth > c.MaxDepth {
+		c.pageMutex.Unlock()
 		return
 	}
+	c.pageMutex.Unlock()
 
 	log.Info("visiting", "depth", currDepth, "link", link)
 
@@ -73,17 +81,19 @@ func (c *Crawler) Crawl(ctx context.Context, link string, currDepth int) {
 	}
 
 	links := c.le(c.HostBlacklist, resp)
+	c.pageMutex.Lock()
 	c.VisitedPageResp[link] = PageInfo{
 		Content: resp,
 		Depth:   currDepth,
 		Links:   links,
 	}
+	c.pageMutex.Unlock()
 
 	currDepth++
 	var wg sync.WaitGroup
 	for _, l := range links {
 		wg.Add(1)
-		go func(l string, d int) {
+		go func(l string, currDepth int) {
 			defer wg.Done()
 			_ = c.rl.Wait(ctx) // ignore error
 			c.Crawl(ctx, l, currDepth)
@@ -112,10 +122,10 @@ func (c *Crawler) extractResponseBody(link string, depth int) []byte {
 			remoteAddr = connInfo.Conn.RemoteAddr().String()
 		},
 		DNSDone: func(dnsInfo httptrace.DNSDoneInfo) {
+			c.dnsMutex.Lock()
+			defer c.dnsMutex.Unlock()
 			for _, addr := range dnsInfo.Addrs {
-				if !slices.Contains(dnsAddrs, addr.String()) {
-					dnsAddrs = append(dnsAddrs, addr.String())
-				}
+				dnsAddrs = append(dnsAddrs, addr.String())
 			}
 		},
 	}))
@@ -136,16 +146,26 @@ func (c *Crawler) extractResponseBody(link string, depth int) []byte {
 	defer resp.Body.Close()
 
 	contentType := resp.Header.Get("Content-Type")
-	if !strings.Contains(contentType, "text") || contentType == "" {
-		log.Debug("skipping non-text response",
-			"type", resp.Header.Get("Content-Type"),
-			"link", link)
+	if contentType != "" && !strings.Contains(contentType, "text") {
 		return nil
 	}
 	respTime := time.Since(reqStart)
 
+	// deduplicate dns addresses
+	c.dnsMutex.Lock()
+	dnsSet := make(map[string]struct{})
+	for _, da := range dnsAddrs {
+		dnsSet[da] = struct{}{}
+	}
+	dnsAddrs = make([]string, 0, len(dnsSet))
+	for k := range dnsSet {
+		dnsAddrs = append(dnsAddrs, k)
+	}
+	c.dnsMutex.Unlock()
+
+	c.netMutex.Lock()
 	if infos, ok := c.VisitedNetInfo[parsedUrl.Host]; ok {
-		for _, info := range infos {
+		for i, info := range infos {
 			// host may have multiple remote addresses and DNS addresses
 			if !slices.Contains(info.RemoteAddrs, remoteAddr) {
 				info.RemoteAddrs = append(info.RemoteAddrs, remoteAddr)
@@ -162,6 +182,7 @@ func (c *Crawler) extractResponseBody(link string, depth int) []byte {
 			}
 
 			info.ResponseTimeMs = respTime.Milliseconds()
+			c.VisitedNetInfo[parsedUrl.Host][i] = info
 		}
 	} else {
 		c.VisitedNetInfo[parsedUrl.Host] = []NetworkInfo{
@@ -173,6 +194,7 @@ func (c *Crawler) extractResponseBody(link string, depth int) []byte {
 			},
 		}
 	}
+	c.netMutex.Unlock()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {

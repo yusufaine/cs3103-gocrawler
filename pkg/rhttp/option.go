@@ -11,6 +11,12 @@ func WithBackoffPolicy(bp BackoffPolicy) RHTTPOption {
 	}
 }
 
+func WithMaxRetries(maxRetries int) RHTTPOption {
+	return func(c *Client) {
+		c.maxRetryCount = maxRetries
+	}
+}
+
 // WithRetryPolicy sets the retry policy for the client.
 func WithRetryPolicy(rp RetryPolicy) RHTTPOption {
 	return func(c *Client) {

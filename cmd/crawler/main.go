@@ -11,6 +11,7 @@ import (
 	"github.com/yusufaine/cs3203-g46-crawler/internal/crawler"
 	"github.com/yusufaine/cs3203-g46-crawler/pkg/filewriter"
 	"github.com/yusufaine/cs3203-g46-crawler/pkg/logger"
+	"github.com/yusufaine/cs3203-g46-crawler/pkg/rhttp"
 )
 
 func main() {
@@ -25,20 +26,29 @@ func main() {
 	}()
 
 	config := crawler.NewFlagConfig()
-	logger.Setup(config.Verbose, config.LogFile)
+	logger.Setup(config.Verbose)
 	config.MustValidate()
 	config.PrintRunningConfig()
 	time.Sleep(3 * time.Second)
+
+	retryClient := rhttp.New(
+		rhttp.WithBackoffPolicy(rhttp.DefaultLinearBackoff),
+		rhttp.WithMaxRetries(config.MaxRetries),
+		rhttp.WithRetryPolicy(rhttp.DefaultRetry),
+		rhttp.WithTimeout(config.Timeout),
+	)
 
 	cr := crawler.New(
 		config.MaxDepth,
 		crawler.WithBlacklist(config.BlacklistHosts),
 		crawler.WithLinkExtractor(crawler.DefaultLinkExtractor),
 		crawler.WithMaxRequestsPerSecond(config.MaxRPS),
+		crawler.WithRHttpClient(retryClient),
 	)
+
 	cr.Crawl(ctx, config.SeedURL, 0)
-	defer exportReport(config, cr)
 	log.Info("crawl completed")
+	exportReport(config, cr)
 }
 
 func exportReport(config *crawler.Config, cr *crawler.Crawler) {
@@ -76,6 +86,6 @@ func exportReport(config *crawler.Config, cr *crawler.Crawler) {
 			"file", config.RelReportPath,
 			"error", err)
 	} else {
-		log.Info("exported crawler info", "file", config.RelReportPath)
+		log.Info("exported crawler report", "file", config.RelReportPath)
 	}
 }
