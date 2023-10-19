@@ -34,7 +34,7 @@ type PageInfo struct {
 }
 
 type Crawler struct {
-	LinkExtractor
+	le              LinkExtractor
 	hc              *rhttp.Client
 	rl              *rate.Limiter
 	MaxDepth        int
@@ -46,7 +46,7 @@ type Crawler struct {
 // To blacklist remote hosts, use WithBlacklist()
 func New(maxDepth int, opts ...CrawlerOption) *Crawler {
 	c := &Crawler{
-		LinkExtractor:   DefaultLinkExtractor,
+		le:              DefaultLinkExtractor,
 		hc:              rhttp.New(rhttp.WithTimeout(3 * time.Second)),
 		MaxDepth:        maxDepth - 1,
 		HostBlacklist:   make(map[string]struct{}),
@@ -83,7 +83,7 @@ func (c *Crawler) Crawl(ctx context.Context, link string, currDepth int) {
 		return
 	}
 
-	links := c.LinkExtractor(c.HostBlacklist, resp)
+	links := c.le(c.HostBlacklist, resp)
 	c.VisitedPageResp[link] = []PageInfo{
 		{
 			Content: resp,

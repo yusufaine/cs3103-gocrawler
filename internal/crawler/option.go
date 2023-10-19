@@ -15,7 +15,7 @@ func WithBlacklist(blacklist map[string]struct{}) CrawlerOption {
 // See: linkextractor.go
 func WithLinkExtractor(le LinkExtractor) CrawlerOption {
 	return func(c *Crawler) {
-		c.LinkExtractor = le
+		c.le = le
 	}
 }
 

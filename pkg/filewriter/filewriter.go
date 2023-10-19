@@ -1,8 +1,16 @@
-package fileexporter
+package filewriter
 
-import "os"
+import (
+	"encoding/json"
+	"os"
+)
 
-func WriteToFile(d []byte, filename string) error {
+func ToJSON(v any, filename string) error {
+	d, err := json.MarshalIndent(v, "", "  ")
+	if err != nil {
+		return err
+	}
+
 	var f *os.File
 	// if file exists, overwrite
 	if _, err := os.Stat(filename); err == nil {
@@ -12,7 +20,7 @@ func WriteToFile(d []byte, filename string) error {
 		}
 	}
 
-	f, err := os.Create(filename)
+	f, err = os.Create(filename)
 	if err != nil {
 		return err
 	}

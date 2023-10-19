@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"os/signal"
 	"syscall"
 	"time"
@@ -10,7 +9,7 @@ import (
 	"github.com/charmbracelet/log"
 
 	"github.com/yusufaine/cs3203-g46-crawler/internal/crawler"
-	"github.com/yusufaine/cs3203-g46-crawler/pkg/fileexporter"
+	"github.com/yusufaine/cs3203-g46-crawler/pkg/filewriter"
 	"github.com/yusufaine/cs3203-g46-crawler/pkg/logger"
 )
 
@@ -41,21 +40,13 @@ func main() {
 }
 
 func exportFiles(config *crawler.Config, cr *crawler.Crawler) {
-	netinfo, err := json.MarshalIndent(cr.VisitedNetInfo, "", "  ")
-	if err != nil {
-		log.Error("unable to marshal network info", "error", err)
-	}
-	if err := fileexporter.WriteToFile(netinfo, config.RelNetInfoPath); err != nil {
+	if err := filewriter.ToJSON(cr.VisitedNetInfo, config.RelNetInfoPath); err != nil {
 		log.Error("unable to write to file", "file", config.RelNetInfoPath, "error", err)
 	} else {
 		log.Info("exported network info", "file", config.RelNetInfoPath)
 	}
 
-	pageinfo, err := json.MarshalIndent(cr.VisitedPageResp, "", "  ")
-	if err != nil {
-		log.Error("unable to marshal page info", "error", err)
-	}
-	if err := fileexporter.WriteToFile(pageinfo, config.RelPagesInfoPath); err != nil {
+	if err := filewriter.ToJSON(cr.VisitedPageResp, config.RelPagesInfoPath); err != nil {
 		log.Error("unable to write to file", "file", config.RelNetInfoPath, "error", err)
 	} else {
 		log.Info("exported page info", "file", config.RelPagesInfoPath)
