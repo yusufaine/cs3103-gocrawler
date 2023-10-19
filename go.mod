@@ -1,10 +1,15 @@
 module github.com/yusufaine/cs3203-g46-crawler
 
-go 1.21.3
-
-require github.com/charmbracelet/log v0.2.5
+go 1.21.0
 
 require (
+	github.com/PuerkitoBio/goquery v1.8.1
+	github.com/charmbracelet/log v0.2.5
+	golang.org/x/time v0.3.0
+)
+
+require (
+	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
 	github.com/charmbracelet/lipgloss v0.8.0 // indirect
 	github.com/go-logfmt/logfmt v0.6.0 // indirect
@@ -14,5 +19,6 @@ require (
 	github.com/muesli/reflow v0.3.0 // indirect
 	github.com/muesli/termenv v0.15.2 // indirect
 	github.com/rivo/uniseg v0.2.0 // indirect
+	golang.org/x/net v0.7.0 // indirect
 	golang.org/x/sys v0.7.0 // indirect
 )

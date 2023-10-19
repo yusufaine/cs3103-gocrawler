@@ -18,7 +18,11 @@ func WriteToFile(d []byte, filename string) error {
 	}
 	defer f.Close()
 
-	f.Write(d)
-	f.Write([]byte("\n"))
+	if _, err := f.Write(d); err != nil {
+		return err
+	}
+	if _, err := f.Write([]byte("\n")); err != nil {
+		return err
+	}
 	return nil
 }

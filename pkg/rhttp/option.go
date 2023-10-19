@@ -1,5 +1,7 @@
 package rhttp
 
+import "time"
+
 type RHTTPOption func(*Client)
 
 // WithBackoffPolicy sets the backoff policy for the client.
@@ -13,5 +15,11 @@ func WithBackoffPolicy(bp BackoffPolicy) RHTTPOption {
 func WithRetryPolicy(rp RetryPolicy) RHTTPOption {
 	return func(c *Client) {
 		c.retryPol = rp
+	}
+}
+
+func WithTimeout(timeout time.Duration) RHTTPOption {
+	return func(c *Client) {
+		c.cl.Timeout = timeout
 	}
 }
