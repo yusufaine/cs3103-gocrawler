@@ -25,7 +25,7 @@ func main() {
 	}()
 
 	config := crawler.NewFlagConfig()
-	logger.Setup(config.Verbose)
+	logger.Setup(config.Verbose, config.LogFile)
 	config.MustValidate()
 	config.PrintRunningConfig()
 	time.Sleep(3 * time.Second)
@@ -54,7 +54,7 @@ func exportReport(config *crawler.Config, cr *crawler.Crawler) {
 		Blacklist []string `json:"blacklist"`
 
 		VisitedNetInfo  map[string][]crawler.NetworkInfo `json:"network_info"`
-		VisitedPageResp map[string][]crawler.PageInfo    `json:"page_info"`
+		VisitedPageResp map[string]crawler.PageInfo      `json:"page_info"`
 	}{
 		Seed:            config.SeedURL,
 		Depth:           config.MaxDepth,
@@ -62,6 +62,15 @@ func exportReport(config *crawler.Config, cr *crawler.Crawler) {
 		VisitedNetInfo:  cr.VisitedNetInfo,
 		VisitedPageResp: cr.VisitedPageResp,
 	}
+	for k, v := range cr.VisitedNetInfo {
+		for i, v1 := range v {
+			slices.Sort(v1.DNSAddrs)
+			slices.Sort(v1.RemoteAddrs)
+			slices.Sort(v1.VisitedPaths)
+			filecontent.VisitedNetInfo[k][i] = v1
+		}
+	}
+
 	if err := filewriter.ToJSON(filecontent, config.RelReportPath); err != nil {
 		log.Error("unable to write to file",
 			"file", config.RelReportPath,

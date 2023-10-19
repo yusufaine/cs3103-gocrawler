@@ -15,6 +15,7 @@ type Config struct {
 	MaxRPS         float64
 	Timeout        time.Duration
 	Verbose        bool
+	LogFile        string
 	RelReportPath  string
 }
 
@@ -23,14 +24,14 @@ func NewFlagConfig() *Config {
 		config  Config
 		blHosts string
 	)
-	config.RelReportPath = "crawler_report.json"
 	flag.StringVar(&blHosts, "bl", "", "Comma separated list of hosts to blacklist")
 	flag.IntVar(&config.MaxDepth, "depth", 20, "Max depth from seed")
 	flag.StringVar(&config.SeedURL, "seed", "", "Seed URL, required (e.g https://example.com)")
-	flag.Float64Var(&config.MaxRPS, "rps", 20, "Max requests per second")
+	flag.Float64Var(&config.MaxRPS, "rps", 15, "Max requests per second")
 	flag.DurationVar(&config.Timeout, "timeout", 5*time.Second, "Timeout for HTTP requests")
-	flag.BoolVar(&config.Verbose, "v", false, "Verbose logging, includes debug and caller info")
-	flag.StringVar(&config.RelReportPath, "report", config.RelReportPath, "Relative path to report file")
+	flag.BoolVar(&config.Verbose, "v", false, "For devs -- verbose logging, includes debug and short caller info")
+	flag.StringVar(&config.LogFile, "log", "", "For devs -- log file path, strips log colours if set")
+	flag.StringVar(&config.RelReportPath, "report", "crawler_report.json", "Relative path to report file")
 	flag.Parse()
 
 	config.BlacklistHosts = make(map[string]struct{})
@@ -67,6 +68,7 @@ func (c *Config) PrintRunningConfig() {
 		"seed", c.SeedURL,
 		"timeout", c.Timeout,
 		"verbose", c.Verbose,
+		"log_file", c.LogFile,
 		"max_rps", c.MaxRPS,
 		"report_path", c.RelReportPath,
 	)

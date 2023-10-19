@@ -16,11 +16,6 @@ import (
 	"golang.org/x/time/rate"
 )
 
-type toVisitInfo struct {
-	depth int
-	link  string
-}
-
 type NetworkInfo struct {
 	VisitedPaths   []string `json:"paths"`
 	RemoteAddrs    []string `json:"remote_addr"`
@@ -30,6 +25,7 @@ type NetworkInfo struct {
 
 type PageInfo struct {
 	Content []byte   `json:"-"`
+	Depth   int      `json:"depth"`
 	Links   []string `json:"links"`
 }
 
@@ -40,7 +36,7 @@ type Crawler struct {
 	MaxDepth        int
 	HostBlacklist   map[string]struct{}
 	VisitedNetInfo  map[string][]NetworkInfo
-	VisitedPageResp map[string][]PageInfo
+	VisitedPageResp map[string]PageInfo
 }
 
 // To blacklist remote hosts, use WithBlacklist()
@@ -51,7 +47,7 @@ func New(maxDepth int, opts ...CrawlerOption) *Crawler {
 		MaxDepth:        maxDepth - 1,
 		HostBlacklist:   make(map[string]struct{}),
 		VisitedNetInfo:  make(map[string][]NetworkInfo),
-		VisitedPageResp: make(map[string][]PageInfo),
+		VisitedPageResp: make(map[string]PageInfo),
 	}
 
 	for _, opt := range opts {
@@ -62,18 +58,14 @@ func New(maxDepth int, opts ...CrawlerOption) *Crawler {
 
 func (c *Crawler) Crawl(ctx context.Context, link string, currDepth int) {
 	if _, ok := c.VisitedPageResp[link]; ok {
-		log.Debug("skipping already visited link", "link", link)
 		return
 	}
 
 	if currDepth > c.MaxDepth {
-		log.Debug("skipping link due to max depth", "link", link)
 		return
 	}
 
 	log.Info("visiting", "depth", currDepth, "link", link)
-
-	_ = c.rl.Wait(ctx) // ignore error
 
 	resp := c.extractResponseBody(link, currDepth)
 	if resp == nil {
@@ -81,11 +73,10 @@ func (c *Crawler) Crawl(ctx context.Context, link string, currDepth int) {
 	}
 
 	links := c.le(c.HostBlacklist, resp)
-	c.VisitedPageResp[link] = []PageInfo{
-		{
-			Content: resp,
-			Links:   links,
-		},
+	c.VisitedPageResp[link] = PageInfo{
+		Content: resp,
+		Depth:   currDepth,
+		Links:   links,
 	}
 
 	currDepth++
@@ -94,6 +85,7 @@ func (c *Crawler) Crawl(ctx context.Context, link string, currDepth int) {
 		wg.Add(1)
 		go func(l string, d int) {
 			defer wg.Done()
+			_ = c.rl.Wait(ctx) // ignore error
 			c.Crawl(ctx, l, currDepth)
 		}(l, currDepth)
 	}
@@ -143,7 +135,8 @@ func (c *Crawler) extractResponseBody(link string, depth int) []byte {
 	}
 	defer resp.Body.Close()
 
-	if !strings.Contains(resp.Header.Get("Content-Type"), "text") {
+	contentType := resp.Header.Get("Content-Type")
+	if !strings.Contains(contentType, "text") || contentType == "" {
 		log.Debug("skipping non-text response",
 			"type", resp.Header.Get("Content-Type"),
 			"link", link)
@@ -179,9 +172,6 @@ func (c *Crawler) extractResponseBody(link string, depth int) []byte {
 				ResponseTimeMs: respTime.Milliseconds(),
 			},
 		}
-		log.Debug("visited",
-			"link", parsedUrl.String(),
-			"resp_time_ms", respTime.Milliseconds())
 	}
 
 	body, err := io.ReadAll(resp.Body)
