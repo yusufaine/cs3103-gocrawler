@@ -3,6 +3,8 @@ package rhttp
 
 import (
 	"net/http"
+	"net/url"
+	"os"
 	"time"
 
 	"github.com/charmbracelet/log"
@@ -27,8 +29,13 @@ type Client struct {
 // By default, the client will retry 3 times with a linear backoff between 100ms
 // and 1000ms. Refer to BackoffPolicy and RetryPolicy for more information.
 func New(opts ...RHTTPOption) *Client {
+	client := http.DefaultClient
+	proxy, err := url.Parse(os.Getenv("SCRAPE_PROXY_URL"))
+	if err == nil {
+		client = &http.Client{Transport: &http.Transport{Proxy: http.ProxyURL(proxy)}}
+	}
 	c := &Client{
-		cl:            http.DefaultClient,
+		cl:            client,
 		maxRetryCount: defaultMaxRetryCount,
 		minWaitMs:     defaultMinWaitMs,
 		maxWaitMs:     defaultMaxWaitMs,
