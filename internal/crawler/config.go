@@ -16,6 +16,7 @@ type Config struct {
 	MaxDepth       int
 	MaxRetries     int
 	MaxRPS         float64
+	ProxyURL       *url.URL
 	RelReportPath  string
 	SeedURL        *url.URL
 	Timeout        time.Duration
@@ -25,26 +26,27 @@ func SetupConfig() *Config {
 	var (
 		c       Config
 		blHosts string
+		proxy   string
 		seed    string
 		verbose bool
 	)
-	flag.StringVar(&blHosts, "bl", "", "Comma separated list of hosts to blacklist, hosts will be blacklisted with and without 'www.' prefix")
 	flag.IntVar(&c.MaxDepth, "depth", 10, "Max depth from seed")
-	flag.StringVar(&seed, "seed", "", "Seed URL, required (e.g https://example.com)")
 	flag.IntVar(&c.MaxRetries, "retries", 3, "Max retries for HTTP requests")
 	flag.Float64Var(&c.MaxRPS, "rps", 15, "Max requests per second")
 	flag.DurationVar(&c.Timeout, "timeout", 5*time.Second, "Timeout for HTTP requests")
-	flag.BoolVar(&verbose, "verbose", false, "For devs -- verbose logging, includes debug and short caller info")
 	flag.StringVar(&c.RelReportPath, "report", "crawler_report.json", "Relative path to report file")
+	flag.StringVar(&blHosts, "bl", "", "Comma separated list of hosts to blacklist, hosts will be blacklisted with and without 'www.' prefix")
+	flag.StringVar(&proxy, "proxy", "", "Proxy URL (e.g http://localhost:8080)")
+	flag.StringVar(&seed, "seed", "", "Seed URL, required (e.g https://example.com)")
+	flag.BoolVar(&verbose, "verbose", false, "For devs -- verbose logging, includes debug and short caller info")
 	flag.Parse()
 	logger.Setup(verbose)
 
-	parsedURL, err := url.Parse(seed)
-	if err != nil {
-		panic(err)
+	c.SeedURL, _ = url.Parse(seed)
+	c.ProxyURL, _ = url.Parse(proxy)
+	if c.ProxyURL.String() == "" {
+		panic("--proxy is required!")
 	}
-	c.SeedURL = parsedURL
-
 	c.BlacklistHosts = make(map[string]struct{})
 	for _, host := range strings.Split(blHosts, ",") {
 		host = strings.TrimSpace(host)
@@ -64,7 +66,7 @@ func SetupConfig() *Config {
 }
 
 func (c *Config) MustValidate() {
-	if c.SeedURL == nil {
+	if c.SeedURL.String() == "" {
 		panic("--seed is required!")
 	} else if c.MaxDepth < 1 {
 		panic("--depth must be >= 1")
@@ -89,11 +91,12 @@ func (c *Config) PrintConfig() {
 	slices.Sort(blHosts)
 
 	log.Info("Running with config: ")
-	log.Info("  ", "seed", c.SeedURL)
-	log.Info("  ", "depth", c.MaxDepth)
-	log.Info("  ", "blacklist", strings.Join(blHosts, ", "))
-	log.Info("  ", "retries", c.MaxRetries)
-	log.Info("  ", "rps", c.MaxRPS)
-	log.Info("  ", "timeout", c.Timeout)
-	log.Info("  ", "report", c.RelReportPath)
+	log.Info(" ", "seed", c.SeedURL)
+	log.Info(" ", "proxy", c.ProxyURL)
+	log.Info(" ", "depth", c.MaxDepth)
+	log.Info(" ", "blacklist", strings.Join(blHosts, ", "))
+	log.Info(" ", "retries", c.MaxRetries)
+	log.Info(" ", "rps", c.MaxRPS)
+	log.Info(" ", "timeout", c.Timeout)
+	log.Info(" ", "report", c.RelReportPath)
 }
