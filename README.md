@@ -1,6 +1,6 @@
 # CS3103 Golang Webcrawler
 
-This repo contains the source code for a generic parallel webcrawler written in Golang, which we then built upon to create a webcrawler to analyse the relevance of each country and region when it comes to the topic of "The International", a global DOTA 2 tournament, over the past few years based on what can be found on "[Liquipedia](https://liquipedia.net/dota2/The_International)"
+This repo contains the source code for a generic parallel webcrawler written in Golang, which we then built upon to create a webcrawler to analyse the relevance of each country and region when it comes to the topic of "The International", a global DOTA 2 tournament, over the past few years based on what can be found on [Liquipedia](https://liquipedia.net/dota2/The_International).
 
 <!-- omit in toc -->
 ## Table of Contents
