@@ -44,9 +44,7 @@ func SetupConfig() *Config {
 
 	c.SeedURL, _ = url.Parse(seed)
 	c.ProxyURL, _ = url.Parse(proxy)
-	if c.ProxyURL.String() == "" {
-		panic("--proxy is required!")
-	}
+
 	c.BlacklistHosts = make(map[string]struct{})
 	for _, host := range strings.Split(blHosts, ",") {
 		host = strings.TrimSpace(host)
