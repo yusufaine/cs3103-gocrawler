@@ -138,6 +138,9 @@ func (c *Crawler) extractResponseBody(link string, depth int) []byte {
 		if errors.Is(err, context.Canceled) {
 			return nil
 		}
+		c.pageMutex.Lock()
+		defer c.pageMutex.Unlock()
+		c.VisitedPageResp[link] = PageInfo{Depth: depth}
 		log.Error("unable to get response",
 			"url", parsedUrl.String(),
 			"error", err)
