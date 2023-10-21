@@ -30,7 +30,7 @@ func NewFlagConfig() *Config {
 	flag.IntVar(&config.MaxRetries, "retries", 3, "Max retries for HTTP requests")
 	flag.Float64Var(&config.MaxRPS, "rps", 15, "Max requests per second")
 	flag.DurationVar(&config.Timeout, "timeout", 5*time.Second, "Timeout for HTTP requests")
-	flag.BoolVar(&config.Verbose, "v", false, "For devs -- verbose logging, includes debug and short caller info")
+	flag.BoolVar(&config.Verbose, "verbose", false, "For devs -- verbose logging, includes debug and short caller info")
 	flag.StringVar(&config.RelReportPath, "report", "crawler_report.json", "Relative path to report file")
 	flag.Parse()
 

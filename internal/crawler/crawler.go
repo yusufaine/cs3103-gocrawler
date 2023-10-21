@@ -2,6 +2,7 @@ package crawler
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 	"net/http/httptrace"
@@ -16,21 +17,8 @@ import (
 	"golang.org/x/time/rate"
 )
 
-type NetworkInfo struct {
-	VisitedPaths        []string `json:"paths"`
-	RemoteAddrs         []string `json:"remote_addr"`
-	DNSAddrs            []string `json:"dns_addrs"`
-	TotalResponseTimeMs int64    `json:"-"`
-	AvgResponseMs       int64    `json:"avg_response_ms"`
-}
-
-type PageInfo struct {
-	Content []byte   `json:"-"`
-	Depth   int      `json:"depth"`
-	Links   []string `json:"links"`
-}
-
 type Crawler struct {
+	ctx       context.Context
 	le        LinkExtractor
 	hc        *rhttp.Client
 	rl        *rate.Limiter
@@ -45,10 +33,18 @@ type Crawler struct {
 }
 
 // To blacklist remote hosts, use WithBlacklist()
-func New(maxDepth int, opts ...CrawlerOption) *Crawler {
+func New(ctx context.Context, maxDepth int, config *Config, opts ...CrawlerOption) *Crawler {
+	retryClient := rhttp.New(
+		rhttp.WithBackoffPolicy(rhttp.DefaultLinearBackoff),
+		rhttp.WithMaxRetries(config.MaxRetries),
+		rhttp.WithRetryPolicy(rhttp.DefaultRetry),
+		rhttp.WithTimeout(config.Timeout),
+	)
+
 	c := &Crawler{
+		ctx:             ctx,
 		le:              DefaultLinkExtractor,
-		hc:              rhttp.New(rhttp.WithTimeout(3 * time.Second)),
+		hc:              retryClient,
 		MaxDepth:        maxDepth - 1,
 		HostBlacklist:   make(map[string]struct{}),
 		VisitedNetInfo:  make(map[string][]NetworkInfo),
@@ -117,7 +113,7 @@ func (c *Crawler) extractResponseBody(link string, depth int) []byte {
 		dnsAddrs   []string
 	)
 	reqStart := time.Now()
-	req, err := http.NewRequest("GET", parsedUrl.String(), nil)
+	req, err := http.NewRequestWithContext(c.ctx, "GET", parsedUrl.String(), nil)
 	req = req.WithContext(httptrace.WithClientTrace(req.Context(), &httptrace.ClientTrace{
 		GotConn: func(connInfo httptrace.GotConnInfo) {
 			remoteAddr = connInfo.Conn.RemoteAddr().String()
@@ -139,6 +135,9 @@ func (c *Crawler) extractResponseBody(link string, depth int) []byte {
 
 	resp, err := c.hc.Do(req)
 	if err != nil {
+		if errors.Is(err, context.Canceled) {
+			return nil
+		}
 		log.Error("unable to get response",
 			"url", parsedUrl.String(),
 			"error", err)
