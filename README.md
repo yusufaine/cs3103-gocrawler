@@ -24,14 +24,14 @@ A basic web crawler that crawls a given URL and returns a list of URLs found on 
 
 ```bash
 # Running the binary
-./crawler --seed=https://example.com --depth=3 --report example/crawler_report.json
+./crawler --seed=https://example.com/ --depth=3 --report=example/crawler_report.json --bl=pti.icann.org
 # ./crawler --help to see all options
 
 # Output logs to local file, useful for debugging
 ./crawler --seed=https://example.com --depth=3 2>&1 --v | tee crawler.log
 
 # Without binary (requires Go 1.21+)
-go run cmd/crawler/main.go --seed=https://example.com --depth=3 --report example/crawler_report.json
+go run cmd/crawler/main.go --seed=https://example.com/ --depth=3 --report=example/crawler_report.json --bl=pti.icann.org
 ```
 
 #### Package Usage

@@ -43,19 +43,22 @@ func New(opts ...RHTTPOption) *Client {
 }
 
 // TODO: There may exist an issue if the request has a body
-func (c *Client) Do(req *http.Request) (*http.Response, error) {
+func (c *Client) Do(req *http.Request) (resp *http.Response, err error) {
 	req.Header.Set("User-Agent", userAgent)
-	var resp *http.Response
-	var err error
 	for i := 0; i < c.maxRetryCount; i++ {
-		resp, err = c.cl.Do(req)
-		retry, err := c.retryPol(resp, err)
-		if !retry {
-			return resp, err
+		select {
+		case <-req.Context().Done():
+			return resp, req.Context().Err()
+		default:
+			resp, err = c.cl.Do(req)
+			retry, err := c.retryPol(resp, err)
+			if !retry {
+				return resp, err
+			}
+			wait := c.backoffPol(c.minWaitMs, c.maxWaitMs, i)
+			log.Warn("retrying request", "attempt", i+1, "wait", wait, "link", req.URL.String())
+			time.Sleep(wait)
 		}
-		wait := c.backoffPol(c.minWaitMs, c.maxWaitMs, i)
-		log.Warn("retrying request", "attempt", i+1, "wait", wait, "link", req.URL.String())
-		time.Sleep(wait)
 	}
 	return resp, err
 }
