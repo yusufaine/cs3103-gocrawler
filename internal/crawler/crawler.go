@@ -2,12 +2,13 @@ package crawler
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
 	"net/http/httptrace"
 	"net/url"
-	"slices"
 	"strings"
 	"sync"
 	"time"
@@ -18,15 +19,14 @@ import (
 )
 
 type Crawler struct {
-	ctx      context.Context
-	hc       *rhttp.Client
-	rl       *rate.Limiter
-	dnsMutex sync.Mutex
-	netMutex sync.Mutex
+	ctx context.Context
+	hc  *rhttp.Client
+	rl  *rate.Limiter
 
 	MaxDepth        int
 	HostBlacklist   map[string]struct{}
 	VisitedNetInfo  map[string][]NetworkInfo
+	NetMutex        sync.Mutex
 	VisitedPageInfo map[string]PageInfo
 	PageMutex       sync.Mutex
 }
@@ -109,22 +109,12 @@ func (c *Crawler) extractResponseBody(link string, depth int) []byte {
 		return nil
 	}
 
-	var (
-		remoteAddr string
-		dnsAddrs   []string
-	)
+	var remoteAddr string
 	reqStart := time.Now()
 	req, err := http.NewRequestWithContext(c.ctx, "GET", parsedUrl.String(), nil)
 	req = req.WithContext(httptrace.WithClientTrace(req.Context(), &httptrace.ClientTrace{
 		GotConn: func(connInfo httptrace.GotConnInfo) {
 			remoteAddr = connInfo.Conn.RemoteAddr().String()
-		},
-		DNSDone: func(dnsInfo httptrace.DNSDoneInfo) {
-			c.dnsMutex.Lock()
-			defer c.dnsMutex.Unlock()
-			for _, addr := range dnsInfo.Addrs {
-				dnsAddrs = append(dnsAddrs, addr.String())
-			}
 		},
 	}))
 	if err != nil {
@@ -149,56 +139,38 @@ func (c *Crawler) extractResponseBody(link string, depth int) []byte {
 	}
 	defer resp.Body.Close()
 
+	respTime := time.Since(reqStart)
 	contentType := resp.Header.Get("Content-Type")
 	if contentType != "" && !strings.Contains(contentType, "text") {
 		return nil
 	}
-	respTime := time.Since(reqStart)
 
-	// deduplicate dns addresses
-	c.dnsMutex.Lock()
-	dnsSet := make(map[string]struct{})
-	for _, da := range dnsAddrs {
-		dnsSet[da] = struct{}{}
-	}
-	dnsAddrs = make([]string, 0, len(dnsSet))
-	for k := range dnsSet {
-		dnsAddrs = append(dnsAddrs, k)
-	}
-	c.dnsMutex.Unlock()
-
-	c.netMutex.Lock()
+	c.NetMutex.Lock()
 	if infos, ok := c.VisitedNetInfo[parsedUrl.Host]; ok {
 		for i, info := range infos {
-			// host may have multiple remote addresses and DNS addresses
-			if !slices.Contains(info.RemoteAddrs, remoteAddr) {
-				info.RemoteAddrs = append(info.RemoteAddrs, remoteAddr)
-			}
-
-			for _, da := range dnsAddrs {
-				if !slices.Contains(info.DNSAddrs, da) {
-					info.DNSAddrs = append(info.DNSAddrs, da)
-				}
-			}
-
-			if !slices.Contains(info.VisitedPaths, parsedUrl.Path) {
-				info.VisitedPaths = append(info.VisitedPaths, parsedUrl.Path)
+			if _, ok := info.VisitedPathSet[parsedUrl.Path]; !ok {
+				info.VisitedPathSet[parsedUrl.Path] = struct{}{}
 			}
 
 			info.TotalResponseTimeMs += respTime.Milliseconds()
 			c.VisitedNetInfo[parsedUrl.Host][i] = info
 		}
 	} else {
+		asn, location, err := c.resolveIPInfo(strings.Split(remoteAddr, ":")[0])
+		if err != nil {
+			log.Warn("unable to resolve ip location", "error", err)
+		}
 		c.VisitedNetInfo[parsedUrl.Host] = []NetworkInfo{
 			{
-				RemoteAddrs:         []string{remoteAddr},
-				VisitedPaths:        []string{parsedUrl.Path},
-				DNSAddrs:            dnsAddrs,
+				RemoteAddr:          remoteAddr,
+				Location:            location,
+				ASNumber:            asn,
+				VisitedPathSet:      map[string]struct{}{parsedUrl.Path: {}},
 				TotalResponseTimeMs: respTime.Milliseconds(),
 			},
 		}
 	}
-	c.netMutex.Unlock()
+	c.NetMutex.Unlock()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
@@ -208,4 +180,33 @@ func (c *Crawler) extractResponseBody(link string, depth int) []byte {
 		return nil
 	}
 	return body
+}
+
+func (c *Crawler) resolveIPInfo(ip string) (string, string, error) {
+	req, err := http.NewRequestWithContext(c.ctx, "GET", "https://ipapi.co/"+ip+"/json/", nil)
+	if err != nil {
+		return "", "", err
+	}
+
+	resp, err := c.hc.Do(req)
+	if err != nil {
+		return "", "", err
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return "", "", err
+	}
+
+	var ipInfo struct {
+		ASNumber string `json:"asn,omitempty"`
+		Country  string `json:"country,omitempty"`
+		Region   string `json:"region,omitempty"`
+	}
+	if err := json.Unmarshal(body, &ipInfo); err != nil {
+		return "", "", err
+	}
+
+	return ipInfo.ASNumber, fmt.Sprintf("%s, %s", ipInfo.Country, ipInfo.Region), nil
 }

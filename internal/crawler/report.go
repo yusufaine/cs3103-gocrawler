@@ -8,11 +8,15 @@ import (
 )
 
 type NetworkInfo struct {
-	VisitedPaths        []string `json:"paths"`
-	RemoteAddrs         []string `json:"remote_addr"`
-	DNSAddrs            []string `json:"dns_addrs"`
-	TotalResponseTimeMs int64    `json:"-"`
-	AvgResponseMs       int64    `json:"avg_response_ms"`
+	VisitedPaths  []string `json:"paths"`
+	RemoteAddr    string   `json:"remote_addr"`
+	Location      string   `json:"location"`
+	ASNumber      string   `json:"as_number"`
+	AvgResponseMs int64    `json:"avg_response_ms"`
+	PathCount     int      `json:"path_count"`
+
+	TotalResponseTimeMs int64               `json:"-"`
+	VisitedPathSet      map[string]struct{} `json:"-"`
 }
 
 type PageInfo struct {
@@ -46,8 +50,11 @@ func (cr *Crawler) GenerateReport(config *Config) {
 	}
 	for k, v := range report.VisitedNetInfo {
 		for i, v1 := range v {
-			slices.Sort(v1.DNSAddrs)
-			slices.Sort(v1.RemoteAddrs)
+			v1.PathCount = len(v1.VisitedPathSet)
+			v1.VisitedPaths = make([]string, 0, v1.PathCount)
+			for k := range v1.VisitedPathSet {
+				v1.VisitedPaths = append(v1.VisitedPaths, k)
+			}
 			slices.Sort(v1.VisitedPaths)
 			report.VisitedNetInfo[k][i] = v1
 
