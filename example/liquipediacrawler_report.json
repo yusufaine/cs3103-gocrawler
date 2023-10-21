@@ -312,9 +312,11 @@
           "/dota2/The_International_2021",
           "/dota2/The_International_2022"
         ],
-        "remote_addr": ["144.217.237.5:443"],
-        "dns_addrs": ["144.217.237.5", "2607:5300:60:cd52:304b:760d:da7:d5"],
-        "avg_response_ms": 603
+        "remote_addr": "144.217.237.5:443",
+        "location": "Canada, Quebec",
+        "as_number": "AS16276",
+        "avg_response_ms": 603,
+        "path_count": 305
       }
     ]
   },

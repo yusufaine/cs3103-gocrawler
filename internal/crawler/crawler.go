@@ -201,7 +201,7 @@ func (c *Crawler) resolveIPInfo(ip string) (string, string, error) {
 
 	var ipInfo struct {
 		ASNumber string `json:"asn,omitempty"`
-		Country  string `json:"country,omitempty"`
+		Country  string `json:"country_name,omitempty"`
 		Region   string `json:"region,omitempty"`
 	}
 	if err := json.Unmarshal(body, &ipInfo); err != nil {
