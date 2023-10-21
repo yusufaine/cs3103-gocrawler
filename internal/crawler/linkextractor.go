@@ -6,6 +6,7 @@ import (
 	"net/url"
 	"regexp"
 	"slices"
+	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/charmbracelet/log"
@@ -33,7 +34,7 @@ func DefaultLinkExtractor(c *Crawler, currURL *url.URL, resp []byte) []*url.URL 
 		}
 
 		// skip if link cannot be parsed
-		newUrl, err := url.Parse(link)
+		newUrl, err := url.Parse(strings.TrimSpace(link))
 		if err != nil {
 			return
 		}

@@ -31,7 +31,7 @@ func ReportLinkExtractor(c *crawler.Crawler, currURL *url.URL, resp []byte) []*u
 		}
 
 		// skip if link cannot be parsed
-		newUrl, err := url.Parse(link)
+		newUrl, err := url.Parse(strings.TrimSpace(link))
 		if err != nil {
 			return
 		}
@@ -73,7 +73,7 @@ func TIAnalyserLinkExtractor(c *crawler.Crawler, currURL *url.URL, resp []byte) 
 		}
 
 		// skip if link cannot be parsed
-		newUrl, err := url.Parse(link)
+		newUrl, err := url.Parse(strings.TrimSpace(link))
 		if err != nil {
 			return
 		}
