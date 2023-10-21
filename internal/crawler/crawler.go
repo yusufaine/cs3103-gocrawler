@@ -18,22 +18,22 @@ import (
 )
 
 type Crawler struct {
-	ctx       context.Context
-	le        LinkExtractor
-	hc        *rhttp.Client
-	rl        *rate.Limiter
-	dnsMutex  sync.Mutex
-	netMutex  sync.Mutex
-	pageMutex sync.Mutex
+	ctx      context.Context
+	hc       *rhttp.Client
+	rl       *rate.Limiter
+	dnsMutex sync.Mutex
+	netMutex sync.Mutex
 
 	MaxDepth        int
 	HostBlacklist   map[string]struct{}
 	VisitedNetInfo  map[string][]NetworkInfo
 	VisitedPageInfo map[string]PageInfo
+	PageMutex       sync.Mutex
 }
 
 // To blacklist remote hosts, use WithBlacklist()
-func New(ctx context.Context, maxDepth int, config *Config, opts ...CrawlerOption) *Crawler {
+func New(ctx context.Context, config *Config, maxRPS float64) *Crawler {
+
 	retryClient := rhttp.New(
 		rhttp.WithBackoffPolicy(rhttp.DefaultLinearBackoff),
 		rhttp.WithMaxRetries(config.MaxRetries),
@@ -43,57 +43,58 @@ func New(ctx context.Context, maxDepth int, config *Config, opts ...CrawlerOptio
 
 	c := &Crawler{
 		ctx:             ctx,
-		le:              DefaultLinkExtractor,
 		hc:              retryClient,
-		MaxDepth:        maxDepth - 1,
+		rl:              rate.NewLimiter(rate.Limit(maxRPS), 1),
+		MaxDepth:        config.MaxDepth - 1,
 		HostBlacklist:   config.BlacklistHosts,
 		VisitedNetInfo:  make(map[string][]NetworkInfo),
 		VisitedPageInfo: make(map[string]PageInfo),
 	}
 
-	for _, opt := range opts {
-		opt(c)
-	}
 	return c
 }
 
-func (c *Crawler) Crawl(ctx context.Context, link string, currDepth int) {
-	c.pageMutex.Lock()
-	if _, ok := c.VisitedPageInfo[link]; ok {
-		c.pageMutex.Unlock()
+func (c *Crawler) Crawl(ctx context.Context, le LinkExtractor, parsedURL *url.URL, currDepth int) {
+	c.PageMutex.Lock()
+	if _, ok := c.VisitedPageInfo[parsedURL.String()]; ok {
+		c.PageMutex.Unlock()
 		return
 	}
 
 	if currDepth > c.MaxDepth {
-		c.pageMutex.Unlock()
+		c.PageMutex.Unlock()
 		return
 	}
-	c.pageMutex.Unlock()
+	c.PageMutex.Unlock()
 
-	log.Info("visiting", "depth", currDepth, "link", link)
+	log.Info("visiting", "depth", currDepth, "link", parsedURL.String())
 
-	resp := c.extractResponseBody(link, currDepth)
+	resp := c.extractResponseBody(parsedURL.String(), currDepth)
 	if resp == nil {
 		return
 	}
 
-	links := c.le(c.HostBlacklist, resp)
-	c.pageMutex.Lock()
-	c.VisitedPageInfo[link] = PageInfo{
+	links := le(c, parsedURL, resp)
+	strLinks := make([]string, 0, len(links))
+	for _, l := range links {
+		strLinks = append(strLinks, l.String())
+	}
+	c.PageMutex.Lock()
+	c.VisitedPageInfo[parsedURL.String()] = PageInfo{
 		Content: resp,
 		Depth:   currDepth,
-		Links:   links,
+		Links:   strLinks,
 	}
-	c.pageMutex.Unlock()
+	c.PageMutex.Unlock()
 
 	currDepth++
 	var wg sync.WaitGroup
 	for _, l := range links {
 		wg.Add(1)
-		go func(l string, currDepth int) {
+		go func(l *url.URL, currDepth int) {
 			defer wg.Done()
 			_ = c.rl.Wait(ctx) // ignore error
-			c.Crawl(ctx, l, currDepth)
+			c.Crawl(ctx, le, l, currDepth)
 		}(l, currDepth)
 	}
 	wg.Wait()
@@ -138,9 +139,9 @@ func (c *Crawler) extractResponseBody(link string, depth int) []byte {
 		if errors.Is(err, context.Canceled) {
 			return nil
 		}
-		c.pageMutex.Lock()
+		c.PageMutex.Lock()
 		c.VisitedPageInfo[link] = PageInfo{Depth: depth}
-		defer c.pageMutex.Unlock()
+		defer c.PageMutex.Unlock()
 		log.Error("unable to get response",
 			"host", parsedUrl.Host,
 			"error", err)

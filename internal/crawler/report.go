@@ -38,7 +38,7 @@ func (cr *Crawler) GenerateReport(config *Config) {
 	slices.Sort(bls)
 
 	report := ReportFormat{
-		Seed:            config.SeedURL,
+		Seed:            config.SeedURL.String(),
 		Depth:           config.MaxDepth,
 		Blacklist:       bls,
 		VisitedNetInfo:  cr.VisitedNetInfo,
