@@ -37,8 +37,12 @@ func DefaultLinkExtractor(bl map[string]struct{}, resp []byte) []string {
 			return
 		}
 
+		if newUrl.Host == "" || newUrl.Scheme == "" {
+			return
+		}
+
 		// skip if host is blacklisted
-		if _, ok := bl[newUrl.Host]; ok || newUrl.Host == "" {
+		if _, ok := bl[newUrl.Host]; ok {
 			return
 		}
 

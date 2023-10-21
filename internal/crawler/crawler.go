@@ -29,7 +29,7 @@ type Crawler struct {
 	MaxDepth        int
 	HostBlacklist   map[string]struct{}
 	VisitedNetInfo  map[string][]NetworkInfo
-	VisitedPageResp map[string]PageInfo
+	VisitedPageInfo map[string]PageInfo
 }
 
 // To blacklist remote hosts, use WithBlacklist()
@@ -46,9 +46,9 @@ func New(ctx context.Context, maxDepth int, config *Config, opts ...CrawlerOptio
 		le:              DefaultLinkExtractor,
 		hc:              retryClient,
 		MaxDepth:        maxDepth - 1,
-		HostBlacklist:   make(map[string]struct{}),
+		HostBlacklist:   config.BlacklistHosts,
 		VisitedNetInfo:  make(map[string][]NetworkInfo),
-		VisitedPageResp: make(map[string]PageInfo),
+		VisitedPageInfo: make(map[string]PageInfo),
 	}
 
 	for _, opt := range opts {
@@ -59,7 +59,7 @@ func New(ctx context.Context, maxDepth int, config *Config, opts ...CrawlerOptio
 
 func (c *Crawler) Crawl(ctx context.Context, link string, currDepth int) {
 	c.pageMutex.Lock()
-	if _, ok := c.VisitedPageResp[link]; ok {
+	if _, ok := c.VisitedPageInfo[link]; ok {
 		c.pageMutex.Unlock()
 		return
 	}
@@ -79,7 +79,7 @@ func (c *Crawler) Crawl(ctx context.Context, link string, currDepth int) {
 
 	links := c.le(c.HostBlacklist, resp)
 	c.pageMutex.Lock()
-	c.VisitedPageResp[link] = PageInfo{
+	c.VisitedPageInfo[link] = PageInfo{
 		Content: resp,
 		Depth:   currDepth,
 		Links:   links,
@@ -139,10 +139,10 @@ func (c *Crawler) extractResponseBody(link string, depth int) []byte {
 			return nil
 		}
 		c.pageMutex.Lock()
+		c.VisitedPageInfo[link] = PageInfo{Depth: depth}
 		defer c.pageMutex.Unlock()
-		c.VisitedPageResp[link] = PageInfo{Depth: depth}
 		log.Error("unable to get response",
-			"url", parsedUrl.String(),
+			"host", parsedUrl.Host,
 			"error", err)
 		return nil
 	}

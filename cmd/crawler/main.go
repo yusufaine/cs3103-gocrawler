@@ -10,7 +10,6 @@ import (
 
 	"github.com/charmbracelet/log"
 	"github.com/yusufaine/cs3203-g46-crawler/internal/crawler"
-	"github.com/yusufaine/cs3203-g46-crawler/pkg/logger"
 )
 
 func main() {
@@ -27,9 +26,6 @@ func main() {
 	}()
 
 	config := crawler.NewFlagConfig()
-	logger.Setup(config.Verbose)
-	config.MustValidate()
-	config.PrintRunningConfig()
 	time.Sleep(3 * time.Second)
 
 	cr := crawler.New(

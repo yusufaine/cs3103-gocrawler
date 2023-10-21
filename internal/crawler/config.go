@@ -6,40 +6,64 @@ import (
 	"time"
 
 	"github.com/charmbracelet/log"
+	"github.com/yusufaine/cs3203-g46-crawler/pkg/logger"
 )
 
 type Config struct {
 	BlacklistHosts map[string]struct{}
 	MaxDepth       int
-	SeedURL        string
 	MaxRetries     int
 	MaxRPS         float64
-	Timeout        time.Duration
-	Verbose        bool
 	RelReportPath  string
+	SeedURL        string
+	Timeout        time.Duration
 }
 
 func NewFlagConfig() *Config {
 	var (
-		config  Config
+		c       Config
 		blHosts string
+		verbose bool
 	)
-	flag.StringVar(&blHosts, "bl", "", "Comma separated list of hosts to blacklist")
-	flag.IntVar(&config.MaxDepth, "depth", 20, "Max depth from seed")
-	flag.StringVar(&config.SeedURL, "seed", "", "Seed URL, required (e.g https://example.com)")
-	flag.IntVar(&config.MaxRetries, "retries", 3, "Max retries for HTTP requests")
-	flag.Float64Var(&config.MaxRPS, "rps", 15, "Max requests per second")
-	flag.DurationVar(&config.Timeout, "timeout", 5*time.Second, "Timeout for HTTP requests")
-	flag.BoolVar(&config.Verbose, "verbose", false, "For devs -- verbose logging, includes debug and short caller info")
-	flag.StringVar(&config.RelReportPath, "report", "crawler_report.json", "Relative path to report file")
+	flag.StringVar(&blHosts, "bl", "", "Comma separated list of hosts to blacklist, hosts will be blacklisted with and without 'www.' prefix")
+	flag.IntVar(&c.MaxDepth, "depth", 20, "Max depth from seed")
+	flag.StringVar(&c.SeedURL, "seed", "", "Seed URL, required (e.g https://example.com)")
+	flag.IntVar(&c.MaxRetries, "retries", 3, "Max retries for HTTP requests")
+	flag.Float64Var(&c.MaxRPS, "rps", 15, "Max requests per second")
+	flag.DurationVar(&c.Timeout, "timeout", 5*time.Second, "Timeout for HTTP requests")
+	flag.BoolVar(&verbose, "verbose", false, "For devs -- verbose logging, includes debug and short caller info")
+	flag.StringVar(&c.RelReportPath, "report", "crawler_report.json", "Relative path to report file")
 	flag.Parse()
 
-	config.BlacklistHosts = make(map[string]struct{})
+	logger.Setup(verbose)
+	c.BlacklistHosts = make(map[string]struct{})
 	for _, host := range strings.Split(blHosts, ",") {
-		config.BlacklistHosts[host] = struct{}{}
+		host = strings.TrimSpace(host)
+		if host == "" {
+			continue
+		}
+		c.BlacklistHosts[host] = struct{}{}
+
+		if strings.HasPrefix(host, "www.") {
+			c.BlacklistHosts[host[4:]] = struct{}{}
+		} else {
+			c.BlacklistHosts["www."+host] = struct{}{}
+		}
 	}
 
-	return &config
+	c.MustValidate()
+
+	log.Info("Running with config: ")
+	log.Info("  ", "seed", c.SeedURL)
+	log.Info("  ", "depth", c.MaxDepth)
+	log.Info("  ", "blacklist", strings.Join(strings.Split(blHosts, ","), ", "))
+	log.Info("  ", "retries", c.MaxRetries)
+	log.Info("  ", "rps", c.MaxRPS)
+	log.Info("  ", "timeout", c.Timeout)
+	log.Info("  ", "verbose", verbose)
+	log.Info("  ", "report", c.RelReportPath)
+
+	return &c
 }
 
 func (c *Config) MustValidate() {
@@ -53,22 +77,9 @@ func (c *Config) MustValidate() {
 		panic("--rps must be > 0")
 	} else if c.MaxRPS > 20 {
 		log.Warn("'--rps' > 20 may cause unexpected behaviour")
+	} else if c.Timeout <= 0 {
+		panic("--timeout must be > 0")
+	} else if c.MaxRetries < 0 {
+		panic("--retries must be >= 0")
 	}
-}
-
-func (c *Config) PrintRunningConfig() {
-	blhosts := make([]string, 0, len(c.BlacklistHosts))
-	for k := range c.BlacklistHosts {
-		blhosts = append(blhosts, k)
-	}
-
-	log.Info("Running with config: ")
-	log.Info("  ", "seed", c.SeedURL)
-	log.Info("  ", "depth", c.MaxDepth)
-	log.Info("  ", "blacklist", blhosts)
-	log.Info("  ", "retries", c.MaxRetries)
-	log.Info("  ", "rps", c.MaxRPS)
-	log.Info("  ", "timeout", c.Timeout)
-	log.Info("  ", "verbose", c.Verbose)
-	log.Info("  ", "report", c.RelReportPath)
 }

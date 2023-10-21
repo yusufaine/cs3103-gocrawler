@@ -42,7 +42,7 @@ func (cr *Crawler) GenerateReport(config *Config) {
 		Depth:           config.MaxDepth,
 		Blacklist:       bls,
 		VisitedNetInfo:  cr.VisitedNetInfo,
-		VisitedPageResp: cr.VisitedPageResp,
+		VisitedPageResp: cr.VisitedPageInfo,
 	}
 	for k, v := range report.VisitedNetInfo {
 		for i, v1 := range v {
