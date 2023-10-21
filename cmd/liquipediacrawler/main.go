@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"net/url"
 	"os"
 	"os/signal"
 	"syscall"
@@ -10,11 +11,10 @@ import (
 
 	"github.com/charmbracelet/log"
 	"github.com/yusufaine/cs3203-g46-crawler/internal/crawler"
+	"github.com/yusufaine/cs3203-g46-crawler/internal/liquipediacrawler"
 )
 
 func main() {
-	// ensures that the data collected so far is exported when the user terminates the program
-	// (e.g. ctrl+c)
 	ctx, cancel := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer cancel()
 	sig := make(chan os.Signal, 1)
@@ -27,6 +27,11 @@ func main() {
 
 	config := crawler.SetupConfig()
 	config.MustValidate()
+	parsedURL, err := url.Parse("https://liquipedia.net/dota2/The_International")
+	if err != nil {
+		panic(err)
+	}
+	config.SeedURL = parsedURL
 	config.PrintConfig()
 	time.Sleep(3 * time.Second)
 
@@ -44,6 +49,7 @@ func main() {
 		log.Info("stopping crawler", "signal", <-sig)
 	}()
 
-	cr.Crawl(ctx, crawler.DefaultLinkExtractor, config.SeedURL, 0)
+	// TODO: use liquipediacrawler.TIAnalyserLinkExtractor to exclude visited outgoing links
+	cr.Crawl(ctx, liquipediacrawler.ReportLinkExtractor, config.SeedURL, 0)
 	log.Info("crawl completed")
 }

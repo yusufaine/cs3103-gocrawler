@@ -2,9 +2,11 @@ package crawler
 
 import (
 	"bytes"
+	"cmp"
 	"net/url"
 	"regexp"
 	"slices"
+	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/charmbracelet/log"
@@ -13,18 +15,18 @@ import (
 var URLRegex = regexp.MustCompile(`[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,24}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)`)
 
 // Takes in a map of blacklisted hosts and the response body and returns a slice of links
-type LinkExtractor func(bl map[string]struct{}, resp []byte) []string
+type LinkExtractor func(c *Crawler, currURL *url.URL, resp []byte) []*url.URL
 
 // DefaultLinkExtractor looks for <a href="..."> tags and extracts the link if the host
 // is not blacklisted.
-func DefaultLinkExtractor(bl map[string]struct{}, resp []byte) []string {
+func DefaultLinkExtractor(c *Crawler, currURL *url.URL, resp []byte) []*url.URL {
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(resp))
 	if err != nil {
 		log.Error("unable to parse response body", "error", err)
 		return nil
 	}
 
-	linkSet := map[string]struct{}{}
+	linkSet := map[string]*url.URL{}
 	doc.Find("a").Each(func(i int, s *goquery.Selection) {
 		link, ok := s.Attr("href")
 		if !ok {
@@ -32,7 +34,7 @@ func DefaultLinkExtractor(bl map[string]struct{}, resp []byte) []string {
 		}
 
 		// skip if link cannot be parsed
-		newUrl, err := url.Parse(link)
+		newUrl, err := url.Parse(strings.TrimSpace(link))
 		if err != nil {
 			return
 		}
@@ -42,23 +44,25 @@ func DefaultLinkExtractor(bl map[string]struct{}, resp []byte) []string {
 		}
 
 		// skip if host is blacklisted
-		if _, ok := bl[newUrl.Host]; ok {
+		if _, ok := c.HostBlacklist[newUrl.Host]; ok {
 			return
 		}
 
 		// skip if link is not a valid URL
-		if !URLRegex.MatchString(link) {
+		if !URLRegex.MatchString(newUrl.String()) {
 			return
 		}
 
-		linkSet[link] = struct{}{}
+		linkSet[newUrl.String()] = newUrl
 	})
 
-	links := make([]string, 0, len(linkSet))
-	for k := range linkSet {
-		links = append(links, k)
+	urls := make([]*url.URL, 0, len(linkSet))
+	for _, v := range linkSet {
+		urls = append(urls, v)
 	}
-	slices.Sort(links)
+	slices.SortFunc(urls, func(a, b *url.URL) int {
+		return cmp.Compare(a.String(), b.String())
+	})
 
-	return links
+	return urls
 }

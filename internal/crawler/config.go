@@ -2,6 +2,8 @@ package crawler
 
 import (
 	"flag"
+	"net/url"
+	"slices"
 	"strings"
 	"time"
 
@@ -15,27 +17,34 @@ type Config struct {
 	MaxRetries     int
 	MaxRPS         float64
 	RelReportPath  string
-	SeedURL        string
+	SeedURL        *url.URL
 	Timeout        time.Duration
 }
 
-func NewFlagConfig() *Config {
+func SetupConfig() *Config {
 	var (
 		c       Config
 		blHosts string
+		seed    string
 		verbose bool
 	)
 	flag.StringVar(&blHosts, "bl", "", "Comma separated list of hosts to blacklist, hosts will be blacklisted with and without 'www.' prefix")
-	flag.IntVar(&c.MaxDepth, "depth", 20, "Max depth from seed")
-	flag.StringVar(&c.SeedURL, "seed", "", "Seed URL, required (e.g https://example.com)")
+	flag.IntVar(&c.MaxDepth, "depth", 10, "Max depth from seed")
+	flag.StringVar(&seed, "seed", "", "Seed URL, required (e.g https://example.com)")
 	flag.IntVar(&c.MaxRetries, "retries", 3, "Max retries for HTTP requests")
 	flag.Float64Var(&c.MaxRPS, "rps", 15, "Max requests per second")
 	flag.DurationVar(&c.Timeout, "timeout", 5*time.Second, "Timeout for HTTP requests")
 	flag.BoolVar(&verbose, "verbose", false, "For devs -- verbose logging, includes debug and short caller info")
 	flag.StringVar(&c.RelReportPath, "report", "crawler_report.json", "Relative path to report file")
 	flag.Parse()
-
 	logger.Setup(verbose)
+
+	parsedURL, err := url.Parse(seed)
+	if err != nil {
+		panic(err)
+	}
+	c.SeedURL = parsedURL
+
 	c.BlacklistHosts = make(map[string]struct{})
 	for _, host := range strings.Split(blHosts, ",") {
 		host = strings.TrimSpace(host)
@@ -51,23 +60,11 @@ func NewFlagConfig() *Config {
 		}
 	}
 
-	c.MustValidate()
-
-	log.Info("Running with config: ")
-	log.Info("  ", "seed", c.SeedURL)
-	log.Info("  ", "depth", c.MaxDepth)
-	log.Info("  ", "blacklist", strings.Join(strings.Split(blHosts, ","), ", "))
-	log.Info("  ", "retries", c.MaxRetries)
-	log.Info("  ", "rps", c.MaxRPS)
-	log.Info("  ", "timeout", c.Timeout)
-	log.Info("  ", "verbose", verbose)
-	log.Info("  ", "report", c.RelReportPath)
-
 	return &c
 }
 
 func (c *Config) MustValidate() {
-	if c.SeedURL == "" {
+	if c.SeedURL == nil {
 		panic("--seed is required!")
 	} else if c.MaxDepth < 1 {
 		panic("--depth must be >= 1")
@@ -82,4 +79,21 @@ func (c *Config) MustValidate() {
 	} else if c.MaxRetries < 0 {
 		panic("--retries must be >= 0")
 	}
+}
+
+func (c *Config) PrintConfig() {
+	blHosts := make([]string, 0, len(c.BlacklistHosts))
+	for k := range c.BlacklistHosts {
+		blHosts = append(blHosts, k)
+	}
+	slices.Sort(blHosts)
+
+	log.Info("Running with config: ")
+	log.Info("  ", "seed", c.SeedURL)
+	log.Info("  ", "depth", c.MaxDepth)
+	log.Info("  ", "blacklist", strings.Join(blHosts, ", "))
+	log.Info("  ", "retries", c.MaxRetries)
+	log.Info("  ", "rps", c.MaxRPS)
+	log.Info("  ", "timeout", c.Timeout)
+	log.Info("  ", "report", c.RelReportPath)
 }
