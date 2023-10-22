@@ -1,4 +1,4 @@
-package crawler
+package gocrawler
 
 import (
 	"context"
@@ -13,7 +13,7 @@ import (
 	"time"
 
 	"github.com/charmbracelet/log"
-	"github.com/yusufaine/crawler/internal/rhttp"
+	"github.com/yusufaine/gocrawler/internal/rhttp"
 	"golang.org/x/time/rate"
 )
 

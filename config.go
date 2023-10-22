@@ -1,4 +1,4 @@
-package crawler
+package gocrawler
 
 import (
 	"flag"
@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/charmbracelet/log"
-	"github.com/yusufaine/crawler/internal/logger"
+	"github.com/yusufaine/gocrawler/internal/logger"
 )
 
 // This file contains the necessary config for the crawler

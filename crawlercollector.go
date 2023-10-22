@@ -1,4 +1,4 @@
-package crawler
+package gocrawler
 
 // These values can be used for the users' benefit should they want to pass it
 // to another program or export it to a JSON file for convenience.

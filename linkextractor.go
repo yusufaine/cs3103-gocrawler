@@ -1,4 +1,4 @@
-package crawler
+package gocrawler
 
 import (
 	"bytes"

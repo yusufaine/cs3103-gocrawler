@@ -9,11 +9,11 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/charmbracelet/log"
-	"github.com/yusufaine/crawler"
+	"github.com/yusufaine/gocrawler"
 )
 
 // Returns a list of all outgoing links from the page
-func ReportLinkExtractor(c *crawler.Client, currURL *url.URL, resp []byte) []*url.URL {
+func ReportLinkExtractor(c *gocrawler.Client, currURL *url.URL, resp []byte) []*url.URL {
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(resp))
 	if err != nil {
 		log.Error("unable to parse response body", "error", err)
@@ -55,7 +55,7 @@ func ReportLinkExtractor(c *crawler.Client, currURL *url.URL, resp []byte) []*ur
 }
 
 // Returns a list of all outgoing links that have not been visited from the page
-func TIAnalyserLinkExtractor(c *crawler.Client, currURL *url.URL, resp []byte) []*url.URL {
+func TIAnalyserLinkExtractor(c *gocrawler.Client, currURL *url.URL, resp []byte) []*url.URL {
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(resp))
 	if err != nil {
 		log.Error("unable to parse response body", "error", err)

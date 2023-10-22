@@ -4,8 +4,8 @@ import (
 	"slices"
 
 	"github.com/charmbracelet/log"
-	"github.com/yusufaine/crawler"
-	"github.com/yusufaine/crawler/example/internal/filewriter"
+	"github.com/yusufaine/gocrawler"
+	"github.com/yusufaine/gocrawler/example/internal/filewriter"
 )
 
 type ReportFormat struct {
@@ -13,11 +13,11 @@ type ReportFormat struct {
 	Depth     int      `json:"max_depth"`
 	Blacklist []string `json:"blacklist"`
 
-	VisitedNetInfo  map[string][]crawler.NetworkInfo `json:"network_info"`
-	VisitedPageResp map[string]crawler.PageInfo      `json:"page_info"`
+	VisitedNetInfo  map[string][]gocrawler.NetworkInfo `json:"network_info"`
+	VisitedPageResp map[string]gocrawler.PageInfo      `json:"page_info"`
 }
 
-func Generate(config *Config, cr *crawler.Client) {
+func Generate(config *Config, cr *gocrawler.Client) {
 	bls := make([]string, 0, len(cr.HostBlacklist))
 	for k := range cr.HostBlacklist {
 		bls = append(bls, k)

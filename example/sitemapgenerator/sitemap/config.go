@@ -8,12 +8,12 @@ import (
 	"time"
 
 	"github.com/charmbracelet/log"
-	"github.com/yusufaine/crawler"
-	"github.com/yusufaine/crawler/internal/logger"
+	"github.com/yusufaine/gocrawler"
+	"github.com/yusufaine/gocrawler/internal/logger"
 )
 
 type Config struct {
-	crawler.Config
+	gocrawler.Config
 	ReportPath string
 }
 

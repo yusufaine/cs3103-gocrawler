@@ -1,4 +1,4 @@
-module github.com/yusufaine/crawler
+module github.com/yusufaine/gocrawler
 
 go 1.21.0
 

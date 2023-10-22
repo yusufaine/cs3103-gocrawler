@@ -10,9 +10,9 @@ import (
 	"time"
 
 	"github.com/charmbracelet/log"
-	"github.com/yusufaine/crawler"
-	"github.com/yusufaine/crawler/example/liquipediacrawler/internal/linkextractor"
-	"github.com/yusufaine/crawler/example/sitemapgenerator/sitemap"
+	"github.com/yusufaine/gocrawler"
+	"github.com/yusufaine/gocrawler/example/liquipediacrawler/internal/linkextractor"
+	"github.com/yusufaine/gocrawler/example/sitemapgenerator/sitemap"
 )
 
 func main() {
@@ -26,7 +26,7 @@ func main() {
 		}
 	}()
 
-	config := crawler.SetupConfig()
+	config := gocrawler.SetupConfig()
 	config.MustValidate()
 	parsedURL, err := url.Parse("https://liquipedia.net/dota2/The_International")
 	if err != nil {
@@ -36,8 +36,8 @@ func main() {
 	config.PrintConfig()
 	time.Sleep(3 * time.Second)
 
-	cr := crawler.New(ctx, config,
-		[]crawler.ResponseMatcher{crawler.HtmlContentFilter})
+	cr := gocrawler.New(ctx, config,
+		[]gocrawler.ResponseMatcher{gocrawler.HtmlContentFilter})
 
 	// TODO: replace this with a the proper liquipedia analytics generator
 	defer sitemap.Generate(&sitemap.Config{

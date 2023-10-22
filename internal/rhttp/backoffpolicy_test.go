@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/yusufaine/crawler/internal/rhttp"
+	"github.com/yusufaine/gocrawler/internal/rhttp"
 )
 
 func TestDefaultLinearBackoff(t *testing.T) {
