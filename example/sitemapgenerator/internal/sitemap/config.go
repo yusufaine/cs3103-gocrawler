@@ -22,6 +22,7 @@ func SetupConfig() *Config {
 		c       Config
 		blHosts string
 		seed    string
+		proxy   string
 		verbose bool
 	)
 	flag.IntVar(&c.MaxDepth, "depth", 10, "Max depth from seed")
@@ -30,16 +31,17 @@ func SetupConfig() *Config {
 	flag.DurationVar(&c.Timeout, "timeout", 5*time.Second, "Timeout for HTTP requests")
 	flag.StringVar(&c.ReportPath, "report", "sitemap.json", "Path to export report to")
 	flag.StringVar(&blHosts, "bl", "", "Comma separated list of hosts to blacklist, hosts will be blacklisted with and without 'www.' prefix")
+	flag.StringVar(&proxy, "proxy", "", "Proxy URL (e.g http://localhost:8080)")
 	flag.StringVar(&seed, "seed", "", "Seed URL, required (e.g https://example.com)")
 	flag.BoolVar(&verbose, "verbose", false, "For devs -- verbose logging, includes debug and short caller info")
 	flag.Parse()
 	logger.Setup(verbose)
 
-	parsedURL, err := url.Parse(seed)
-	if err != nil {
-		panic(err)
-	}
+	parsedURL, _ := url.Parse(seed)
 	c.SeedURL = parsedURL
+
+	parsedProxy, _ := url.Parse(proxy)
+	c.ProxyURL = parsedProxy
 
 	c.BlacklistHosts = make(map[string]struct{})
 	for _, host := range strings.Split(blHosts, ",") {
@@ -77,6 +79,7 @@ func (c *Config) PrintConfig() {
 	log.Info("  ", "seed", c.SeedURL)
 	log.Info("  ", "depth", c.MaxDepth)
 	log.Info("  ", "blacklist", strings.Join(blHosts, ", "))
+	log.Info("  ", "proxy", c.ProxyURL)
 	log.Info("  ", "retries", c.MaxRetries)
 	log.Info("  ", "rps", c.MaxRPS)
 	log.Info("  ", "timeout", c.Timeout)
