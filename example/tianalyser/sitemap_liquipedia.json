@@ -2,6 +2,7 @@
   "seed": "https://liquipedia.net/dota2/The_International",
   "max_depth": 10,
   "blacklist": [],
+  "crawl_time": "23m42.481227428s",
   "network_info": {
     "liquipedia.net": [
       {
