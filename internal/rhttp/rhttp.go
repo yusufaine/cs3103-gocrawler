@@ -1,4 +1,3 @@
-// HTTP retry client with backoff and context support
 package rhttp
 
 import (

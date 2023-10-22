@@ -1,7 +1,8 @@
-bin/
-test/
+**/bin/
+**/test/
 
 *.json
 *.log
 
 !example/**
+example/bin

@@ -9,7 +9,8 @@ import (
 	"time"
 
 	"github.com/charmbracelet/log"
-	"github.com/yusufaine/cs3203-g46-crawler/internal/crawler"
+	"github.com/yusufaine/crawler/example/sitemapgenerator/internal/sitemap"
+	"github.com/yusufaine/crawler/internal/crawler"
 )
 
 func main() {
@@ -25,13 +26,14 @@ func main() {
 		}
 	}()
 
-	config := crawler.SetupConfig()
+	// sitemap.Config embeds crawler.Config
+	config := sitemap.SetupConfig()
 	config.MustValidate()
 	config.PrintConfig()
 	time.Sleep(3 * time.Second)
 
-	cr := crawler.New(ctx, config, config.MaxRPS)
-	defer cr.GenerateReport(config)
+	cr := crawler.New(ctx, &config.Config, config.MaxRPS)
+	defer sitemap.Generate(config, cr)
 
 	go func() {
 		defer func() {

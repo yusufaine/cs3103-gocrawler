@@ -71,11 +71,13 @@
         "https://www.linkedin.com/company/icann",
         "https://www.soundcloud.com/icann/",
         "https://www.youtube.com/user/ICANNnews"
-      ]
+      ],
+      "parent": ""
     },
     "https://example.com/": {
       "depth": 0,
-      "links": ["https://www.iana.org/domains/example"]
+      "links": ["https://www.iana.org/domains/example"],
+      "parent": ""
     },
     "https://www.iana.org/domains/example": {
       "depth": 1,
@@ -83,7 +85,8 @@
         "http://www.icann.org/",
         "https://www.icann.org/privacy/policy",
         "https://www.icann.org/privacy/tos"
-      ]
+      ],
+      "parent": ""
     },
     "https://www.icann.org/privacy/policy": {
       "depth": 2,
@@ -157,7 +160,8 @@
         "https://www.icann.org/technology",
         "https://www.linkedin.com/company/icann",
         "https://www.twitter.com/icann"
-      ]
+      ],
+      "parent": ""
     },
     "https://www.icann.org/privacy/tos": {
       "depth": 2,
@@ -231,7 +235,8 @@
         "https://www.icann.org/technology",
         "https://www.linkedin.com/company/icann",
         "https://www.twitter.com/icann"
-      ]
+      ],
+      "parent": ""
     }
   }
 }

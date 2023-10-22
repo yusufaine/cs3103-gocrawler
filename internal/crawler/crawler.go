@@ -14,11 +14,11 @@ import (
 	"time"
 
 	"github.com/charmbracelet/log"
-	"github.com/yusufaine/cs3203-g46-crawler/pkg/rhttp"
+	"github.com/yusufaine/crawler/internal/rhttp"
 	"golang.org/x/time/rate"
 )
 
-type Crawler struct {
+type Client struct {
 	ctx context.Context
 	hc  *rhttp.Client
 	rl  *rate.Limiter
@@ -32,7 +32,7 @@ type Crawler struct {
 }
 
 // To blacklist remote hosts, use WithBlacklist()
-func New(ctx context.Context, config *Config, maxRPS float64) *Crawler {
+func New(ctx context.Context, config *Config, maxRPS float64) *Client {
 
 	retryClient := rhttp.New(
 		rhttp.WithBackoffPolicy(rhttp.ExponentialBackoff),
@@ -42,7 +42,7 @@ func New(ctx context.Context, config *Config, maxRPS float64) *Crawler {
 		rhttp.WithProxy(config.ProxyURL),
 	)
 
-	c := &Crawler{
+	c := &Client{
 		ctx:             ctx,
 		hc:              retryClient,
 		rl:              rate.NewLimiter(rate.Limit(maxRPS), 1),
@@ -55,7 +55,7 @@ func New(ctx context.Context, config *Config, maxRPS float64) *Crawler {
 	return c
 }
 
-func (c *Crawler) Crawl(ctx context.Context, le LinkExtractor, parsedURL *url.URL, currDepth int) {
+func (c *Client) Crawl(ctx context.Context, le LinkExtractor, parsedURL *url.URL, currDepth int) {
 	c.PageMutex.Lock()
 	if _, ok := c.VisitedPageInfo[parsedURL.String()]; ok {
 		c.PageMutex.Unlock()
@@ -101,7 +101,7 @@ func (c *Crawler) Crawl(ctx context.Context, le LinkExtractor, parsedURL *url.UR
 	wg.Wait()
 }
 
-func (c *Crawler) extractResponseBody(link string, depth int) []byte {
+func (c *Client) extractResponseBody(link string, depth int) []byte {
 	parsedUrl, err := url.Parse(link)
 	if err != nil {
 		log.Error("unable to parse url",
@@ -183,7 +183,7 @@ func (c *Crawler) extractResponseBody(link string, depth int) []byte {
 	return body
 }
 
-func (c *Crawler) resolveIPInfo(ip string) (string, string, error) {
+func (c *Client) resolveIPInfo(ip string) (string, string, error) {
 	req, err := http.NewRequestWithContext(c.ctx, "GET", "https://ipapi.co/"+ip+"/json/", nil)
 	if err != nil {
 		return "", "", err

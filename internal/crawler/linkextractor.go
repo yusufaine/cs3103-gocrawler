@@ -15,11 +15,11 @@ import (
 var URLRegex = regexp.MustCompile(`[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,24}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)`)
 
 // Takes in a map of blacklisted hosts and the response body and returns a slice of links
-type LinkExtractor func(c *Crawler, currURL *url.URL, resp []byte) []*url.URL
+type LinkExtractor func(c *Client, currURL *url.URL, resp []byte) []*url.URL
 
 // DefaultLinkExtractor looks for <a href="..."> tags and extracts the link if the host
 // is not blacklisted.
-func DefaultLinkExtractor(c *Crawler, currURL *url.URL, resp []byte) []*url.URL {
+func DefaultLinkExtractor(c *Client, currURL *url.URL, resp []byte) []*url.URL {
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(resp))
 	if err != nil {
 		log.Error("unable to parse response body", "error", err)

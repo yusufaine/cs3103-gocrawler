@@ -1,22 +1,19 @@
-package liquipediacrawler
+package linkextractor
 
 import (
 	"bytes"
 	"cmp"
 	"net/url"
-	"regexp"
 	"slices"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/charmbracelet/log"
-	"github.com/yusufaine/cs3203-g46-crawler/internal/crawler"
+	"github.com/yusufaine/crawler/internal/crawler"
 )
 
-var URLRegex = regexp.MustCompile(`[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,24}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)`)
-
 // Returns a list of all outgoing links from the page
-func ReportLinkExtractor(c *crawler.Crawler, currURL *url.URL, resp []byte) []*url.URL {
+func ReportLinkExtractor(c *crawler.Client, currURL *url.URL, resp []byte) []*url.URL {
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(resp))
 	if err != nil {
 		log.Error("unable to parse response body", "error", err)
@@ -58,7 +55,7 @@ func ReportLinkExtractor(c *crawler.Crawler, currURL *url.URL, resp []byte) []*u
 }
 
 // Returns a list of all outgoing links that have not been visited from the page
-func TIAnalyserLinkExtractor(c *crawler.Crawler, currURL *url.URL, resp []byte) []*url.URL {
+func TIAnalyserLinkExtractor(c *crawler.Client, currURL *url.URL, resp []byte) []*url.URL {
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(resp))
 	if err != nil {
 		log.Error("unable to parse response body", "error", err)

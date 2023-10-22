@@ -1,4 +1,4 @@
-module github.com/yusufaine/cs3203-g46-crawler
+module github.com/yusufaine/crawler
 
 go 1.21.0
 

@@ -10,8 +10,8 @@ import (
 	"time"
 
 	"github.com/charmbracelet/log"
-	"github.com/yusufaine/cs3203-g46-crawler/internal/crawler"
-	"github.com/yusufaine/cs3203-g46-crawler/internal/liquipediacrawler"
+	"github.com/yusufaine/crawler/example/liquipediacrawler/internal/linkextractor"
+	"github.com/yusufaine/crawler/internal/crawler"
 )
 
 func main() {
@@ -36,7 +36,9 @@ func main() {
 	time.Sleep(3 * time.Second)
 
 	cr := crawler.New(ctx, config, config.MaxRPS)
-	defer cr.GenerateReport(config)
+	defer func() {
+		panic("TODO: generate report")
+	}()
 
 	go func() {
 		defer func() {
@@ -49,7 +51,7 @@ func main() {
 		log.Info("stopping crawler", "signal", <-sig)
 	}()
 
-	// TODO: use liquipediacrawler.TIAnalyserLinkExtractor to exclude visited outgoing links
-	cr.Crawl(ctx, liquipediacrawler.ReportLinkExtractor, config.SeedURL, 0)
+	// TODO: use linkextractor.TIAnalyserLinkExtractor to exclude visited outgoing links
+	cr.Crawl(ctx, linkextractor.ReportLinkExtractor, config.SeedURL, 0)
 	log.Info("crawl completed")
 }
