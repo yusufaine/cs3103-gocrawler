@@ -1,7 +1,8 @@
 {
-  "seed": "https://liquipedia.net/dota2/The_International",
+  "seeds": ["https://liquipedia.net/dota2/The_International"],
   "max_depth": 5,
   "blacklist": [],
+  "crawl_time": "8m14.661692989s",
   "network_info": {
     "liquipedia.net": [
       {
@@ -301,11 +302,11 @@
           "/dota2/The_International/Player_tournament_appearances",
           "/dota2/The_International/Team_Statistics"
         ],
-        "remote_addr": "185.24.10.162:80",
-        "location": "Australia, New South Wales",
-        "as_number": "AS60068",
-        "avg_response_ms": 617,
-        "path_count": 295
+        "remote_addr": "45.248.77.69:80",
+        "location": "Australia, Queensland",
+        "as_number": "AS136557",
+        "avg_response_ms": 539,
+        "path_count": 294
       }
     ]
   },

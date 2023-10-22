@@ -3,8 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
+	"net/url"
 	"os"
 	"os/signal"
+	"sync"
 	"syscall"
 	"time"
 
@@ -31,10 +33,14 @@ func main() {
 	config.MustValidate()
 	config.PrintConfig()
 	time.Sleep(3 * time.Second)
+	start := time.Now()
 
 	cr := gocrawler.New(ctx, &config.Config,
 		[]gocrawler.ResponseMatcher{gocrawler.HtmlContentFilter})
-	defer sitemap.Generate(config, cr)
+	defer func() {
+		log.Info("generating sitemap", "file", config.ReportPath)
+		sitemap.Generate(config, cr, time.Since(start))
+	}()
 
 	go func() {
 		defer func() {
@@ -47,6 +53,14 @@ func main() {
 		log.Info("stopping crawler", "signal", <-sig)
 	}()
 
-	cr.Crawl(ctx, gocrawler.DefaultLinkExtractor, config.SeedURL, 0)
+	var wg sync.WaitGroup
+	for _, seed := range config.SeedURLs {
+		wg.Add(1)
+		go func(seed *url.URL) {
+			defer wg.Done()
+			cr.Crawl(ctx, gocrawler.DefaultLinkExtractor, seed, 0, "")
+		}(seed)
+	}
+	wg.Wait()
 	log.Info("crawl completed")
 }

@@ -17,11 +17,12 @@ type Config struct {
 	ReportPath string
 }
 
+// Read config from flags to setup the crawler
 func SetupConfig() *Config {
 	var (
 		c       Config
 		blHosts string
-		seed    string
+		seeds   string
 		proxy   string
 		verbose bool
 	)
@@ -32,17 +33,25 @@ func SetupConfig() *Config {
 	flag.StringVar(&c.ReportPath, "report", "ti_stats.json", "Path to export report to")
 	flag.StringVar(&blHosts, "bl", "", "Comma separated list of hosts to blacklist, hosts will be blacklisted with and without 'www.' prefix")
 	flag.StringVar(&proxy, "proxy", "", "Proxy URL (e.g http://localhost:8080)")
-	flag.StringVar(&seed, "seed", "", "Seed URL, required (e.g https://example.com)")
+	flag.StringVar(&seeds, "seed", "", "Comma separated seed URL(s), required (e.g https://example.com); invalid URLs will be ignored")
 	flag.BoolVar(&verbose, "verbose", false, "For devs -- verbose logging, includes debug and short caller info")
 	flag.Parse()
 	logger.Setup(verbose)
 
-	parsedURL, _ := url.Parse(seed)
-	c.SeedURL = parsedURL
+	// Parse seed URLs
+	for _, s := range strings.Split(seeds, ",") {
+		s = strings.TrimSpace(s)
+		if s == "" {
+			continue
+		}
+		parsedUrl, _ := url.Parse(s)
+		c.SeedURLs = append(c.SeedURLs, parsedUrl)
+	}
 
-	parsedProxy, _ := url.Parse(proxy)
-	c.ProxyURL = parsedProxy
+	// Parse proxy URL, if any
+	c.ProxyURL, _ = url.Parse(proxy)
 
+	// Parse blacklist hosts into set for fast lookups
 	c.BlacklistHosts = make(map[string]struct{})
 	for _, host := range strings.Split(blHosts, ",") {
 		host = strings.TrimSpace(host)
@@ -61,6 +70,7 @@ func SetupConfig() *Config {
 	return &c
 }
 
+// Panics if config is invalid
 func (c *Config) MustValidate() {
 	c.Config.MustValidate()
 	if c.ReportPath == "" {
@@ -68,6 +78,7 @@ func (c *Config) MustValidate() {
 	}
 }
 
+// Sanity check
 func (c *Config) PrintConfig() {
 	blHosts := make([]string, 0, len(c.BlacklistHosts))
 	for k := range c.BlacklistHosts {

@@ -3,8 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
+	"net/url"
 	"os"
 	"os/signal"
+	"sync"
 	"syscall"
 	"time"
 
@@ -14,6 +16,7 @@ import (
 )
 
 func main() {
+	// Sends a cancellation signal to the context when ctrl-c is pressed
 	ctx, cancel := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer cancel()
 	sig := make(chan os.Signal, 1)
@@ -28,12 +31,21 @@ func main() {
 	config.MustValidate()
 	config.PrintConfig()
 	time.Sleep(3 * time.Second)
+	start := time.Now()
 
-	cr := gocrawler.New(ctx, &config.Config,
-		[]gocrawler.ResponseMatcher{gocrawler.HtmlContentFilter})
+	// New crawler that skips non-OK, non-HTML responses
+	cr := gocrawler.New(ctx,
+		&config.Config,
+		[]gocrawler.ResponseMatcher{gocrawler.HtmlContentFilter},
+	)
 
-	defer tianalyser.Generate(cr, config)
+	// Write to file if a panic, cancellation, or completion occurs
+	defer func() {
+		log.Info("generating TI statisitcs", "file", config.ReportPath)
+		tianalyser.Generate(cr, config, time.Since(start))
+	}()
 
+	// Ensures that the crawler stops when the context is cancelled (ctrl-c)
 	go func() {
 		defer func() {
 			cancel()
@@ -45,6 +57,15 @@ func main() {
 		log.Info("stopping crawler", "signal", <-sig)
 	}()
 
-	cr.Crawl(ctx, tianalyser.TILinkExtractor, config.SeedURL, 0)
+	// Start crawling from the seed URL and extract links using the TI link extractor func
+	var wg sync.WaitGroup
+	for _, seed := range config.SeedURLs {
+		wg.Add(1)
+		go func(seed *url.URL) {
+			defer wg.Done()
+			cr.Crawl(ctx, tianalyser.TILinkExtractor, seed, 0, "")
+		}(seed)
+	}
+	wg.Wait()
 	log.Info("crawl completed")
 }

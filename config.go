@@ -14,13 +14,13 @@ import (
 // This file contains the necessary config for the crawler
 
 type Config struct {
-	BlacklistHosts map[string]struct{}
-	MaxDepth       int
-	MaxRetries     int
-	MaxRPS         float64
-	ProxyURL       *url.URL
-	SeedURL        *url.URL
-	Timeout        time.Duration
+	BlacklistHosts map[string]struct{} // hosts to blacklist
+	MaxDepth       int                 // max depth from seed
+	MaxRetries     int                 // max retries for HTTP requests
+	MaxRPS         float64             // max requests per second
+	ProxyURL       *url.URL            // proxy URL, if any. useful to avoid IP bans
+	SeedURLs       []*url.URL          // where to start crawling from
+	Timeout        time.Duration       // timeout for HTTP requests
 }
 
 func SetupConfig() *Config {
@@ -28,7 +28,7 @@ func SetupConfig() *Config {
 		c       Config
 		blHosts string
 		proxy   string
-		seed    string
+		seeds   string
 		verbose bool
 	)
 	flag.IntVar(&c.MaxDepth, "depth", 10, "Max depth from seed")
@@ -37,14 +37,25 @@ func SetupConfig() *Config {
 	flag.DurationVar(&c.Timeout, "timeout", 5*time.Second, "Timeout for HTTP requests")
 	flag.StringVar(&blHosts, "bl", "", "Comma separated list of hosts to blacklist, hosts will be blacklisted with and without 'www.' prefix")
 	flag.StringVar(&proxy, "proxy", "", "Proxy URL (e.g http://localhost:8080)")
-	flag.StringVar(&seed, "seed", "", "Seed URL, required (e.g https://example.com)")
+	flag.StringVar(&seeds, "seed", "", "Comma separated seed URL(s), required (e.g https://example.com); invalid URLs will be ignored")
 	flag.BoolVar(&verbose, "verbose", false, "For devs -- verbose logging, includes debug and short caller info")
 	flag.Parse()
 	logger.Setup(verbose)
 
-	c.SeedURL, _ = url.Parse(seed)
+	// Parse seed URLs
+	for _, s := range strings.Split(seeds, ",") {
+		s = strings.TrimSpace(s)
+		if s == "" {
+			continue
+		}
+		parsedUrl, _ := url.Parse(s)
+		c.SeedURLs = append(c.SeedURLs, parsedUrl)
+	}
+
+	// Parse proxy URL, if any
 	c.ProxyURL, _ = url.Parse(proxy)
 
+	// Parse blacklist hosts into set for fast lookups
 	c.BlacklistHosts = make(map[string]struct{})
 	for _, host := range strings.Split(blHosts, ",") {
 		host = strings.TrimSpace(host)
@@ -64,7 +75,7 @@ func SetupConfig() *Config {
 }
 
 func (c *Config) MustValidate() {
-	if c.SeedURL.String() == "" {
+	if len(c.SeedURLs) == 0 {
 		panic("--seed is required!")
 	} else if c.MaxDepth < 1 {
 		panic("--depth must be >= 1")
@@ -88,8 +99,14 @@ func (c *Config) PrintConfig() {
 	}
 	slices.Sort(blHosts)
 
+	seeds := make([]string, 0, len(c.SeedURLs))
+	for _, s := range c.SeedURLs {
+		seeds = append(seeds, s.String())
+	}
+	slices.Sort(seeds)
+
 	log.Info("Running with config: ")
-	log.Info(" ", "seed", c.SeedURL)
+	log.Info(" ", "seed", strings.Join(seeds, ", "))
 	log.Info(" ", "depth", c.MaxDepth)
 	log.Info(" ", "proxy", c.ProxyURL)
 	log.Info(" ", "blacklist", strings.Join(blHosts, ", "))

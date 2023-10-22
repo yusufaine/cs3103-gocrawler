@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"slices"
 	"strings"
+	"time"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/charmbracelet/log"
@@ -18,25 +19,35 @@ type CountryTableRow struct {
 }
 
 type ReportFormat struct {
-	Seed      string   `json:"seed"`
+	Seeds     []string `json:"seeds"`
 	Depth     int      `json:"max_depth"`
 	Blacklist []string `json:"blacklist"`
+	CrawlTime string   `json:"crawl_time"`
 
 	NetInfo map[string][]gocrawler.NetworkInfo `json:"network_info"`
 	TIStats map[string][]CountryTableRow       `json:"ti_stats"`
 }
 
-func Generate(cr *gocrawler.Client, config *Config) {
+// Generates a report in JSON format from the crawler client and config. The report contains
+// the initial crawler info, the network info for each host visited, and the country representation
+// table for each TI page visited.
+func Generate(cr *gocrawler.Client, config *Config, elapsed time.Duration) {
 	bls := make([]string, 0, len(cr.HostBlacklist))
 	for k := range cr.HostBlacklist {
 		bls = append(bls, k)
 	}
 	slices.Sort(bls)
+	seeds := make([]string, 0, len(config.SeedURLs))
+	for _, s := range config.SeedURLs {
+		seeds = append(seeds, s.String())
+	}
+	slices.Sort(seeds)
 
 	report := ReportFormat{
-		Seed:      config.SeedURL.String(),
+		Seeds:     seeds,
 		Depth:     config.MaxDepth,
 		Blacklist: bls,
+		CrawlTime: elapsed.String(),
 		NetInfo:   cr.VisitedNetInfo,
 		TIStats:   make(map[string][]CountryTableRow),
 	}
@@ -77,6 +88,8 @@ func Generate(cr *gocrawler.Client, config *Config) {
 	}
 }
 
+// Uses goquery to find the table containing the country representation in
+// the response body, if any.
 func extractCountryRepresentationTable(resp []byte) []CountryTableRow {
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(resp))
 	if err != nil {

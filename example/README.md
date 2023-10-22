@@ -28,27 +28,28 @@ A concurrent web crawler that crawls a given URL and returns a list of URLs foun
 
 A simple wrapper over `net/http` that provides a few default backoff and retry policies that can also easily extend to a user's need.
 
-<!-- TODO: Update this part to show the liquipediacrawler example -->
 #### Package Usage
 
 > [!NOTE]
 > **Purpose**: Repurpose the extracted information from crawler for other purposes (e.g. `sitemapgenerator`).
 
 ```go
-// sitemap.Config embeds crawler.Config
-config := sitemap.SetupConfig()
+config := tianalyser.SetupConfig()
 config.MustValidate()
+config.PrintConfig()
+time.Sleep(3 * time.Second)
 
-// Pass in crawler.Config
-cr := crawler.New(ctx, &config.Config, config.MaxRPS)
+cr := gocrawler.New(ctx,
+  &config.Config,
+  []gocrawler.ResponseMatcher{gocrawler.HtmlContentFilter},
+)
 
-// cr contains the extracted information from crawler
-//  _ = cr.VisitedNetInfo   // network-related information
-//  _ = cr.VisitedPageInfo  // page-related information
-defer sitemap.Generate(config, cr)
+// Generates report using the collected data from the crawler
+//  - cr.VisitedNetInfo
+//  - cr.VisitedPageInfo
+defer tianalyser.Generate(cr, config)
 ```
 
-<!-- TODO: Update this part to show the liquipediacrawler example -->
 #### Standalone Usage
 
 > [!NOTE]
@@ -56,22 +57,20 @@ defer sitemap.Generate(config, cr)
 
 ```bash
 # Running the binary
-./sitemapgenerator \
-  --seed=https://example.com/ \
-  --depth=3 \
-  --report=example/sitemapgenerator/sitemap.json \
-  --rps=100 \
-  --bl=pti.icann.org,facebook.com
+./tianalyser \
+  --seed=https://liquipedia.net/dota2/The_International \ 
+  --depth=5 \ 
+  --report=example/tianalyser/ti_stats.json \ 
+  --rps=10 
 
-# ./sitemapgenerator --help to see all options
+# ./tianalyser --help to see all options
 
 # Without binary (requires Go 1.21+)
-go run example/sitemapgenerator/main.go \
-  --seed=https://example.com/ \
-  --depth=3 \
-  --report=example/sitemapgenerator/sitemap.json \
-  --rps=100 \
-  --bl=pti.icann.org,facebook.com
+go run example/tianalyser/main.go \ 
+  --seed=https://liquipedia.net/dota2/The_International \ 
+  --depth=5 \ 
+  --report=example/tianalyser/ti_stats.json \ 
+  --rps=10 
 ```
 
 ## Members
