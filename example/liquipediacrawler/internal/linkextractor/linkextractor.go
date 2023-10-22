@@ -9,7 +9,7 @@ import (
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/charmbracelet/log"
-	"github.com/yusufaine/crawler/internal/crawler"
+	"github.com/yusufaine/crawler"
 )
 
 // Returns a list of all outgoing links from the page

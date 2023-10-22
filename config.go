@@ -11,6 +11,8 @@ import (
 	"github.com/yusufaine/crawler/internal/logger"
 )
 
+// This file contains the necessary config for the crawler
+
 type Config struct {
 	BlacklistHosts map[string]struct{}
 	MaxDepth       int
@@ -88,8 +90,8 @@ func (c *Config) PrintConfig() {
 
 	log.Info("Running with config: ")
 	log.Info(" ", "seed", c.SeedURL)
-	log.Info(" ", "proxy", c.ProxyURL)
 	log.Info(" ", "depth", c.MaxDepth)
+	log.Info(" ", "proxy", c.ProxyURL)
 	log.Info(" ", "blacklist", strings.Join(blHosts, ", "))
 	log.Info(" ", "retries", c.MaxRetries)
 	log.Info(" ", "rps", c.MaxRPS)

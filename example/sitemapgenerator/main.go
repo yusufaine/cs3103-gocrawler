@@ -9,8 +9,8 @@ import (
 	"time"
 
 	"github.com/charmbracelet/log"
+	"github.com/yusufaine/crawler"
 	"github.com/yusufaine/crawler/example/sitemapgenerator/sitemap"
-	"github.com/yusufaine/crawler/internal/crawler"
 )
 
 func main() {
@@ -21,9 +21,9 @@ func main() {
 	sig := make(chan os.Signal, 1)
 	signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
 	defer func() {
-		if r := recover(); r != nil {
-			log.Fatal(r)
-		}
+		// if r := recover(); r != nil {
+		// 	log.Fatal(r)
+		// }
 	}()
 
 	// sitemap.Config embeds crawler.Config
@@ -32,7 +32,8 @@ func main() {
 	config.PrintConfig()
 	time.Sleep(3 * time.Second)
 
-	cr := crawler.New(ctx, &config.Config, config.MaxRPS)
+	cr := crawler.New(ctx, &config.Config,
+		[]crawler.ResponseMatcher{crawler.HtmlContentFilter})
 	defer sitemap.Generate(config, cr)
 
 	go func() {

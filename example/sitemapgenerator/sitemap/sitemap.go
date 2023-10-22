@@ -4,8 +4,8 @@ import (
 	"slices"
 
 	"github.com/charmbracelet/log"
+	"github.com/yusufaine/crawler"
 	"github.com/yusufaine/crawler/example/internal/filewriter"
-	"github.com/yusufaine/crawler/internal/crawler"
 )
 
 type ReportFormat struct {

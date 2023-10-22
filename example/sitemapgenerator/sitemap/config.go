@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/charmbracelet/log"
-	"github.com/yusufaine/crawler/internal/crawler"
+	"github.com/yusufaine/crawler"
 	"github.com/yusufaine/crawler/internal/logger"
 )
 
@@ -75,13 +75,6 @@ func (c *Config) PrintConfig() {
 	}
 	slices.Sort(blHosts)
 
-	log.Info("Running with config: ")
-	log.Info("  ", "seed", c.SeedURL)
-	log.Info("  ", "depth", c.MaxDepth)
-	log.Info("  ", "blacklist", strings.Join(blHosts, ", "))
-	log.Info("  ", "proxy", c.ProxyURL)
-	log.Info("  ", "retries", c.MaxRetries)
-	log.Info("  ", "rps", c.MaxRPS)
-	log.Info("  ", "timeout", c.Timeout)
-	log.Info("  ", "report", c.ReportPath)
+	c.Config.PrintConfig()
+	log.Info(" ", "report", c.ReportPath)
 }

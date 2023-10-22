@@ -10,9 +10,9 @@ import (
 	"time"
 
 	"github.com/charmbracelet/log"
+	"github.com/yusufaine/crawler"
 	"github.com/yusufaine/crawler/example/liquipediacrawler/internal/linkextractor"
 	"github.com/yusufaine/crawler/example/sitemapgenerator/sitemap"
-	"github.com/yusufaine/crawler/internal/crawler"
 )
 
 func main() {
@@ -36,7 +36,8 @@ func main() {
 	config.PrintConfig()
 	time.Sleep(3 * time.Second)
 
-	cr := crawler.New(ctx, config, config.MaxRPS)
+	cr := crawler.New(ctx, config,
+		[]crawler.ResponseMatcher{crawler.HtmlContentFilter})
 
 	// TODO: replace this with a the proper liquipedia analytics generator
 	defer sitemap.Generate(&sitemap.Config{

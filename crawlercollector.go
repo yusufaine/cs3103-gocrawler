@@ -1,7 +1,7 @@
 package crawler
 
-//* These values can be used for the users' benefit should they want to pass it
-//* to another program or export it to a JSON file for convenience.
+// These values can be used for the users' benefit should they want to pass it
+// to another program or export it to a JSON file for convenience.
 
 type NetworkInfo struct {
 	VisitedPaths  []string `json:"paths"`
