@@ -35,10 +35,11 @@ type Crawler struct {
 func New(ctx context.Context, config *Config, maxRPS float64) *Crawler {
 
 	retryClient := rhttp.New(
-		rhttp.WithBackoffPolicy(rhttp.DefaultLinearBackoff),
+		rhttp.WithBackoffPolicy(rhttp.ExponentialBackoff),
 		rhttp.WithMaxRetries(config.MaxRetries),
 		rhttp.WithRetryPolicy(rhttp.DefaultRetry),
 		rhttp.WithTimeout(config.Timeout),
+		rhttp.WithProxy(config.ProxyURL),
 	)
 
 	c := &Crawler{

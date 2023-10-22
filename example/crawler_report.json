@@ -11,30 +11,30 @@
     "example.com": [
       {
         "paths": ["/"],
-        "remote_addr": "93.184.216.34:443",
-        "location": "United States, Massachusetts",
-        "as_number": "AS15133",
-        "avg_response_ms": 724,
+        "remote_addr": "185.24.10.162:80",
+        "location": "Australia, New South Wales",
+        "as_number": "AS60068",
+        "avg_response_ms": 2095,
         "path_count": 1
       }
     ],
     "www.iana.org": [
       {
         "paths": ["/domains/example"],
-        "remote_addr": "192.0.33.8:80",
-        "location": "United States, California",
-        "as_number": "AS40528",
-        "avg_response_ms": 1337,
+        "remote_addr": "185.24.10.162:80",
+        "location": "Australia, New South Wales",
+        "as_number": "AS60068",
+        "avg_response_ms": 2996,
         "path_count": 1
       }
     ],
     "www.icann.org": [
       {
         "paths": ["/", "/privacy/policy", "/privacy/tos"],
-        "remote_addr": "192.0.32.7:443",
-        "location": "United States, California",
-        "as_number": "AS40528",
-        "avg_response_ms": 1420,
+        "remote_addr": "185.24.10.162:80",
+        "location": "Australia, New South Wales",
+        "as_number": "AS60068",
+        "avg_response_ms": 2830,
         "path_count": 3
       }
     ]

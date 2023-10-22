@@ -1,6 +1,10 @@
 package rhttp
 
-import "time"
+import (
+	"net/http"
+	"net/url"
+	"time"
+)
 
 type RHTTPOption func(*Client)
 
@@ -14,6 +18,17 @@ func WithBackoffPolicy(bp BackoffPolicy) RHTTPOption {
 func WithMaxRetries(maxRetries int) RHTTPOption {
 	return func(c *Client) {
 		c.maxRetryCount = maxRetries
+	}
+}
+
+func WithProxy(proxyURL *url.URL) RHTTPOption {
+	return func(c *Client) {
+		if proxyURL.String() == "" {
+			return
+		}
+		c.cl.Transport = &http.Transport{
+			Proxy: http.ProxyURL(proxyURL),
+		}
 	}
 }
 
