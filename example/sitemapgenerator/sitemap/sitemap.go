@@ -51,9 +51,7 @@ func Generate(config *Config, cr *gocrawler.Client) {
 	}
 
 	if err := filewriter.ToJSON(report, config.ReportPath); err != nil {
-		log.Error("unable to write to file",
-			"file", config.ReportPath,
-			"error", err)
+		log.Error("unable to write to file", "file", config.ReportPath, "error", err)
 	} else {
 		log.Info("exported crawler report", "file", config.ReportPath)
 	}

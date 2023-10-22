@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"net/url"
 	"os"
 	"os/signal"
 	"syscall"
@@ -11,8 +10,7 @@ import (
 
 	"github.com/charmbracelet/log"
 	"github.com/yusufaine/gocrawler"
-	"github.com/yusufaine/gocrawler/example/liquipediacrawler/internal/linkextractor"
-	"github.com/yusufaine/gocrawler/example/sitemapgenerator/sitemap"
+	"github.com/yusufaine/gocrawler/example/tianalyser/internal/tianalyser"
 )
 
 func main() {
@@ -26,24 +24,15 @@ func main() {
 		}
 	}()
 
-	config := gocrawler.SetupConfig()
+	config := tianalyser.SetupConfig()
 	config.MustValidate()
-	parsedURL, err := url.Parse("https://liquipedia.net/dota2/The_International")
-	if err != nil {
-		panic(err)
-	}
-	config.SeedURL = parsedURL
 	config.PrintConfig()
 	time.Sleep(3 * time.Second)
 
-	cr := gocrawler.New(ctx, config,
+	cr := gocrawler.New(ctx, &config.Config,
 		[]gocrawler.ResponseMatcher{gocrawler.HtmlContentFilter})
 
-	// TODO: replace this with a the proper liquipedia analytics generator
-	defer sitemap.Generate(&sitemap.Config{
-		Config:     *config,
-		ReportPath: "sitemap.json",
-	}, cr)
+	defer tianalyser.Generate(cr, config)
 
 	go func() {
 		defer func() {
@@ -56,7 +45,6 @@ func main() {
 		log.Info("stopping crawler", "signal", <-sig)
 	}()
 
-	// TODO: use linkextractor.TIAnalyserLinkExtractor to exclude visited outgoing links
-	cr.Crawl(ctx, linkextractor.ReportLinkExtractor, config.SeedURL, 0)
+	cr.Crawl(ctx, tianalyser.TILinkExtractor, config.SeedURL, 0)
 	log.Info("crawl completed")
 }

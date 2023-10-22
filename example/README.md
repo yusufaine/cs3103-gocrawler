@@ -84,3 +84,7 @@ go run example/sitemapgenerator/main.go \
 | Yusuf Bin Musa        |
 
 ## Acknowledgements
+
+- [Liquipedia](https://liquipedia.net/dota2/The_International) for providing the data for our project
+- [Example usage of goquery](https://www.flysnow.org/2018/01/20/golang-goquery-examples-selector) for helping us understand how to use goquery
+- [charmbracelet/log](https://github.com/charmbracelet/log) for making logging less boring
