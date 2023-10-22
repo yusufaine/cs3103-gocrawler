@@ -9,7 +9,8 @@ import (
 	"time"
 
 	"github.com/charmbracelet/log"
-	"github.com/yusufaine/cs3203-g46-crawler/internal/crawler"
+	"github.com/yusufaine/gocrawler"
+	"github.com/yusufaine/gocrawler/example/sitemapgenerator/sitemap"
 )
 
 func main() {
@@ -20,18 +21,20 @@ func main() {
 	sig := make(chan os.Signal, 1)
 	signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
 	defer func() {
-		if r := recover(); r != nil {
-			log.Fatal(r)
-		}
+		// if r := recover(); r != nil {
+		// 	log.Fatal(r)
+		// }
 	}()
 
-	config := crawler.SetupConfig()
+	// sitemap.Config embeds gocrawler.Config
+	config := sitemap.SetupConfig()
 	config.MustValidate()
 	config.PrintConfig()
 	time.Sleep(3 * time.Second)
 
-	cr := crawler.New(ctx, config, config.MaxRPS)
-	defer cr.GenerateReport(config)
+	cr := gocrawler.New(ctx, &config.Config,
+		[]gocrawler.ResponseMatcher{gocrawler.HtmlContentFilter})
+	defer sitemap.Generate(config, cr)
 
 	go func() {
 		defer func() {
@@ -44,6 +47,6 @@ func main() {
 		log.Info("stopping crawler", "signal", <-sig)
 	}()
 
-	cr.Crawl(ctx, crawler.DefaultLinkExtractor, config.SeedURL, 0)
+	cr.Crawl(ctx, gocrawler.DefaultLinkExtractor, config.SeedURL, 0)
 	log.Info("crawl completed")
 }

@@ -1,40 +1,23 @@
-package crawler
+package sitemap
 
 import (
 	"slices"
 
 	"github.com/charmbracelet/log"
-	"github.com/yusufaine/cs3203-g46-crawler/pkg/filewriter"
+	"github.com/yusufaine/gocrawler"
+	"github.com/yusufaine/gocrawler/example/internal/filewriter"
 )
-
-type NetworkInfo struct {
-	VisitedPaths  []string `json:"paths"`
-	RemoteAddr    string   `json:"remote_addr"`
-	Location      string   `json:"location"`
-	ASNumber      string   `json:"as_number"`
-	AvgResponseMs int64    `json:"avg_response_ms"`
-	PathCount     int      `json:"path_count"`
-
-	TotalResponseTimeMs int64               `json:"-"`
-	VisitedPathSet      map[string]struct{} `json:"-"`
-}
-
-type PageInfo struct {
-	Content []byte   `json:"-"`
-	Depth   int      `json:"depth"`
-	Links   []string `json:"links"`
-}
 
 type ReportFormat struct {
 	Seed      string   `json:"seed"`
 	Depth     int      `json:"max_depth"`
 	Blacklist []string `json:"blacklist"`
 
-	VisitedNetInfo  map[string][]NetworkInfo `json:"network_info"`
-	VisitedPageResp map[string]PageInfo      `json:"page_info"`
+	VisitedNetInfo  map[string][]gocrawler.NetworkInfo `json:"network_info"`
+	VisitedPageResp map[string]gocrawler.PageInfo      `json:"page_info"`
 }
 
-func (cr *Crawler) GenerateReport(config *Config) {
+func Generate(config *Config, cr *gocrawler.Client) {
 	bls := make([]string, 0, len(cr.HostBlacklist))
 	for k := range cr.HostBlacklist {
 		bls = append(bls, k)
@@ -67,11 +50,11 @@ func (cr *Crawler) GenerateReport(config *Config) {
 		}
 	}
 
-	if err := filewriter.ToJSON(report, config.RelReportPath); err != nil {
+	if err := filewriter.ToJSON(report, config.ReportPath); err != nil {
 		log.Error("unable to write to file",
-			"file", config.RelReportPath,
+			"file", config.ReportPath,
 			"error", err)
 	} else {
-		log.Info("exported crawler report", "file", config.RelReportPath)
+		log.Info("exported crawler report", "file", config.ReportPath)
 	}
 }
