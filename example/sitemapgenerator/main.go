@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/charmbracelet/log"
-	"github.com/yusufaine/crawler/example/sitemapgenerator/internal/sitemap"
+	"github.com/yusufaine/crawler/example/sitemapgenerator/sitemap"
 	"github.com/yusufaine/crawler/internal/crawler"
 )
 

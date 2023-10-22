@@ -11,6 +11,7 @@ import (
 
 	"github.com/charmbracelet/log"
 	"github.com/yusufaine/crawler/example/liquipediacrawler/internal/linkextractor"
+	"github.com/yusufaine/crawler/example/sitemapgenerator/sitemap"
 	"github.com/yusufaine/crawler/internal/crawler"
 )
 
@@ -36,9 +37,12 @@ func main() {
 	time.Sleep(3 * time.Second)
 
 	cr := crawler.New(ctx, config, config.MaxRPS)
-	defer func() {
-		panic("TODO: generate report")
-	}()
+
+	// TODO: replace this with a the proper liquipedia analytics generator
+	defer sitemap.Generate(&sitemap.Config{
+		Config:     *config,
+		ReportPath: "sitemap.json",
+	}, cr)
 
 	go func() {
 		defer func() {
