@@ -1,0 +1,3044 @@
+{
+  "seeds": ["https://liquipedia.net/dota2/The_International"],
+  "max_depth": 5,
+  "blacklist": [],
+  "crawl_time": "8m14.661692989s",
+  "network_info": {
+    "liquipedia.net": [
+      {
+        "paths": [
+          "/dota2/The_International",
+          "/dota2/The_International/2011",
+          "/dota2/The_International/2011/Group_Stage",
+          "/dota2/The_International/2011/Playoffs",
+          "/dota2/The_International/2011/Statistics",
+          "/dota2/The_International/2012",
+          "/dota2/The_International/2012/East_Qualifiers",
+          "/dota2/The_International/2012/Match_Summary",
+          "/dota2/The_International/2012/Match_Summary/Finals",
+          "/dota2/The_International/2012/Match_Summary/Losers",
+          "/dota2/The_International/2012/Match_Summary/Winners",
+          "/dota2/The_International/2012/Preliminaries/Match_Summary",
+          "/dota2/The_International/2012/Preliminaries/Match_Summary/1",
+          "/dota2/The_International/2012/Preliminaries/Match_Summary/2",
+          "/dota2/The_International/2012/Preliminaries/Match_Summary/3",
+          "/dota2/The_International/2012/Statistics",
+          "/dota2/The_International/2012/West_Qualifiers",
+          "/dota2/The_International/2013",
+          "/dota2/The_International/2013/All-Star_Match",
+          "/dota2/The_International/2013/Day_1_Group_A",
+          "/dota2/The_International/2013/Day_1_Group_B",
+          "/dota2/The_International/2013/Day_2_Group_A",
+          "/dota2/The_International/2013/Day_2_Group_B",
+          "/dota2/The_International/2013/Day_3",
+          "/dota2/The_International/2013/East_Qualifiers",
+          "/dota2/The_International/2013/East_Qualifiers/Group_A",
+          "/dota2/The_International/2013/East_Qualifiers/Group_B",
+          "/dota2/The_International/2013/Grand_Finals",
+          "/dota2/The_International/2013/Lower_Bracket",
+          "/dota2/The_International/2013/Playoffs",
+          "/dota2/The_International/2013/Prelims",
+          "/dota2/The_International/2013/Solo_Tournament",
+          "/dota2/The_International/2013/Statistics",
+          "/dota2/The_International/2013/Upper_Bracket",
+          "/dota2/The_International/2013/West_Qualifiers",
+          "/dota2/The_International/2013/West_Qualifiers/Bracket",
+          "/dota2/The_International/2013/West_Qualifiers/Group_A",
+          "/dota2/The_International/2013/West_Qualifiers/Group_B",
+          "/dota2/The_International/2013/Wildcard_Match",
+          "/dota2/The_International/2014",
+          "/dota2/The_International/2014/All-Star_Match",
+          "/dota2/The_International/2014/Americas_Qualifiers",
+          "/dota2/The_International/2014/Americas_Qualifiers/Day_1",
+          "/dota2/The_International/2014/Americas_Qualifiers/Day_2",
+          "/dota2/The_International/2014/Americas_Qualifiers/Group_Stage",
+          "/dota2/The_International/2014/Americas_Qualifiers/Playoffs",
+          "/dota2/The_International/2014/Americas_Qualifiers/Tiebreaker",
+          "/dota2/The_International/2014/Chinese_Qualifiers",
+          "/dota2/The_International/2014/Chinese_Qualifiers/Day_1",
+          "/dota2/The_International/2014/Chinese_Qualifiers/Day_2",
+          "/dota2/The_International/2014/Chinese_Qualifiers/Group_Stage",
+          "/dota2/The_International/2014/Chinese_Qualifiers/Playoffs",
+          "/dota2/The_International/2014/Chinese_Qualifiers/Tiebreaker",
+          "/dota2/The_International/2014/European_Qualifiers",
+          "/dota2/The_International/2014/European_Qualifiers/Day_1",
+          "/dota2/The_International/2014/European_Qualifiers/Day_2",
+          "/dota2/The_International/2014/European_Qualifiers/Group_Stage",
+          "/dota2/The_International/2014/European_Qualifiers/Playoffs",
+          "/dota2/The_International/2014/Gallery",
+          "/dota2/The_International/2014/Main_Event",
+          "/dota2/The_International/2014/Main_Event/Detailed_Results",
+          "/dota2/The_International/2014/Phase_One",
+          "/dota2/The_International/2014/Phase_Three",
+          "/dota2/The_International/2014/Phase_Two",
+          "/dota2/The_International/2014/Playoffs/All-Star_Match",
+          "/dota2/The_International/2014/Playoffs/Main_Event",
+          "/dota2/The_International/2014/Playoffs/Phase_One",
+          "/dota2/The_International/2014/Playoffs/Phase_Three",
+          "/dota2/The_International/2014/Playoffs/Phase_Two",
+          "/dota2/The_International/2014/Playoffs/Phase_Two_Series_10_to_14",
+          "/dota2/The_International/2014/Playoffs/Phase_Two_Series_15_to_18",
+          "/dota2/The_International/2014/Playoffs/Phase_Two_Series_19_to_23",
+          "/dota2/The_International/2014/Playoffs/Phase_Two_Series_1_to_5",
+          "/dota2/The_International/2014/Playoffs/Phase_Two_Series_24_to_27",
+          "/dota2/The_International/2014/Playoffs/Phase_Two_Series_28_to_30",
+          "/dota2/The_International/2014/Playoffs/Phase_Two_Series_6_to_9",
+          "/dota2/The_International/2014/Playoffs/Phase_Two_Tiebreakers",
+          "/dota2/The_International/2014/Playoffs/Solo_Tournament",
+          "/dota2/The_International/2014/Solo_Tournament",
+          "/dota2/The_International/2014/Southeast_Asia_Qualifiers",
+          "/dota2/The_International/2014/Southeast_Asia_Qualifiers/Day_1",
+          "/dota2/The_International/2014/Southeast_Asia_Qualifiers/Day_2",
+          "/dota2/The_International/2014/Southeast_Asia_Qualifiers/Group_Stage",
+          "/dota2/The_International/2014/Southeast_Asia_Qualifiers/Playoffs",
+          "/dota2/The_International/2014/Southeast_Asia_Qualifiers/Tiebreaker",
+          "/dota2/The_International/2014/Statistics",
+          "/dota2/The_International/2015",
+          "/dota2/The_International/2015/All-Star_Match",
+          "/dota2/The_International/2015/Group_Stage",
+          "/dota2/The_International/2015/Group_Stage/Day_1",
+          "/dota2/The_International/2015/Group_Stage/Day_2",
+          "/dota2/The_International/2015/Group_Stage/Day_3",
+          "/dota2/The_International/2015/Group_Stage/Day_4",
+          "/dota2/The_International/2015/Main_Event",
+          "/dota2/The_International/2015/Main_Qualifiers",
+          "/dota2/The_International/2015/Main_Qualifiers/Americas",
+          "/dota2/The_International/2015/Main_Qualifiers/Americas/Group_A",
+          "/dota2/The_International/2015/Main_Qualifiers/Americas/Group_B",
+          "/dota2/The_International/2015/Main_Qualifiers/Americas/Playoffs",
+          "/dota2/The_International/2015/Main_Qualifiers/China",
+          "/dota2/The_International/2015/Main_Qualifiers/China/Group_A",
+          "/dota2/The_International/2015/Main_Qualifiers/China/Group_B",
+          "/dota2/The_International/2015/Main_Qualifiers/China/Playoffs",
+          "/dota2/The_International/2015/Main_Qualifiers/Europe",
+          "/dota2/The_International/2015/Main_Qualifiers/South_East_Asia",
+          "/dota2/The_International/2015/Main_Qualifiers/Southeast_Asia",
+          "/dota2/The_International/2015/Main_Qualifiers/Southeast_Asia/Group_A",
+          "/dota2/The_International/2015/Main_Qualifiers/Southeast_Asia/Group_B",
+          "/dota2/The_International/2015/Main_Qualifiers/Southeast_Asia/Playoffs",
+          "/dota2/The_International/2015/Open_Qualifiers",
+          "/dota2/The_International/2015/Open_Qualifiers/Americas",
+          "/dota2/The_International/2015/Open_Qualifiers/China",
+          "/dota2/The_International/2015/Open_Qualifiers/Chinese",
+          "/dota2/The_International/2015/Open_Qualifiers/Europe",
+          "/dota2/The_International/2015/Open_Qualifiers/European",
+          "/dota2/The_International/2015/Open_Qualifiers/South_East_Asia",
+          "/dota2/The_International/2015/Open_Qualifiers/Southeast_Asia",
+          "/dota2/The_International/2015/Statistics",
+          "/dota2/The_International/2015/Statistics/Group_Stage",
+          "/dota2/The_International/2015/Statistics/Main_Event",
+          "/dota2/The_International/2015/Wild_Card",
+          "/dota2/The_International/2015/Wild_Card/Detailed_Results",
+          "/dota2/The_International/2016",
+          "/dota2/The_International/2016/All-Star_Match",
+          "/dota2/The_International/2016/Americas",
+          "/dota2/The_International/2016/Americas/Open_Qualifier/1",
+          "/dota2/The_International/2016/Americas/Open_Qualifier/2",
+          "/dota2/The_International/2016/China",
+          "/dota2/The_International/2016/China/Open_Qualifier/1",
+          "/dota2/The_International/2016/China/Open_Qualifier/2",
+          "/dota2/The_International/2016/Europe",
+          "/dota2/The_International/2016/Europe/Open_Qualifier/1",
+          "/dota2/The_International/2016/Europe/Open_Qualifier/2",
+          "/dota2/The_International/2016/Group_Stage",
+          "/dota2/The_International/2016/Main_Event",
+          "/dota2/The_International/2016/Regional_Qualifiers",
+          "/dota2/The_International/2016/Southeast_Asia",
+          "/dota2/The_International/2016/Southeast_Asia/Open_Qualifier/1",
+          "/dota2/The_International/2016/Southeast_Asia/Open_Qualifier/2",
+          "/dota2/The_International/2016/Statistics",
+          "/dota2/The_International/2016/Statistics/Group_Stage",
+          "/dota2/The_International/2016/Statistics/Main_Event",
+          "/dota2/The_International/2016/Statistics/Qualifiers",
+          "/dota2/The_International/2016/Wild_Card",
+          "/dota2/The_International/2017",
+          "/dota2/The_International/2017/All-Star_Match",
+          "/dota2/The_International/2017/CIS",
+          "/dota2/The_International/2017/CIS/Open_Qualifier/1",
+          "/dota2/The_International/2017/CIS/Open_Qualifier/2",
+          "/dota2/The_International/2017/China",
+          "/dota2/The_International/2017/China/Champions_Qualifier",
+          "/dota2/The_International/2017/China/Open_Qualifier/1",
+          "/dota2/The_International/2017/China/Open_Qualifier/2",
+          "/dota2/The_International/2017/Europe",
+          "/dota2/The_International/2017/Europe/Champions_Qualifier",
+          "/dota2/The_International/2017/Europe/Open_Qualifier/1",
+          "/dota2/The_International/2017/Europe/Open_Qualifier/2",
+          "/dota2/The_International/2017/Group_Stage",
+          "/dota2/The_International/2017/Main_Event",
+          "/dota2/The_International/2017/North_America",
+          "/dota2/The_International/2017/North_America/Champions_Qualifier",
+          "/dota2/The_International/2017/North_America/Open_Qualifier/1",
+          "/dota2/The_International/2017/North_America/Open_Qualifier/2",
+          "/dota2/The_International/2017/Regional_Qualifiers",
+          "/dota2/The_International/2017/South_America",
+          "/dota2/The_International/2017/South_America/Open_Qualifier/1",
+          "/dota2/The_International/2017/South_America/Open_Qualifier/2",
+          "/dota2/The_International/2017/Southeast_Asia",
+          "/dota2/The_International/2017/Southeast_Asia/Champions_Qualifier",
+          "/dota2/The_International/2017/Southeast_Asia/Open_Qualifier/1",
+          "/dota2/The_International/2017/Southeast_Asia/Open_Qualifier/2",
+          "/dota2/The_International/2017/Special_Events",
+          "/dota2/The_International/2017/Statistics",
+          "/dota2/The_International/2017/Statistics/Group_Stage",
+          "/dota2/The_International/2017/Statistics/Main_Event",
+          "/dota2/The_International/2017/Statistics/Qualifiers",
+          "/dota2/The_International/2018",
+          "/dota2/The_International/2018/All-Star_Match",
+          "/dota2/The_International/2018/CIS",
+          "/dota2/The_International/2018/CIS/Open_Qualifier/1",
+          "/dota2/The_International/2018/CIS/Open_Qualifier/2",
+          "/dota2/The_International/2018/China",
+          "/dota2/The_International/2018/China/Open_Qualifier/1",
+          "/dota2/The_International/2018/China/Open_Qualifier/2",
+          "/dota2/The_International/2018/Europe",
+          "/dota2/The_International/2018/Europe/Open_Qualifier/1",
+          "/dota2/The_International/2018/Europe/Open_Qualifier/2",
+          "/dota2/The_International/2018/Group_Stage",
+          "/dota2/The_International/2018/Main_Event",
+          "/dota2/The_International/2018/Main_Qualifiers/China",
+          "/dota2/The_International/2018/North_America",
+          "/dota2/The_International/2018/North_America/Open_Qualifier/1",
+          "/dota2/The_International/2018/North_America/Open_Qualifier/2",
+          "/dota2/The_International/2018/OpenAI_Showmatches",
+          "/dota2/The_International/2018/Regional_Qualifiers",
+          "/dota2/The_International/2018/South_America",
+          "/dota2/The_International/2018/South_America/Open_Qualifier/1",
+          "/dota2/The_International/2018/South_America/Open_Qualifier/2",
+          "/dota2/The_International/2018/Southeast_Asia",
+          "/dota2/The_International/2018/Southeast_Asia/Open_Qualifier/1",
+          "/dota2/The_International/2018/Southeast_Asia/Open_Qualifier/2",
+          "/dota2/The_International/2018/Statistics",
+          "/dota2/The_International/2018/Statistics/Group_Stage",
+          "/dota2/The_International/2018/Statistics/Main_Event",
+          "/dota2/The_International/2018/Statistics/Qualifiers",
+          "/dota2/The_International/2019",
+          "/dota2/The_International/2019/All-Star_Match",
+          "/dota2/The_International/2019/CIS",
+          "/dota2/The_International/2019/CIS/Open_Qualifier/1",
+          "/dota2/The_International/2019/CIS/Open_Qualifier/2",
+          "/dota2/The_International/2019/China",
+          "/dota2/The_International/2019/China/Open_Qualifier/1",
+          "/dota2/The_International/2019/China/Open_Qualifier/2",
+          "/dota2/The_International/2019/Europe",
+          "/dota2/The_International/2019/Europe/Open_Qualifier/1",
+          "/dota2/The_International/2019/Europe/Open_Qualifier/2",
+          "/dota2/The_International/2019/Group_Stage",
+          "/dota2/The_International/2019/Main_Event",
+          "/dota2/The_International/2019/North_America",
+          "/dota2/The_International/2019/North_America/Open_Qualifier/1",
+          "/dota2/The_International/2019/North_America/Open_Qualifier/2",
+          "/dota2/The_International/2019/Regional_Qualifiers",
+          "/dota2/The_International/2019/South_America",
+          "/dota2/The_International/2019/South_America/Open_Qualifier/1",
+          "/dota2/The_International/2019/South_America/Open_Qualifier/2",
+          "/dota2/The_International/2019/Southeast_Asia",
+          "/dota2/The_International/2019/Southeast_Asia/Open_Qualifier/1",
+          "/dota2/The_International/2019/Southeast_Asia/Open_Qualifier/2",
+          "/dota2/The_International/2019/Statistics",
+          "/dota2/The_International/2019/Statistics/Group_Stage",
+          "/dota2/The_International/2019/Statistics/Main_Event",
+          "/dota2/The_International/2019/Statistics/Qualifiers",
+          "/dota2/The_International/2021",
+          "/dota2/The_International/2021/All-Star_Match",
+          "/dota2/The_International/2021/China",
+          "/dota2/The_International/2021/Eastern_Europe",
+          "/dota2/The_International/2021/Group_Stage",
+          "/dota2/The_International/2021/Main_Event",
+          "/dota2/The_International/2021/North_America",
+          "/dota2/The_International/2021/South_America",
+          "/dota2/The_International/2021/Southeast_Asia",
+          "/dota2/The_International/2021/Statistics",
+          "/dota2/The_International/2021/Statistics/Group_Stage",
+          "/dota2/The_International/2021/Statistics/Main_Event",
+          "/dota2/The_International/2021/Statistics/Qualifiers",
+          "/dota2/The_International/2021/Western_Europe",
+          "/dota2/The_International/2022",
+          "/dota2/The_International/2022/All-Star_Match",
+          "/dota2/The_International/2022/China",
+          "/dota2/The_International/2022/Eastern_Europe",
+          "/dota2/The_International/2022/Group_Stage_Day_1-2",
+          "/dota2/The_International/2022/Group_Stage_Day_3-4",
+          "/dota2/The_International/2022/Last_Chance_Qualifier",
+          "/dota2/The_International/2022/Main_Event",
+          "/dota2/The_International/2022/North_America",
+          "/dota2/The_International/2022/South_America",
+          "/dota2/The_International/2022/Southeast_Asia",
+          "/dota2/The_International/2022/Statistics",
+          "/dota2/The_International/2022/Statistics/Group_Stage",
+          "/dota2/The_International/2022/Statistics/Last_Chance_Qualifier",
+          "/dota2/The_International/2022/Statistics/Main_Event",
+          "/dota2/The_International/2022/Statistics/Qualifiers",
+          "/dota2/The_International/2022/Western_Europe",
+          "/dota2/The_International/2023",
+          "/dota2/The_International/2023/China",
+          "/dota2/The_International/2023/Eastern_Europe",
+          "/dota2/The_International/2023/Group_Stage",
+          "/dota2/The_International/2023/Main_Event",
+          "/dota2/The_International/2023/North_America",
+          "/dota2/The_International/2023/South_America",
+          "/dota2/The_International/2023/Southeast_Asia",
+          "/dota2/The_International/2023/Statistics",
+          "/dota2/The_International/2023/Statistics/Group_Stage",
+          "/dota2/The_International/2023/Statistics/Main_Event",
+          "/dota2/The_International/2023/Statistics/Qualifiers",
+          "/dota2/The_International/2023/Western_Europe",
+          "/dota2/The_International/2024",
+          "/dota2/The_International/Coach_Statistics",
+          "/dota2/The_International/Gallery",
+          "/dota2/The_International/Hero_Statistics/2011",
+          "/dota2/The_International/Hero_Statistics/2012",
+          "/dota2/The_International/Hero_Statistics/2013",
+          "/dota2/The_International/Hero_Statistics/2014",
+          "/dota2/The_International/Hero_Statistics/2015",
+          "/dota2/The_International/Hero_Statistics/2016",
+          "/dota2/The_International/Hero_Statistics/2017",
+          "/dota2/The_International/Hero_Statistics/2018",
+          "/dota2/The_International/Hero_Statistics/2019",
+          "/dota2/The_International/Hero_Statistics/2021",
+          "/dota2/The_International/Hero_Statistics/2022",
+          "/dota2/The_International/Hero_Statistics/2023",
+          "/dota2/The_International/Player_Statistics",
+          "/dota2/The_International/Player_tournament_appearances",
+          "/dota2/The_International/Team_Statistics"
+        ],
+        "remote_addr": "45.248.77.69:80",
+        "location": "Australia, Queensland",
+        "as_number": "AS136557",
+        "avg_response_ms": 539,
+        "path_count": 294
+      }
+    ]
+  },
+  "ti_stats": {
+    "https://liquipedia.net/dota2/The_International/2011": [
+      {
+        "country": "China",
+        "representation": "19 / 80 (24%)",
+        "players": [
+          "820",
+          "Awoke",
+          "Banana",
+          "DD",
+          "Faith",
+          "Ferrari_430",
+          "Hao",
+          "insence",
+          "Kabu",
+          "ksssssss",
+          "LaNm",
+          "QQQ",
+          "SanSheng",
+          "seaking",
+          "SJQ",
+          "X!!",
+          "xiao8",
+          "Yao",
+          "Zhou"
+        ]
+      },
+      {
+        "country": "Denmark",
+        "representation": "9 / 80 (11%)",
+        "players": [
+          "AngeL",
+          "eatenfish",
+          "Maelk",
+          "MaNia",
+          "miGGel",
+          "MiSeRy",
+          "PlaymatE",
+          "Ryze",
+          "syndereN"
+        ]
+      },
+      {
+        "country": "Russia",
+        "representation": "7 / 80 (9%)",
+        "players": [
+          "Ars-Art",
+          "Azen",
+          "Dread",
+          "God",
+          "LighTofHeaveN",
+          "NS",
+          "Santa"
+        ]
+      },
+      {
+        "country": "France",
+        "representation": "5 / 80 (6%)",
+        "players": ["Maldejambes", "Ph0eniX", "Pseudo", "Sockshka", "VladTepes"]
+      },
+      {
+        "country": "Malaysia",
+        "representation": "5 / 80 (6%)",
+        "players": ["kYxY", "Net", "Sharky", "SilverCross", "xiaoling"]
+      },
+      {
+        "country": "Philippines",
+        "representation": "5 / 80 (6%)",
+        "players": ["John", "Julz", "Owa", "VASH", "Wootz"]
+      },
+      {
+        "country": "Singapore",
+        "representation": "5 / 80 (6%)",
+        "players": ["Chawy", "Hyhy", "Roy", "ToFu", "Xy-"]
+      },
+      {
+        "country": "Thailand",
+        "representation": "5 / 80 (6%)",
+        "players": ["aabBAA", "l3nu", "LaKelz", "Lookball", "TnK"]
+      },
+      {
+        "country": "Czechia",
+        "representation": "3 / 80 (4%)",
+        "players": ["CraNich", "lacek", "Tonci"]
+      },
+      {
+        "country": "Germany",
+        "representation": "3 / 80 (4%)",
+        "players": ["Kebap", "Kev-", "KuroKy"]
+      },
+      {
+        "country": "Ukraine",
+        "representation": "3 / 80 (4%)",
+        "players": ["Artstyle", "Dendi", "XBOCT"]
+      },
+      {
+        "country": "Slovakia",
+        "representation": "2 / 80 (3%)",
+        "players": ["Tulex", "Warlog"]
+      },
+      {
+        "country": "Sweden",
+        "representation": "2 / 80 (3%)",
+        "players": ["Mirakel", "Pajkatt"]
+      },
+      {
+        "country": "United States",
+        "representation": "2 / 80 (3%)",
+        "players": ["DeMoN", "Fear"]
+      },
+      {
+        "country": "Canada",
+        "representation": "1 / 80 (1%)",
+        "players": ["1437"]
+      },
+      {
+        "country": "Croatia",
+        "representation": "1 / 80 (1%)",
+        "players": ["Lacoste"]
+      },
+      {
+        "country": "Estonia",
+        "representation": "1 / 80 (1%)",
+        "players": ["Puppey"]
+      },
+      {
+        "country": "Macau",
+        "representation": "1 / 80 (1%)",
+        "players": ["DDC"]
+      },
+      {
+        "country": "Romania",
+        "representation": "1 / 80 (1%)",
+        "players": ["ComeWithMe"]
+      }
+    ],
+    "https://liquipedia.net/dota2/The_International/2012": [
+      {
+        "country": "China",
+        "representation": "23 / 80 (29%)",
+        "players": [
+          "Awoke",
+          "BurNIng",
+          "DD",
+          "Faith",
+          "Ferrari_430",
+          "Hao",
+          "Kabu",
+          "KingJ",
+          "LaNm",
+          "LongDD",
+          "Mu",
+          "PCT",
+          "QQQ",
+          "rOtk",
+          "SanSheng",
+          "Super",
+          "Sylar",
+          "X!!",
+          "Xiao8",
+          "Yao",
+          "YYF",
+          "Zhou",
+          "Zippo"
+        ]
+      },
+      {
+        "country": "Russia",
+        "representation": "8 / 80 (10%)",
+        "players": [
+          "Admiration",
+          "ARS-ART",
+          "Bloodangel",
+          "God",
+          "LighTofHeaveN",
+          "PGG",
+          "Silent",
+          "Vigoss"
+        ]
+      },
+      {
+        "country": "United States",
+        "representation": "7 / 80 (9%)",
+        "players": [
+          "BuLba",
+          "DeMoN",
+          "Fear",
+          "FLUFFNSTUFF",
+          "HANNAH_MONTANA",
+          "ixmike88",
+          "UNiVeRsE"
+        ]
+      },
+      {
+        "country": "Malaysia",
+        "representation": "6 / 80 (8%)",
+        "players": ["ChuaN", "Ice", "Mushi", "WinteR", "XtiNcT", "YamateH"]
+      },
+      {
+        "country": "Ukraine",
+        "representation": "6 / 80 (8%)",
+        "players": ["Artstyle", "Dendi", "Funn1k", "Goblak", "Mag~", "XBOCT"]
+      },
+      {
+        "country": "Australia",
+        "representation": "4 / 80 (5%)",
+        "players": ["blackshatan", "Godot", "Snoopy", "xMusiCa"]
+      },
+      {
+        "country": "Canada",
+        "representation": "4 / 80 (5%)",
+        "players": ["1437", "bLeeK", "Jeyo", "TC"]
+      },
+      {
+        "country": "Singapore",
+        "representation": "4 / 80 (5%)",
+        "players": ["Hyhy", "iceiceice", "xFreedom", "xy-"]
+      },
+      {
+        "country": "Sweden",
+        "representation": "4 / 80 (5%)",
+        "players": ["Akke", "Loda", "Mirakel", "Pajkatt"]
+      },
+      {
+        "country": "Denmark",
+        "representation": "3 / 80 (4%)",
+        "players": ["Maelk", "MiSeRy", "syndereN"]
+      },
+      {
+        "country": "France",
+        "representation": "3 / 80 (4%)",
+        "players": ["7ckngMad", "Funzii", "Sockshka"]
+      },
+      {
+        "country": "Germany",
+        "representation": "3 / 80 (4%)",
+        "players": ["Black^", "Kebap", "KuroKy"]
+      },
+      {
+        "country": "Netherlands",
+        "representation": "2 / 80 (3%)",
+        "players": ["SexyBamboe", "SingSing"]
+      },
+      {
+        "country": "Croatia",
+        "representation": "1 / 80 (1%)",
+        "players": ["Lacoste"]
+      },
+      {
+        "country": "Estonia",
+        "representation": "1 / 80 (1%)",
+        "players": ["Puppey"]
+      },
+      {
+        "country": "Macau",
+        "representation": "1 / 80 (1%)",
+        "players": ["DDC"]
+      }
+    ],
+    "https://liquipedia.net/dota2/The_International/2013": [
+      {
+        "country": "China",
+        "representation": "23 / 80 (29%)",
+        "players": [
+          "Banana",
+          "BurNIng",
+          "DD",
+          "Faith",
+          "Ferrari 430",
+          "Hao",
+          "Icy",
+          "Kabu",
+          "KingJ",
+          "LaNm",
+          "Luo",
+          "MMY!",
+          "Mu",
+          "QQQ",
+          "rOtK",
+          "Sag",
+          "SanSheng",
+          "Super",
+          "Sylar",
+          "xiao8",
+          "Yao",
+          "YYF",
+          "Zhou"
+        ]
+      },
+      {
+        "country": "Malaysia",
+        "representation": "13 / 80 (16%)",
+        "players": [
+          "ChuaN",
+          "dabeliuteef",
+          "FzFz",
+          "Ice",
+          "kYxY",
+          "Ling",
+          "Mushi",
+          "Net",
+          "Ohaiyo",
+          "TooFuckingGood",
+          "WinteR",
+          "XtiNcT",
+          "YamateH"
+        ]
+      },
+      {
+        "country": "United States",
+        "representation": "8 / 80 (10%)",
+        "players": [
+          "Brax",
+          "Bulba",
+          "FLUFFNSTUFF",
+          "Fogged",
+          "ixmike88",
+          "Korok",
+          "Sneyking",
+          "Universe"
+        ]
+      },
+      {
+        "country": "Sweden",
+        "representation": "7 / 80 (9%)",
+        "players": [
+          "AdmiralBulldog",
+          "Akke",
+          "EGM",
+          "Era",
+          "Loda",
+          "Pajkatt",
+          "s4"
+        ]
+      },
+      {
+        "country": "Germany",
+        "representation": "6 / 80 (8%)",
+        "players": ["Black^", "FATA-", "H4nn1", "KuroKy", "paS", "qojqva"]
+      },
+      {
+        "country": "Russia",
+        "representation": "5 / 80 (6%)",
+        "players": ["ARS-ART", "Crazy", "God", "Illidan", "NS"]
+      },
+      {
+        "country": "Canada",
+        "representation": "4 / 80 (5%)",
+        "players": ["1437", "Aui_2000", "TC", "Waytosexy"]
+      },
+      {
+        "country": "Ukraine",
+        "representation": "4 / 80 (5%)",
+        "players": ["Dendi", "Funn1k", "KSi", "XBOCT"]
+      },
+      {
+        "country": "Denmark",
+        "representation": "3 / 80 (4%)",
+        "players": ["BigDaddy", "MiSeRY", "syndereN"]
+      },
+      {
+        "country": "Singapore",
+        "representation": "3 / 80 (4%)",
+        "players": ["iceiceice", "xFreedom", "xy-"]
+      },
+      {
+        "country": "Estonia",
+        "representation": "1 / 80 (1%)",
+        "players": ["Puppey"]
+      },
+      {
+        "country": "Finland",
+        "representation": "1 / 80 (1%)",
+        "players": ["Trixi"]
+      },
+      {
+        "country": "Israel",
+        "representation": "1 / 80 (1%)",
+        "players": ["Fly"]
+      },
+      {
+        "country": "Macau",
+        "representation": "1 / 80 (1%)",
+        "players": ["ddc"]
+      }
+    ],
+    "https://liquipedia.net/dota2/The_International/2014": [
+      {
+        "country": "China",
+        "representation": "25 / 95 (26%)",
+        "players": [
+          "Ayo",
+          "Banana",
+          "BurNIng",
+          "DD",
+          "demons",
+          "Faith",
+          "Fenrir",
+          "Ferrari_430",
+          "fy",
+          "Hao",
+          "inflame",
+          "June",
+          "LaNm",
+          "Lin",
+          "Luo",
+          "MMY",
+          "Mu",
+          "Rabbit",
+          "rOtk",
+          "SanSheng",
+          "Super",
+          "Sylar",
+          "xiao8",
+          "Yao",
+          "YYF"
+        ]
+      },
+      {
+        "country": "Malaysia",
+        "representation": "12 / 95 (13%)",
+        "players": [
+          "ChuaN",
+          "ddz",
+          "JoHnNy",
+          "kYxY",
+          "LaNcE",
+          "MoZuN",
+          "Mushi",
+          "Net",
+          "Ohaiyo",
+          "xiangzai",
+          "XtiNcT",
+          "YamateH"
+        ]
+      },
+      {
+        "country": "United States",
+        "representation": "10 / 95 (11%)",
+        "players": [
+          "Brax",
+          "BuLba",
+          "DeMoN",
+          "Fogged",
+          "Korok",
+          "mason",
+          "MSS",
+          "ppd",
+          "Sneyking",
+          "UNiVeRsE"
+        ]
+      },
+      {
+        "country": "Sweden",
+        "representation": "9 / 95 (9%)",
+        "players": [
+          "AdmiralBulldog",
+          "Akke",
+          "EGM",
+          "Era",
+          "Loda",
+          "Pajkatt",
+          "pieliedie",
+          "s4",
+          "zai"
+        ]
+      },
+      {
+        "country": "Russia",
+        "representation": "7 / 95 (7%)",
+        "players": [
+          "ARS-ART",
+          "God",
+          "Illidan",
+          "JotM",
+          "NS",
+          "Silent",
+          "VANSKOR"
+        ]
+      },
+      {
+        "country": "Canada",
+        "representation": "6 / 95 (6%)",
+        "players": [
+          "1437",
+          "Arteezy",
+          "Aui_2000",
+          "EternaLEnVy",
+          "TC",
+          "waytosexy"
+        ]
+      },
+      {
+        "country": "Germany",
+        "representation": "6 / 95 (6%)",
+        "players": ["Black^", "FATA", "H4nn1", "KuroKy", "paS", "qojqva"]
+      },
+      {
+        "country": "Ukraine",
+        "representation": "6 / 95 (6%)",
+        "players": [
+          "ALWAYSWANNAFLY",
+          "Dendi",
+          "Funn1k",
+          "Mag~",
+          "Resolut1on",
+          "XBOCT"
+        ]
+      },
+      {
+        "country": "South Korea",
+        "representation": "5 / 95 (5%)",
+        "players": ["Forev", "Heen", "March", "QO", "Reisen"]
+      },
+      {
+        "country": "Denmark",
+        "representation": "2 / 95 (2%)",
+        "players": ["BigDaddy", "MiSeRy"]
+      },
+      {
+        "country": "Estonia",
+        "representation": "1 / 95 (1%)",
+        "players": ["Puppey"]
+      },
+      {
+        "country": "Finland",
+        "representation": "1 / 95 (1%)",
+        "players": ["Trixi"]
+      },
+      {
+        "country": "Israel",
+        "representation": "1 / 95 (1%)",
+        "players": ["Fly"]
+      },
+      {
+        "country": "Macau",
+        "representation": "1 / 95 (1%)",
+        "players": ["DDC"]
+      },
+      {
+        "country": "Netherlands",
+        "representation": "1 / 95 (1%)",
+        "players": ["SingSing"]
+      },
+      {
+        "country": "Romania",
+        "representation": "1 / 95 (1%)",
+        "players": ["bOne7"]
+      },
+      {
+        "country": "Singapore",
+        "representation": "1 / 95 (1%)",
+        "players": ["iceiceice"]
+      }
+    ],
+    "https://liquipedia.net/dota2/The_International/2015": [
+      {
+        "country": "China",
+        "representation": "27 / 80 (34%)",
+        "players": [
+          "Agressif",
+          "Banana",
+          "BurNIng",
+          "Cty",
+          "Faith",
+          "Fenrir",
+          "Ferrari_430",
+          "fy",
+          "Garder",
+          "Hao",
+          "June",
+          "LaNm",
+          "Luo",
+          "Maybe",
+          "MMY!",
+          "Mu",
+          "Q",
+          "Rabbit",
+          "rOtK",
+          "SanSheng",
+          "Shiki",
+          "Super",
+          "Sylar",
+          "xiao8",
+          "Xz",
+          "Yao",
+          "Zyf"
+        ]
+      },
+      {
+        "country": "Ukraine",
+        "representation": "9 / 80 (11%)",
+        "players": [
+          "ALOHADANCE",
+          "ALWAYSWANNAFLY",
+          "Artstyle",
+          "Dendi",
+          "DkPhobos",
+          "Funn1k",
+          "Lil",
+          "Resolut1on",
+          "XBOCT"
+        ]
+      },
+      {
+        "country": "South Korea",
+        "representation": "7 / 80 (9%)",
+        "players": ["Febby", "FoREv", "Heen", "March", "MP", "QO", "SunBhie"]
+      },
+      {
+        "country": "Malaysia",
+        "representation": "6 / 80 (8%)",
+        "players": ["ChuaN", "JoHnNy", "Kecik Imba", "kYxY", "Mushi", "Ohaiyo"]
+      },
+      {
+        "country": "Russia",
+        "representation": "5 / 80 (6%)",
+        "players": ["God", "Illidan", "Silent", "SoNNeikO", "yoky-"]
+      },
+      {
+        "country": "United States",
+        "representation": "5 / 80 (6%)",
+        "players": ["Fear", "ppd", "swindlemelonzz", "UNiVeRsE", "Zfreek"]
+      },
+      {
+        "country": "Canada",
+        "representation": "4 / 80 (5%)",
+        "players": ["Arteezy", "Aui_2000", "EternaLEnVy", "MoonMeander"]
+      },
+      {
+        "country": "Denmark",
+        "representation": "2 / 80 (3%)",
+        "players": ["BigDaddy", "MiSeRy"]
+      },
+      {
+        "country": "Germany",
+        "representation": "2 / 80 (3%)",
+        "players": ["FATA-", "KuroKy"]
+      },
+      {
+        "country": "Singapore",
+        "representation": "2 / 80 (3%)",
+        "players": ["iceiceice", "NutZ"]
+      },
+      {
+        "country": "Sweden",
+        "representation": "2 / 80 (3%)",
+        "players": ["s4", "zai"]
+      },
+      {
+        "country": "Australia",
+        "representation": "1 / 80 (1%)",
+        "players": ["kphoenii"]
+      },
+      {
+        "country": "Belarus",
+        "representation": "1 / 80 (1%)",
+        "players": ["Fng"]
+      },
+      {
+        "country": "Estonia",
+        "representation": "1 / 80 (1%)",
+        "players": ["Puppey"]
+      },
+      {
+        "country": "Finland",
+        "representation": "1 / 80 (1%)",
+        "players": ["JerAx"]
+      },
+      {
+        "country": "Israel",
+        "representation": "1 / 80 (1%)",
+        "players": ["Fly"]
+      },
+      {
+        "country": "Macau",
+        "representation": "1 / 80 (1%)",
+        "players": ["DDC"]
+      },
+      {
+        "country": "Mexico",
+        "representation": "1 / 80 (1%)",
+        "players": ["Zyzz"]
+      },
+      {
+        "country": "Pakistan",
+        "representation": "1 / 80 (1%)",
+        "players": ["SumaiL"]
+      },
+      {
+        "country": "Romania",
+        "representation": "1 / 80 (1%)",
+        "players": ["bOne7"]
+      }
+    ],
+    "https://liquipedia.net/dota2/The_International/2016": [
+      {
+        "country": "China",
+        "representation": "21 / 80 (26%)",
+        "players": [
+          "Agressif",
+          "Banana",
+          "bLink",
+          "eLeVeN",
+          "END",
+          "Faith_bian",
+          "Fenrir",
+          "fy",
+          "Hao",
+          "iceice",
+          "Kaka",
+          "LaNm",
+          "Maybe",
+          "Mikasa",
+          "MMY!",
+          "Mu",
+          "Nono",
+          "old chicken",
+          "shadow",
+          "xiao8",
+          "y`"
+        ]
+      },
+      {
+        "country": "Sweden",
+        "representation": "8 / 80 (10%)",
+        "players": [
+          "AdmiralBulldog",
+          "Akke",
+          "EGM",
+          "Era",
+          "Loda",
+          "pieliedie",
+          "s4",
+          "zai"
+        ]
+      },
+      {
+        "country": "United States",
+        "representation": "6 / 80 (8%)",
+        "players": ["BuLba", "DeMoN", "Fear", "Moo", "ppd", "UNiVeRsE"]
+      },
+      {
+        "country": "Malaysia",
+        "representation": "5 / 80 (6%)",
+        "players": ["343", "ChuaN", "MidOne", "Mushi", "Ohaiyo"]
+      },
+      {
+        "country": "Philippines",
+        "representation": "5 / 80 (6%)",
+        "players": ["DJ", "eyyou", "Kuku", "Raven", "Sam_H"]
+      },
+      {
+        "country": "South Korea",
+        "representation": "5 / 80 (6%)",
+        "players": ["DuBu", "Febby", "Forev", "MP", "QO"]
+      },
+      {
+        "country": "Denmark",
+        "representation": "4 / 80 (5%)",
+        "players": ["Cr1t-", "MiSeRy", "n0tail", "syndereN"]
+      },
+      {
+        "country": "Germany",
+        "representation": "4 / 80 (5%)",
+        "players": ["FATA-", "KheZu", "KuroKy", "qojqva"]
+      },
+      {
+        "country": "Ukraine",
+        "representation": "4 / 80 (5%)",
+        "players": ["Artstyle", "Dendi", "GeneRaL", "Resolut1on"]
+      },
+      {
+        "country": "Canada",
+        "representation": "3 / 80 (4%)",
+        "players": ["Arteezy", "EternaLEnVy", "MoonMeander"]
+      },
+      {
+        "country": "Finland",
+        "representation": "2 / 80 (3%)",
+        "players": ["JerAx", "MATUMBAMAN"]
+      },
+      {
+        "country": "Jordan",
+        "representation": "2 / 80 (3%)",
+        "players": ["Miracle-", "YapzOr"]
+      },
+      {
+        "country": "Russia",
+        "representation": "2 / 80 (3%)",
+        "players": ["Ditya Ra", "SoNNeikO"]
+      },
+      {
+        "country": "Australia",
+        "representation": "1 / 80 (1%)",
+        "players": ["kpii"]
+      },
+      {
+        "country": "Bulgaria",
+        "representation": "1 / 80 (1%)",
+        "players": ["MinD_ContRoL"]
+      },
+      {
+        "country": "Estonia",
+        "representation": "1 / 80 (1%)",
+        "players": ["Puppey"]
+      },
+      {
+        "country": "Israel",
+        "representation": "1 / 80 (1%)",
+        "players": ["Fly"]
+      },
+      {
+        "country": "Macau",
+        "representation": "1 / 80 (1%)",
+        "players": ["DDC"]
+      },
+      {
+        "country": "North Macedonia",
+        "representation": "1 / 80 (1%)",
+        "players": ["Saksa"]
+      },
+      {
+        "country": "Pakistan",
+        "representation": "1 / 80 (1%)",
+        "players": ["SumaiL"]
+      },
+      {
+        "country": "Romania",
+        "representation": "1 / 80 (1%)",
+        "players": ["w33"]
+      },
+      {
+        "country": "Singapore",
+        "representation": "1 / 80 (1%)",
+        "players": ["iceiceice"]
+      }
+    ],
+    "https://liquipedia.net/dota2/The_International/2017": [
+      {
+        "country": "China",
+        "representation": "22 / 90 (24%)",
+        "players": [
+          "@dogf1ghts",
+          "Ame",
+          "BoBoKa",
+          "BurNIng",
+          "eLeVeN",
+          "Faith",
+          "Inflame",
+          "InJuly",
+          "Kaka",
+          "Monet",
+          "Moogy",
+          "Op",
+          "Paparazi灬",
+          "Q",
+          "Sakata",
+          "Sccc",
+          "Somnus丶M",
+          "Super",
+          "super",
+          "Victoria",
+          "Xxs",
+          "Yao"
+        ]
+      },
+      {
+        "country": "Philippines",
+        "representation": "11 / 90 (12%)",
+        "players": [
+          "Abed",
+          "Bimbo",
+          "CartMaN",
+          "DJ",
+          "Kim0",
+          "Kuku",
+          "Nando",
+          "Raven",
+          "RR",
+          "Sam_H",
+          "Tims"
+        ]
+      },
+      {
+        "country": "Peru",
+        "representation": "5 / 90 (6%)",
+        "players": ["Accel", "Benjaz", "Kingteka", "Matthew", "Timado"]
+      },
+      {
+        "country": "Russia",
+        "representation": "5 / 90 (6%)",
+        "players": ["9pasha", "Miposhka", "RAMZES666", "RodjER", "Solo"]
+      },
+      {
+        "country": "South Korea",
+        "representation": "5 / 90 (6%)",
+        "players": ["DuBu", "Febby", "Forev", "MP", "QO"]
+      },
+      {
+        "country": "Ukraine",
+        "representation": "5 / 90 (6%)",
+        "players": ["fn", "Ghostik", "Lil", "No[o]ne", "Resolut1on"]
+      },
+      {
+        "country": "Canada",
+        "representation": "4 / 90 (4%)",
+        "players": ["1437", "Arteezy", "Aui_2000", "EternaLEnVy"]
+      },
+      {
+        "country": "Malaysia",
+        "representation": "4 / 90 (4%)",
+        "players": ["Ahfu", "Ahjit", "MidOne", "Ohaiyo"]
+      },
+      {
+        "country": "United States",
+        "representation": "4 / 90 (4%)",
+        "players": ["BuLba", "mason", "MSS", "UNiVeRsE"]
+      },
+      {
+        "country": "Germany",
+        "representation": "3 / 90 (3%)",
+        "players": ["FATA-", "KheZu", "KuroKy"]
+      },
+      {
+        "country": "Sweden",
+        "representation": "3 / 90 (3%)",
+        "players": ["pieliedie", "s4", "zai"]
+      },
+      {
+        "country": "Australia",
+        "representation": "2 / 90 (2%)",
+        "players": ["ana", "kpii"]
+      },
+      {
+        "country": "Denmark",
+        "representation": "2 / 90 (2%)",
+        "players": ["Cr1t-", "n0tail"]
+      },
+      {
+        "country": "Finland",
+        "representation": "2 / 90 (2%)",
+        "players": ["JerAx", "MATUMBAMAN"]
+      },
+      {
+        "country": "Israel",
+        "representation": "2 / 90 (2%)",
+        "players": ["33", "Fly"]
+      },
+      {
+        "country": "Jordan",
+        "representation": "2 / 90 (2%)",
+        "players": ["Miracle-", "YapzOr"]
+      },
+      {
+        "country": "Belarus",
+        "representation": "1 / 90 (1%)",
+        "players": ["j4"]
+      },
+      {
+        "country": "Bosnia and Herzegovina",
+        "representation": "1 / 90 (1%)",
+        "players": ["MiLAN"]
+      },
+      {
+        "country": "Bulgaria",
+        "representation": "1 / 90 (1%)",
+        "players": ["MinD_ContRoL"]
+      },
+      {
+        "country": "Estonia",
+        "representation": "1 / 90 (1%)",
+        "players": ["Puppey"]
+      },
+      {
+        "country": "Greece",
+        "representation": "1 / 90 (1%)",
+        "players": ["Keyser"]
+      },
+      {
+        "country": "Lebanon",
+        "representation": "1 / 90 (1%)",
+        "players": ["GH"]
+      },
+      {
+        "country": "Macau",
+        "representation": "1 / 90 (1%)",
+        "players": ["ddc"]
+      },
+      {
+        "country": "Pakistan",
+        "representation": "1 / 90 (1%)",
+        "players": ["SumaiL"]
+      },
+      {
+        "country": "Serbia",
+        "representation": "1 / 90 (1%)",
+        "players": ["Swiftending"]
+      }
+    ],
+    "https://liquipedia.net/dota2/The_International/2018": [
+      {
+        "country": "China",
+        "representation": "27 / 90 (30%)",
+        "players": [
+          "Agressif",
+          "Ame",
+          "BoBoKa",
+          "Chalice",
+          "eLeVeN",
+          "Fade",
+          "Faith",
+          "Fenrir",
+          "Freeze",
+          "fy",
+          "Kaka",
+          "LaNm",
+          "Moogy",
+          "Ori",
+          "Paparazi灬",
+          "Pyw",
+          "Q",
+          "Sccc",
+          "Somnus丶M",
+          "Srf",
+          "Sylar",
+          "XCJ",
+          "XinQ",
+          "Xxs",
+          "Yang",
+          "zhizhizhi",
+          "Zyd"
+        ]
+      },
+      {
+        "country": "Philippines",
+        "representation": "8 / 90 (9%)",
+        "players": [
+          "Abed",
+          "Armel",
+          "DJ",
+          "Kuku",
+          "ninjaboogie",
+          "Raven",
+          "Sam_H",
+          "Tims"
+        ]
+      },
+      {
+        "country": "United States",
+        "representation": "7 / 90 (8%)",
+        "players": [
+          "CCnC",
+          "MSS",
+          "Peterpandam",
+          "Sneyking",
+          "SVG",
+          "UNiVeRsE",
+          "YS"
+        ]
+      },
+      {
+        "country": "Russia",
+        "representation": "6 / 90 (7%)",
+        "players": [
+          "9pasha",
+          "nongrata",
+          "RAMZES666",
+          "RodjER",
+          "Silent",
+          "Solo"
+        ]
+      },
+      {
+        "country": "Brazil",
+        "representation": "4 / 90 (4%)",
+        "players": ["Duster", "hFn", "Kingrd", "tavo"]
+      },
+      {
+        "country": "Malaysia",
+        "representation": "4 / 90 (4%)",
+        "players": ["MidOne", "Moon", "Mushi", "xNova"]
+      },
+      {
+        "country": "Sweden",
+        "representation": "4 / 90 (4%)",
+        "players": ["Pajkatt", "pieliedie", "s4", "zai"]
+      },
+      {
+        "country": "Ukraine",
+        "representation": "4 / 90 (4%)",
+        "players": ["ALWAYSWANNAFLY", "Iceberg", "No[o]ne", "Resolut1on"]
+      },
+      {
+        "country": "Denmark",
+        "representation": "3 / 90 (3%)",
+        "players": ["Ace", "Cr1t-", "N0tail"]
+      },
+      {
+        "country": "Finland",
+        "representation": "3 / 90 (3%)",
+        "players": ["JerAx", "MATUMBAMAN", "Topson"]
+      },
+      {
+        "country": "Australia",
+        "representation": "2 / 90 (2%)",
+        "players": ["ana", "kpii"]
+      },
+      {
+        "country": "Canada",
+        "representation": "2 / 90 (2%)",
+        "players": ["EternaLEnVy", "rtz"]
+      },
+      {
+        "country": "Germany",
+        "representation": "2 / 90 (2%)",
+        "players": ["Fata", "KuroKy"]
+      },
+      {
+        "country": "Israel",
+        "representation": "2 / 90 (2%)",
+        "players": ["33", "Fly"]
+      },
+      {
+        "country": "Jordan",
+        "representation": "2 / 90 (2%)",
+        "players": ["Miracle-", "YapzOr"]
+      },
+      {
+        "country": "Bulgaria",
+        "representation": "1 / 90 (1%)",
+        "players": ["MinD_ContRoL"]
+      },
+      {
+        "country": "Estonia",
+        "representation": "1 / 90 (1%)",
+        "players": ["Puppey"]
+      },
+      {
+        "country": "France",
+        "representation": "1 / 90 (1%)",
+        "players": ["Ceb"]
+      },
+      {
+        "country": "Lebanon",
+        "representation": "1 / 90 (1%)",
+        "players": ["GH"]
+      },
+      {
+        "country": "Macau",
+        "representation": "1 / 90 (1%)",
+        "players": ["ddc"]
+      },
+      {
+        "country": "Non-representing",
+        "representation": "1 / 90 (1%)",
+        "players": ["Nofear"]
+      },
+      {
+        "country": "Pakistan",
+        "representation": "1 / 90 (1%)",
+        "players": ["SumaiL"]
+      },
+      {
+        "country": "Romania",
+        "representation": "1 / 90 (1%)",
+        "players": ["w33"]
+      },
+      {
+        "country": "Singapore",
+        "representation": "1 / 90 (1%)",
+        "players": ["iceiceice"]
+      },
+      {
+        "country": "Thailand",
+        "representation": "1 / 90 (1%)",
+        "players": ["Jabz"]
+      }
+    ],
+    "https://liquipedia.net/dota2/The_International/2019": [
+      {
+        "country": "China",
+        "representation": "18 / 90 (20%)",
+        "players": [
+          "Ame",
+          "Chalice",
+          "dark",
+          "Dy",
+          "eLeVeN",
+          "Fade",
+          "Flyby",
+          "fy",
+          "Kaka",
+          "LaNm",
+          "Monet",
+          "old chicken",
+          "Ori",
+          "Paparazi灬",
+          "Setsu",
+          "Somnus丶M",
+          "Yang",
+          "一"
+        ]
+      },
+      {
+        "country": "Philippines",
+        "representation": "9 / 90 (10%)",
+        "players": [
+          "Abed",
+          "Armel",
+          "DJ",
+          "Eyyou",
+          "Gabbi",
+          "Kuku",
+          "ninjaboogie",
+          "ragingpotato",
+          "Tims"
+        ]
+      },
+      {
+        "country": "Sweden",
+        "representation": "6 / 90 (7%)",
+        "players": ["Boxi", "iNSaNiA", "miCKe", "pieliedie", "s4", "zai"]
+      },
+      {
+        "country": "Malaysia",
+        "representation": "5 / 90 (6%)",
+        "players": ["ah fu", "MidOne", "Moon", "vtFαded", "xNova"]
+      },
+      {
+        "country": "Russia",
+        "representation": "5 / 90 (6%)",
+        "players": ["9pasha", "RAMZES666", "RodjER", "Solo", "SoNNeikO"]
+      },
+      {
+        "country": "United States",
+        "representation": "5 / 90 (6%)",
+        "players": ["CCnC", "MSS", "ppd", "Sneyking", "YawaR"]
+      },
+      {
+        "country": "Denmark",
+        "representation": "4 / 90 (4%)",
+        "players": ["Ace", "Cr1t-", "MISERY", "N0tail"]
+      },
+      {
+        "country": "Germany",
+        "representation": "4 / 90 (4%)",
+        "players": ["Fata", "KheZu", "KuroKy", "qojqva"]
+      },
+      {
+        "country": "Peru",
+        "representation": "4 / 90 (4%)",
+        "players": ["Chris Luck", "K1", "Scofield", "Stinger"]
+      },
+      {
+        "country": "Finland",
+        "representation": "3 / 90 (3%)",
+        "players": ["JerAx", "MATUMBAMAN", "Topson"]
+      },
+      {
+        "country": "Israel",
+        "representation": "3 / 90 (3%)",
+        "players": ["33", "Fly", "MagicaL"]
+      },
+      {
+        "country": "Australia",
+        "representation": "2 / 90 (2%)",
+        "players": ["ana", "kpii"]
+      },
+      {
+        "country": "Bulgaria",
+        "representation": "2 / 90 (2%)",
+        "players": ["MinD_ContRoL", "Nikobaby"]
+      },
+      {
+        "country": "Jordan",
+        "representation": "2 / 90 (2%)",
+        "players": ["Miracle-", "YapzOr"]
+      },
+      {
+        "country": "Kyrgyzstan",
+        "representation": "2 / 90 (2%)",
+        "players": ["Blizzy", "Zayac"]
+      },
+      {
+        "country": "Ukraine",
+        "representation": "2 / 90 (2%)",
+        "players": ["Crystallize", "No[o]ne"]
+      },
+      {
+        "country": "Bolivia",
+        "representation": "1 / 90 (1%)",
+        "players": ["Wisper"]
+      },
+      {
+        "country": "Bosnia and Herzegovina",
+        "representation": "1 / 90 (1%)",
+        "players": ["MiLAN"]
+      },
+      {
+        "country": "Canada",
+        "representation": "1 / 90 (1%)",
+        "players": ["Arteezy"]
+      },
+      {
+        "country": "Estonia",
+        "representation": "1 / 90 (1%)",
+        "players": ["Puppey"]
+      },
+      {
+        "country": "France",
+        "representation": "1 / 90 (1%)",
+        "players": ["Ceb"]
+      },
+      {
+        "country": "Lebanon",
+        "representation": "1 / 90 (1%)",
+        "players": ["GH"]
+      },
+      {
+        "country": "North Macedonia",
+        "representation": "1 / 90 (1%)",
+        "players": ["Saksa"]
+      },
+      {
+        "country": "Norway",
+        "representation": "1 / 90 (1%)",
+        "players": ["Taiga"]
+      },
+      {
+        "country": "Pakistan",
+        "representation": "1 / 90 (1%)",
+        "players": ["SumaiL"]
+      },
+      {
+        "country": "Poland",
+        "representation": "1 / 90 (1%)",
+        "players": ["Nisha"]
+      },
+      {
+        "country": "Romania",
+        "representation": "1 / 90 (1%)",
+        "players": ["w33"]
+      },
+      {
+        "country": "Singapore",
+        "representation": "1 / 90 (1%)",
+        "players": ["iceiceice"]
+      },
+      {
+        "country": "South Korea",
+        "representation": "1 / 90 (1%)",
+        "players": ["DuBu"]
+      },
+      {
+        "country": "Thailand",
+        "representation": "1 / 90 (1%)",
+        "players": ["Jabz"]
+      }
+    ],
+    "https://liquipedia.net/dota2/The_International/2021": [
+      {
+        "country": "China",
+        "representation": "22 / 90 (24%)",
+        "players": [
+          "Ame",
+          "Borax",
+          "Dy",
+          "Emo",
+          "Eurus",
+          "Faith_bian",
+          "flyfly",
+          "fy",
+          "Kaka",
+          "LaNm",
+          "Monet",
+          "old eLeVeN",
+          "Ori",
+          "poyoyo",
+          "Pyw",
+          "Somnus丶M",
+          "Super",
+          "White丶Album_白学家",
+          "XinQ",
+          "Xxs",
+          "y`",
+          "Yang"
+        ]
+      },
+      {
+        "country": "Peru",
+        "representation": "10 / 90 (11%)",
+        "players": [
+          "Chris Luck",
+          "Frank",
+          "K1",
+          "Leostyle-",
+          "Mjz",
+          "Mnz",
+          "MoOz",
+          "Scofield",
+          "Stinger",
+          "Timado"
+        ]
+      },
+      {
+        "country": "Russia",
+        "representation": "7 / 90 (8%)",
+        "players": [
+          "Collapse",
+          "DM",
+          "gpk",
+          "Kingslayer",
+          "Miposhka",
+          "Nightfall",
+          "TORONTOTOKYO"
+        ]
+      },
+      {
+        "country": "Brazil",
+        "representation": "6 / 90 (7%)",
+        "players": ["4dr", "Costabile", "KJ", "Lelis", "Tavo", "Thiolicor"]
+      },
+      {
+        "country": "Philippines",
+        "representation": "5 / 90 (6%)",
+        "players": ["Abed", "DJ", "Karl", "Kuku", "Raven"]
+      },
+      {
+        "country": "Malaysia",
+        "representation": "4 / 90 (4%)",
+        "players": ["ChYuan", "JT-", "NothingToSay", "Oli"]
+      },
+      {
+        "country": "Sweden",
+        "representation": "4 / 90 (4%)",
+        "players": ["Handsken", "LIMMP", "s4", "zai"]
+      },
+      {
+        "country": "United States",
+        "representation": "4 / 90 (4%)",
+        "players": ["MSS", "Quinn", "SVG", "YawaR"]
+      },
+      {
+        "country": "Canada",
+        "representation": "3 / 90 (3%)",
+        "players": ["Arteezy", "Bryle", "MoonMeander"]
+      },
+      {
+        "country": "Denmark",
+        "representation": "2 / 90 (2%)",
+        "players": ["Cr1t-", "N0tail"]
+      },
+      {
+        "country": "Finland",
+        "representation": "2 / 90 (2%)",
+        "players": ["MATUMBAMAN", "Topson"]
+      },
+      {
+        "country": "Indonesia",
+        "representation": "2 / 90 (2%)",
+        "players": ["Whitemon", "Xepher"]
+      },
+      {
+        "country": "Singapore",
+        "representation": "2 / 90 (2%)",
+        "players": ["Deth", "iceiceice"]
+      },
+      {
+        "country": "Thailand",
+        "representation": "2 / 90 (2%)",
+        "players": ["23savage", "Jabz"]
+      },
+      {
+        "country": "Ukraine",
+        "representation": "2 / 90 (2%)",
+        "players": ["Mira", "Yatoro"]
+      },
+      {
+        "country": "Belarus",
+        "representation": "1 / 90 (1%)",
+        "players": ["fng"]
+      },
+      {
+        "country": "Bolivia",
+        "representation": "1 / 90 (1%)",
+        "players": ["Wisper"]
+      },
+      {
+        "country": "Bulgaria",
+        "representation": "1 / 90 (1%)",
+        "players": ["Nikobaby"]
+      },
+      {
+        "country": "Czechia",
+        "representation": "1 / 90 (1%)",
+        "players": ["SabeRLight-"]
+      },
+      {
+        "country": "Estonia",
+        "representation": "1 / 90 (1%)",
+        "players": ["Puppey"]
+      },
+      {
+        "country": "France",
+        "representation": "1 / 90 (1%)",
+        "players": ["Ceb"]
+      },
+      {
+        "country": "Israel",
+        "representation": "1 / 90 (1%)",
+        "players": ["Fly"]
+      },
+      {
+        "country": "Jordan",
+        "representation": "1 / 90 (1%)",
+        "players": ["YapzOr"]
+      },
+      {
+        "country": "Moldova",
+        "representation": "1 / 90 (1%)",
+        "players": ["Save-"]
+      },
+      {
+        "country": "North Macedonia",
+        "representation": "1 / 90 (1%)",
+        "players": ["Saksa"]
+      },
+      {
+        "country": "Pakistan",
+        "representation": "1 / 90 (1%)",
+        "players": ["SumaiL"]
+      },
+      {
+        "country": "Poland",
+        "representation": "1 / 90 (1%)",
+        "players": ["Nisha"]
+      },
+      {
+        "country": "South Korea",
+        "representation": "1 / 90 (1%)",
+        "players": ["Dubu"]
+      }
+    ],
+    "https://liquipedia.net/dota2/The_International/2022": [
+      {
+        "country": "Peru",
+        "representation": "13 / 100 (13%)",
+        "players": [
+          "Chris Luck",
+          "DarkMago",
+          "Gardick",
+          "Gōjira",
+          "K1",
+          "Lumière",
+          "Matthew",
+          "Pakazs",
+          "Pandaboo",
+          "Sacred",
+          "Stinger",
+          "Timado",
+          "Vitaly"
+        ]
+      },
+      {
+        "country": "Russia",
+        "representation": "13 / 100 (13%)",
+        "players": [
+          "Collapse",
+          "Daxak",
+          "dyrachyo",
+          "Kataomi`",
+          "Larl",
+          "Miposhka",
+          "Misha",
+          "Nightfall",
+          "Noticed",
+          "Pure",
+          "RodjER",
+          "SoNNeikO",
+          "TORONTOTOKYO"
+        ]
+      },
+      {
+        "country": "China",
+        "representation": "12 / 100 (12%)",
+        "players": [
+          "Ame",
+          "BoBoKa",
+          "Chalice",
+          "Faith_bian",
+          "kaka",
+          "Monet",
+          "Ori",
+          "Somnus",
+          "XinQ",
+          "Xxs",
+          "y`",
+          "皮球"
+        ]
+      },
+      {
+        "country": "Philippines",
+        "representation": "8 / 100 (8%)",
+        "players": [
+          "Abed",
+          "Armel",
+          "DJ",
+          "Jaunuel",
+          "Raven",
+          "skem",
+          "TIMS",
+          "Yopaj"
+        ]
+      },
+      {
+        "country": "Germany",
+        "representation": "4 / 100 (4%)",
+        "players": ["Fata", "Nine", "Stormstormer", "tOfu"]
+      },
+      {
+        "country": "Sweden",
+        "representation": "4 / 100 (4%)",
+        "players": ["Boxi", "iNSaNiA", "miCKe", "zai"]
+      },
+      {
+        "country": "Ukraine",
+        "representation": "4 / 100 (4%)",
+        "players": ["Mira", "Resolut1on", "Yatoro", "Yuragi"]
+      },
+      {
+        "country": "United States",
+        "representation": "4 / 100 (4%)",
+        "players": ["MSS", "Quinn", "Sneyking", "YawaR"]
+      },
+      {
+        "country": "Brazil",
+        "representation": "3 / 100 (3%)",
+        "players": ["4nalog", "LESLÃO", "Thiolicor"]
+      },
+      {
+        "country": "Canada",
+        "representation": "3 / 100 (3%)",
+        "players": ["Arteezy", "Bryle", "MoonMeander"]
+      },
+      {
+        "country": "Indonesia",
+        "representation": "3 / 100 (3%)",
+        "players": ["Fbz", "Hyde", "Mikoto"]
+      },
+      {
+        "country": "Malaysia",
+        "representation": "3 / 100 (3%)",
+        "players": ["Ghost", "NothingToSay", "xNova"]
+      },
+      {
+        "country": "Thailand",
+        "representation": "3 / 100 (3%)",
+        "players": ["23savage", "Jabz", "Q"]
+      },
+      {
+        "country": "Czechia",
+        "representation": "2 / 100 (2%)",
+        "players": ["BOOM", "SabeRLight-"]
+      },
+      {
+        "country": "Denmark",
+        "representation": "2 / 100 (2%)",
+        "players": ["Ace", "Cr1t-"]
+      },
+      {
+        "country": "Israel",
+        "representation": "2 / 100 (2%)",
+        "players": ["33", "Fly"]
+      },
+      {
+        "country": "Netherlands",
+        "representation": "2 / 100 (2%)",
+        "players": ["Crystallis", "Seleri"]
+      },
+      {
+        "country": "Australia",
+        "representation": "1 / 100 (1%)",
+        "players": ["kpii"]
+      },
+      {
+        "country": "Austria",
+        "representation": "1 / 100 (1%)",
+        "players": ["Tobi"]
+      },
+      {
+        "country": "Belarus",
+        "representation": "1 / 100 (1%)",
+        "players": ["Fishman"]
+      },
+      {
+        "country": "Bolivia",
+        "representation": "1 / 100 (1%)",
+        "players": ["Wisper"]
+      },
+      {
+        "country": "Bulgaria",
+        "representation": "1 / 100 (1%)",
+        "players": ["bzm"]
+      },
+      {
+        "country": "Estonia",
+        "representation": "1 / 100 (1%)",
+        "players": ["Puppey"]
+      },
+      {
+        "country": "Finland",
+        "representation": "1 / 100 (1%)",
+        "players": ["MATUMBAMAN"]
+      },
+      {
+        "country": "Jordan",
+        "representation": "1 / 100 (1%)",
+        "players": ["ATF"]
+      },
+      {
+        "country": "Kyrgyzstan",
+        "representation": "1 / 100 (1%)",
+        "players": ["Zayac"]
+      },
+      {
+        "country": "Laos",
+        "representation": "1 / 100 (1%)",
+        "players": ["JaCkky"]
+      },
+      {
+        "country": "North Macedonia",
+        "representation": "1 / 100 (1%)",
+        "players": ["Saksa"]
+      },
+      {
+        "country": "Norway",
+        "representation": "1 / 100 (1%)",
+        "players": ["Taiga"]
+      },
+      {
+        "country": "Poland",
+        "representation": "1 / 100 (1%)",
+        "players": ["Nisha"]
+      },
+      {
+        "country": "Slovakia",
+        "representation": "1 / 100 (1%)",
+        "players": ["skiter"]
+      },
+      {
+        "country": "South Korea",
+        "representation": "1 / 100 (1%)",
+        "players": ["DuBu"]
+      }
+    ],
+    "https://liquipedia.net/dota2/The_International/2022/Last_Chance_Qualifier": [
+      {
+        "country": "China",
+        "representation": "10 / 60 (17%)",
+        "players": [
+          "b a b",
+          "Dy",
+          "Erika",
+          "Frisk",
+          "lou",
+          "old eLeVeN",
+          "Paparazi灬",
+          "Pyw",
+          "Xm",
+          "Yang"
+        ]
+      },
+      {
+        "country": "Peru",
+        "representation": "8 / 60 (13%)",
+        "players": [
+          "Accel",
+          "Alone",
+          "DrakenN",
+          "Frank",
+          "Leostyle-",
+          "Mjz",
+          "Mnz",
+          "Parker"
+        ]
+      },
+      {
+        "country": "Philippines",
+        "representation": "6 / 60 (10%)",
+        "players": ["eyyou", "Force", "Kuku", "Lelouch-", "Natsumi-", "Xavius"]
+      },
+      {
+        "country": "Russia",
+        "representation": "6 / 60 (10%)",
+        "players": ["DM", "gpk", "RAMZES666", "Solo", "Xakoda", "yamich"]
+      },
+      {
+        "country": "United States",
+        "representation": "6 / 60 (10%)",
+        "players": ["Gunnar", "Husky", "Moo", "Sammyboy", "Yves", "ZFreek"]
+      },
+      {
+        "country": "Sweden",
+        "representation": "4 / 60 (7%)",
+        "players": ["Boxi", "iNSaNiA", "miCKe", "zai"]
+      },
+      {
+        "country": "Ukraine",
+        "representation": "4 / 60 (7%)",
+        "players": ["laise", "No[o]ne-", "Resolut1on", "V-Tune"]
+      },
+      {
+        "country": "Ecuador",
+        "representation": "2 / 60 (3%)",
+        "players": ["Sebas", "slad1n-"]
+      },
+      {
+        "country": "Finland",
+        "representation": "2 / 60 (3%)",
+        "players": ["MATUMBAMAN", "Topson"]
+      },
+      {
+        "country": "Indonesia",
+        "representation": "2 / 60 (3%)",
+        "players": ["Whitemon", "Xepher"]
+      },
+      {
+        "country": "Australia",
+        "representation": "1 / 60 (2%)",
+        "players": ["ana"]
+      },
+      {
+        "country": "Belgium",
+        "representation": "1 / 60 (2%)",
+        "players": ["Davai Lama"]
+      },
+      {
+        "country": "Bolivia",
+        "representation": "1 / 60 (2%)",
+        "players": ["Michael-"]
+      },
+      {
+        "country": "Brazil",
+        "representation": "1 / 60 (2%)",
+        "players": ["Costabile"]
+      },
+      {
+        "country": "Estonia",
+        "representation": "1 / 60 (2%)",
+        "players": ["Puppey"]
+      },
+      {
+        "country": "Kyrgyzstan",
+        "representation": "1 / 60 (2%)",
+        "players": ["Zayac"]
+      },
+      {
+        "country": "Netherlands",
+        "representation": "1 / 60 (2%)",
+        "players": ["Crystallis"]
+      },
+      {
+        "country": "Non-representing",
+        "representation": "1 / 60 (2%)",
+        "players": ["swedenstrong"]
+      },
+      {
+        "country": "Poland",
+        "representation": "1 / 60 (2%)",
+        "players": ["Nisha"]
+      },
+      {
+        "country": "Serbia",
+        "representation": "1 / 60 (2%)",
+        "players": ["Alexxo"]
+      }
+    ],
+    "https://liquipedia.net/dota2/The_International/2023": [
+      {
+        "country": "Russia",
+        "representation": "19 / 100 (19%)",
+        "players": [
+          "Antares",
+          "Collapse",
+          "dyrachyo",
+          "gpk~",
+          "kasane",
+          "Kataomi`",
+          "Kiritych~",
+          "kiyotaka",
+          "Larl",
+          "MieRo`",
+          "Miposhka",
+          "Nightfall",
+          "Noticed",
+          "Pure~",
+          "RAMZES666",
+          "sayuw",
+          "Solo",
+          "squad1x",
+          "TORONTOTOKYO"
+        ]
+      },
+      {
+        "country": "Peru",
+        "representation": "15 / 100 (15%)",
+        "players": [
+          "Chris Luck",
+          "DarkMago",
+          "ILICH-",
+          "K1",
+          "Matthew",
+          "Mjz",
+          "n1ght",
+          "Pakazs",
+          "Panda",
+          "Parker",
+          "Sacred",
+          "Scofield",
+          "SLATEM$",
+          "Stinger",
+          "Timado"
+        ]
+      },
+      {
+        "country": "China",
+        "representation": "9 / 100 (9%)",
+        "players": [
+          "chalice",
+          "fy",
+          "Lou",
+          "niu",
+          "planet",
+          "shiro",
+          "Somnus",
+          "y`",
+          "天命"
+        ]
+      },
+      {
+        "country": "Brazil",
+        "representation": "6 / 100 (6%)",
+        "players": ["4nalog", "Costabile", "fcr", "Kingrd", "KJ", "Lelis"]
+      },
+      {
+        "country": "United States",
+        "representation": "5 / 100 (5%)",
+        "players": ["Gunnar", "Moo", "Quinn", "Sneyking", "Yamsun"]
+      },
+      {
+        "country": "Malaysia",
+        "representation": "4 / 100 (4%)",
+        "players": ["ah fu", "MidOne", "NothingToSay", "Oli~"]
+      },
+      {
+        "country": "Sweden",
+        "representation": "4 / 100 (4%)",
+        "players": ["Boxi", "Insania", "miCKe", "zai"]
+      },
+      {
+        "country": "Ukraine",
+        "representation": "4 / 100 (4%)",
+        "players": ["kaori", "Mira", "No[o]ne-", "Yatoro"]
+      },
+      {
+        "country": "Belarus",
+        "representation": "3 / 100 (3%)",
+        "players": ["Fishman", "Fng", "Knight~"]
+      },
+      {
+        "country": "Germany",
+        "representation": "3 / 100 (3%)",
+        "players": ["Nine", "Stormstormer", "tOfu"]
+      },
+      {
+        "country": "Philippines",
+        "representation": "3 / 100 (3%)",
+        "players": ["Abed", "Gabbi", "Jaunuel"]
+      },
+      {
+        "country": "Thailand",
+        "representation": "3 / 100 (3%)",
+        "players": ["23savage", "Jabz", "Q"]
+      },
+      {
+        "country": "Canada",
+        "representation": "2 / 100 (2%)",
+        "players": ["Arteezy", "Bryle"]
+      },
+      {
+        "country": "Denmark",
+        "representation": "2 / 100 (2%)",
+        "players": ["Ace", "Cr1t-"]
+      },
+      {
+        "country": "Indonesia",
+        "representation": "2 / 100 (2%)",
+        "players": ["Mikoto", "Whitemon"]
+      },
+      {
+        "country": "Israel",
+        "representation": "2 / 100 (2%)",
+        "players": ["33", "Fly"]
+      },
+      {
+        "country": "Kazakhstan",
+        "representation": "2 / 100 (2%)",
+        "players": ["TA2000", "watson"]
+      },
+      {
+        "country": "Lebanon",
+        "representation": "2 / 100 (2%)",
+        "players": ["No!ob", "OmaR"]
+      },
+      {
+        "country": "Austria",
+        "representation": "1 / 100 (1%)",
+        "players": ["Tobi"]
+      },
+      {
+        "country": "Bolivia",
+        "representation": "1 / 100 (1%)",
+        "players": ["Wisper"]
+      },
+      {
+        "country": "Bulgaria",
+        "representation": "1 / 100 (1%)",
+        "players": ["MinD_ContRoL"]
+      },
+      {
+        "country": "Czechia",
+        "representation": "1 / 100 (1%)",
+        "players": ["SabeRLight-"]
+      },
+      {
+        "country": "Finland",
+        "representation": "1 / 100 (1%)",
+        "players": ["Topson"]
+      },
+      {
+        "country": "Moldova",
+        "representation": "1 / 100 (1%)",
+        "players": ["Save-"]
+      },
+      {
+        "country": "Netherlands",
+        "representation": "1 / 100 (1%)",
+        "players": ["Seleri"]
+      },
+      {
+        "country": "Poland",
+        "representation": "1 / 100 (1%)",
+        "players": ["Nisha"]
+      },
+      {
+        "country": "Slovakia",
+        "representation": "1 / 100 (1%)",
+        "players": ["skiter"]
+      },
+      {
+        "country": "United Kingdom",
+        "representation": "1 / 100 (1%)",
+        "players": ["Ari"]
+      }
+    ],
+    "https://liquipedia.net/dota2/The_International/2023/China": [
+      {
+        "country": "China",
+        "representation": "58 / 65 (89%)",
+        "players": [
+          "7e",
+          "Ayunid",
+          "Beyond",
+          "ButterflyEffect",
+          "chalice",
+          "Chola",
+          "csj",
+          "Cty",
+          "dolme",
+          "Dqq",
+          "Dust",
+          "Dy",
+          "Emo",
+          "fy",
+          "Han",
+          "iceice",
+          "imitator",
+          "Iristina",
+          "Irving",
+          "Kaka",
+          "Kamma",
+          "L'enfer",
+          "c'est les autres",
+          "Lou",
+          "Mercy",
+          "Monet",
+          "once.",
+          "phoenix",
+          "Pyw",
+          "Q",
+          "qyqx",
+          "Rain pause",
+          "RanFuDao",
+          "Redpanda",
+          "Sakata",
+          "sheep",
+          "sj",
+          "Small.Kk",
+          "Somnus",
+          "Summer",
+          "Tz.",
+          "ukiyo",
+          "Ulu",
+          "Undyne_",
+          "XinQ",
+          "Xm",
+          "Xwy",
+          "Xxs",
+          "zzq",
+          "三无marblue",
+          "冬",
+          "冷鸟",
+          "出省",
+          "圣子华炼",
+          "天命",
+          "生死",
+          "皮球",
+          "项羽",
+          "鱼王"
+        ]
+      },
+      {
+        "country": "Malaysia",
+        "representation": "6 / 65 (9%)",
+        "players": ["Eren", "GaN-", "Ghost", "JT-", "ponyo", "zeal"]
+      },
+      {
+        "country": "Pakistan",
+        "representation": "1 / 65 (2%)",
+        "players": ["SumaiL"]
+      }
+    ],
+    "https://liquipedia.net/dota2/The_International/2023/Eastern_Europe": [
+      {
+        "country": "Russia",
+        "representation": "28 / 60 (47%)",
+        "players": [
+          "9Class",
+          "AfterLife",
+          "asdekor_r",
+          "bb3px",
+          "CHIRA_JUNIOR",
+          "Cloud",
+          "Dominic",
+          "Egor",
+          "erase",
+          "Kiritych~",
+          "LagooNa",
+          "Lukas",
+          "Malr1ne",
+          "meLes",
+          "Munkushi~",
+          "nattynarwhal_",
+          "Nesfeer",
+          "Noticed",
+          "Retsu",
+          "RodjER",
+          "sayuw",
+          "Shergarat (Vladimir)",
+          "SoNNeikO",
+          "squad1x",
+          "Vazya",
+          "Velheor",
+          "Worick",
+          "Xakoda"
+        ]
+      },
+      {
+        "country": "Ukraine",
+        "representation": "12 / 60 (20%)",
+        "players": [
+          "7jesu",
+          "Bignum",
+          "dark",
+          "gotthejuice",
+          "Hduo",
+          "Lil",
+          "mellojul",
+          "Nefrit",
+          "pma",
+          "Riddys",
+          "shigetsu",
+          "Slayer"
+        ]
+      },
+      {
+        "country": "Kazakhstan",
+        "representation": "10 / 60 (17%)",
+        "players": [
+          "b1kA",
+          "Danial",
+          "daze",
+          "Malady",
+          "Malik",
+          "Mary_y",
+          "Mirage`",
+          "Nicky`Cool",
+          "toshiyb",
+          "v1olent`"
+        ]
+      },
+      {
+        "country": "Belarus",
+        "representation": "7 / 60 (12%)",
+        "players": [
+          "Ainkrad",
+          "Fng",
+          "HappyDyurara",
+          "Hellscream",
+          "klassnokruto",
+          "OneJey",
+          "pantomem"
+        ]
+      },
+      {
+        "country": "Kyrgyzstan",
+        "representation": "2 / 60 (3%)",
+        "players": ["dream`", "k8t"]
+      },
+      {
+        "country": "Non-representing",
+        "representation": "1 / 60 (2%)",
+        "players": ["Otaker"]
+      }
+    ],
+    "https://liquipedia.net/dota2/The_International/2023/North_America": [
+      {
+        "country": "United States",
+        "representation": "29 / 65 (45%)",
+        "players": [
+          "albinozebra1",
+          "bgod",
+          "Bloody Nine",
+          "Brightside",
+          "dnm",
+          "door",
+          "Double King",
+          "empyreaN",
+          "Fayde",
+          "Giant",
+          "Gunnar",
+          "Husky",
+          "Kitzz",
+          "Lil_Nick",
+          "Mark",
+          "monkeys-forever",
+          "Moo",
+          "Moozy",
+          "RCY",
+          "red2",
+          "rohofireflu",
+          "RRL",
+          "Salivating Salamander 37",
+          "Sammyboy",
+          "Sanctified",
+          "Scourge McDuck",
+          "Speeed",
+          "Theyna",
+          "Yamsun"
+        ]
+      },
+      {
+        "country": "Peru",
+        "representation": "11 / 65 (17%)",
+        "players": [
+          "Argius",
+          "Blessed kid",
+          "Braxie-",
+          "Cara",
+          "Carjua",
+          "CHAAANNN",
+          "Ducho",
+          "K1",
+          "MoOz",
+          "steel-",
+          "Tokaya"
+        ]
+      },
+      {
+        "country": "Ukraine",
+        "representation": "7 / 65 (11%)",
+        "players": [
+          "Dendi",
+          "Ferte",
+          "Kidaro",
+          "Licht 神",
+          "StoneBank",
+          "V-Tune",
+          "ValOdbka"
+        ]
+      },
+      {
+        "country": "Brazil",
+        "representation": "3 / 65 (5%)",
+        "players": ["Duster", "Lelis", "Yanbura"]
+      },
+      {
+        "country": "Canada",
+        "representation": "2 / 65 (3%)",
+        "players": ["boris", "high shaggy"]
+      },
+      {
+        "country": "Jordan",
+        "representation": "2 / 65 (3%)",
+        "players": ["islA", "wakemeup"]
+      },
+      {
+        "country": "Mexico",
+        "representation": "2 / 65 (3%)",
+        "players": ["lundd", "N1ne"]
+      },
+      {
+        "country": "Belarus",
+        "representation": "1 / 65 (2%)",
+        "players": ["Sunlight"]
+      },
+      {
+        "country": "Bulgaria",
+        "representation": "1 / 65 (2%)",
+        "players": ["CTOMAHEH1"]
+      },
+      {
+        "country": "Czechia",
+        "representation": "1 / 65 (2%)",
+        "players": ["Ade"]
+      },
+      {
+        "country": "Finland",
+        "representation": "1 / 65 (2%)",
+        "players": ["MTD"]
+      },
+      {
+        "country": "Norway",
+        "representation": "1 / 65 (2%)",
+        "players": ["Taiga"]
+      },
+      {
+        "country": "Pakistan",
+        "representation": "1 / 65 (2%)",
+        "players": ["Aeon"]
+      },
+      {
+        "country": "Russia",
+        "representation": "1 / 65 (2%)",
+        "players": ["solji;"]
+      },
+      {
+        "country": "Slovakia",
+        "representation": "1 / 65 (2%)",
+        "players": ["SlaweE"]
+      },
+      {
+        "country": "Syria",
+        "representation": "1 / 65 (2%)",
+        "players": ["-SouL"]
+      }
+    ],
+    "https://liquipedia.net/dota2/The_International/2023/South_America": [
+      {
+        "country": "Peru",
+        "representation": "38 / 55 (69%)",
+        "players": [
+          "Accel",
+          "Adrian",
+          "Arkano",
+          "ArzenT",
+          "Austin",
+          "Cucahook",
+          "D1smar",
+          "DaaD-",
+          "DCMC",
+          "Demon",
+          "Elmisho",
+          "Frank",
+          "Gardick",
+          "Genek",
+          "ILICH-",
+          "James-",
+          "Kiri",
+          "Kr1sSt娇小",
+          "kxy",
+          "Leostyle",
+          "Luis",
+          "Lumière",
+          "Lumpy",
+          "Mjz",
+          "Mnz",
+          "MonHty",
+          "Mr.Jeans",
+          "n1ght",
+          "payk",
+          "PiPi",
+          "Prada",
+          "RedMonster",
+          "Robo-Z",
+          "SexyeYogye",
+          "SLATEM$",
+          "Smoker",
+          "Vitaly",
+          "Ñengo"
+        ]
+      },
+      {
+        "country": "Brazil",
+        "representation": "11 / 55 (20%)",
+        "players": [
+          "4nalog",
+          "Costabile",
+          "fcr",
+          "hFn",
+          "hyko",
+          "Jupiter",
+          "Kingrd",
+          "KJ",
+          "mini",
+          "nuages",
+          "Sexyfat"
+        ]
+      },
+      {
+        "country": "Bolivia",
+        "representation": "3 / 55 (5%)",
+        "players": ["Lissex", "Michael~", "Oscar"]
+      },
+      {
+        "country": "Argentina",
+        "representation": "1 / 55 (2%)",
+        "players": ["Hermit"]
+      },
+      {
+        "country": "Belarus",
+        "representation": "1 / 55 (2%)",
+        "players": ["Knight~"]
+      },
+      {
+        "country": "Ecuador",
+        "representation": "1 / 55 (2%)",
+        "players": ["SebaS"]
+      }
+    ],
+    "https://liquipedia.net/dota2/The_International/2023/Southeast_Asia": [
+      {
+        "country": "Philippines",
+        "representation": "26 / 65 (40%)",
+        "players": [
+          "Abeng-",
+          "Bob",
+          "DJ",
+          "Force",
+          "Jaunuel",
+          "JG",
+          "Karl",
+          "Ken",
+          "Kokz",
+          "Kuku",
+          "Luciano",
+          "LuziFy",
+          "Nasjo",
+          "Natsumi",
+          "Palos",
+          "Raging-_-Potato",
+          "Raven",
+          "Rupido",
+          "Shanks",
+          "skem",
+          "Teehee",
+          "TIMS",
+          "Tino",
+          "Yopaj-",
+          "YoungGod",
+          "Yowe"
+        ]
+      },
+      {
+        "country": "Indonesia",
+        "representation": "7 / 65 (11%)",
+        "players": [
+          "dalul",
+          "db-",
+          "inYourdreaM",
+          "Jhocam",
+          "MamangDaya",
+          "TraVins",
+          "Varizh"
+        ]
+      },
+      {
+        "country": "Malaysia",
+        "representation": "7 / 65 (11%)",
+        "players": [
+          "ah fu",
+          "Candyloon",
+          "LOyd",
+          "Mercury-",
+          "MidOne",
+          "Ws",
+          "xNova"
+        ]
+      },
+      {
+        "country": "Singapore",
+        "representation": "6 / 65 (9%)",
+        "players": [
+          "iceiceice",
+          "Kordan",
+          "Meracle",
+          "poloson",
+          "ponlo",
+          "xsilearn"
+        ]
+      },
+      {
+        "country": "Thailand",
+        "representation": "5 / 65 (8%)",
+        "players": ["Boombui", "Fearless", "KNP", "LionaX", "Masaros"]
+      },
+      {
+        "country": "Mongolia",
+        "representation": "3 / 65 (5%)",
+        "players": ["FortuneSoul", "khishka", "NARMAN"]
+      },
+      {
+        "country": "Laos",
+        "representation": "2 / 65 (3%)",
+        "players": ["BeeBie", "JaCkky"]
+      },
+      {
+        "country": "Vietnam",
+        "representation": "2 / 65 (3%)",
+        "players": ["458", "Red"]
+      },
+      {
+        "country": "Australia",
+        "representation": "1 / 65 (2%)",
+        "players": ["kpii"]
+      },
+      {
+        "country": "China",
+        "representation": "1 / 65 (2%)",
+        "players": ["BoBoKa"]
+      },
+      {
+        "country": "India",
+        "representation": "1 / 65 (2%)",
+        "players": ["Krish"]
+      },
+      {
+        "country": "Romania",
+        "representation": "1 / 65 (2%)",
+        "players": ["Ulnit"]
+      },
+      {
+        "country": "South Africa",
+        "representation": "1 / 65 (2%)",
+        "players": ["Castaway"]
+      },
+      {
+        "country": "South Korea",
+        "representation": "1 / 65 (2%)",
+        "players": ["DuBu"]
+      },
+      {
+        "country": "Ukraine",
+        "representation": "1 / 65 (2%)",
+        "players": ["No[o]ne-"]
+      }
+    ],
+    "https://liquipedia.net/dota2/The_International/2023/Western_Europe": [
+      {
+        "country": "Russia",
+        "representation": "6 / 55 (11%)",
+        "players": ["Daxak", "DM", "Dukalis", "Kataomi`", "WoE", "yamich"]
+      },
+      {
+        "country": "Sweden",
+        "representation": "5 / 55 (9%)",
+        "players": ["charlie", "Handsken", "Pablo", "s4", "Xibbe"]
+      },
+      {
+        "country": "Ukraine",
+        "representation": "4 / 55 (7%)",
+        "players": ["kaori", "lorenof", "Merlin", "Yuragi"]
+      },
+      {
+        "country": "Germany",
+        "representation": "3 / 55 (5%)",
+        "players": ["KuroKy", "Mo13ei", "Stormstormer"]
+      },
+      {
+        "country": "Greece",
+        "representation": "3 / 55 (5%)",
+        "players": ["dEsire", "Skylark", "SsaSpartan"]
+      },
+      {
+        "country": "Lebanon",
+        "representation": "3 / 55 (5%)",
+        "players": ["GH", "No!ob", "OmaR"]
+      },
+      {
+        "country": "Belarus",
+        "representation": "2 / 55 (4%)",
+        "players": ["Fishman", "RESPECT"]
+      },
+      {
+        "country": "Bulgaria",
+        "representation": "2 / 55 (4%)",
+        "players": ["bzm", "MinD_ContRoL"]
+      },
+      {
+        "country": "Georgia",
+        "representation": "2 / 55 (4%)",
+        "players": ["Nande", "W1sh-"]
+      },
+      {
+        "country": "Kazakhstan",
+        "representation": "2 / 55 (4%)",
+        "players": ["TA2000", "watson"]
+      },
+      {
+        "country": "Netherlands",
+        "representation": "2 / 55 (4%)",
+        "players": ["Crystallis", "Shad"]
+      },
+      {
+        "country": "Philippines",
+        "representation": "2 / 55 (4%)",
+        "players": ["Armel", "Gabbi"]
+      },
+      {
+        "country": "Serbia",
+        "representation": "2 / 55 (4%)",
+        "players": ["Alex", "LeBronDota"]
+      },
+      {
+        "country": "Austria",
+        "representation": "1 / 55 (2%)",
+        "players": ["Tobi"]
+      },
+      {
+        "country": "Belgium",
+        "representation": "1 / 55 (2%)",
+        "players": ["Davai Lama"]
+      },
+      {
+        "country": "Bosnia and Herzegovina",
+        "representation": "1 / 55 (2%)",
+        "players": ["MiLAN"]
+      },
+      {
+        "country": "Brazil",
+        "representation": "1 / 55 (2%)",
+        "players": ["Thiolicor"]
+      },
+      {
+        "country": "Czechia",
+        "representation": "1 / 55 (2%)",
+        "players": ["Supream^"]
+      },
+      {
+        "country": "Denmark",
+        "representation": "1 / 55 (2%)",
+        "players": ["OwnedMe"]
+      },
+      {
+        "country": "Estonia",
+        "representation": "1 / 55 (2%)",
+        "players": ["Puppey"]
+      },
+      {
+        "country": "France",
+        "representation": "1 / 55 (2%)",
+        "players": ["Ceb"]
+      },
+      {
+        "country": "Hungary",
+        "representation": "1 / 55 (2%)",
+        "players": ["lowskill"]
+      },
+      {
+        "country": "Indonesia",
+        "representation": "1 / 55 (2%)",
+        "players": ["Fbz"]
+      },
+      {
+        "country": "Iran",
+        "representation": "1 / 55 (2%)",
+        "players": ["Mikey"]
+      },
+      {
+        "country": "Malaysia",
+        "representation": "1 / 55 (2%)",
+        "players": ["ChYuan"]
+      },
+      {
+        "country": "Nicaragua",
+        "representation": "1 / 55 (2%)",
+        "players": ["Yuma"]
+      },
+      {
+        "country": "Non-representing",
+        "representation": "1 / 55 (2%)",
+        "players": ["swedenstrong"]
+      },
+      {
+        "country": "Turkey",
+        "representation": "1 / 55 (2%)",
+        "players": ["Mr. Luck"]
+      },
+      {
+        "country": "United Kingdom",
+        "representation": "1 / 55 (2%)",
+        "players": ["Adzantick"]
+      },
+      {
+        "country": "United States",
+        "representation": "1 / 55 (2%)",
+        "players": ["Kitrak"]
+      }
+    ]
+  }
+}

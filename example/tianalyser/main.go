@@ -12,36 +12,40 @@ import (
 
 	"github.com/charmbracelet/log"
 	"github.com/yusufaine/gocrawler"
-	"github.com/yusufaine/gocrawler/example/sitemapgenerator/sitemap"
+	"github.com/yusufaine/gocrawler/example/tianalyser/internal/tianalyser"
 )
 
 func main() {
-	// ensures that the data collected so far is exported when the user terminates the program
-	// (e.g. ctrl+c)
+	// Sends a cancellation signal to the context when ctrl-c is pressed
 	ctx, cancel := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer cancel()
 	sig := make(chan os.Signal, 1)
 	signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
 	defer func() {
-		// if r := recover(); r != nil {
-		// 	log.Fatal(r)
-		// }
+		if r := recover(); r != nil {
+			log.Fatal(r)
+		}
 	}()
 
-	// sitemap.Config embeds gocrawler.Config
-	config := sitemap.SetupConfig()
+	config := tianalyser.SetupConfig()
 	config.MustValidate()
 	config.PrintConfig()
 	time.Sleep(3 * time.Second)
 	start := time.Now()
 
-	cr := gocrawler.New(ctx, &config.Config,
-		[]gocrawler.ResponseMatcher{gocrawler.HtmlContentFilter})
+	// New crawler that skips non-OK, non-HTML responses
+	cr := gocrawler.New(ctx,
+		&config.Config,
+		[]gocrawler.ResponseMatcher{gocrawler.HtmlContentFilter},
+	)
+
+	// Write to file if a panic, cancellation, or completion occurs
 	defer func() {
-		log.Info("generating sitemap", "file", config.ReportPath)
-		sitemap.Generate(config, cr, time.Since(start))
+		log.Info("generating TI statisitcs", "file", config.ReportPath)
+		tianalyser.Generate(cr, config, time.Since(start))
 	}()
 
+	// Ensures that the crawler stops when the context is cancelled (ctrl-c)
 	go func() {
 		defer func() {
 			cancel()
@@ -53,12 +57,13 @@ func main() {
 		log.Info("stopping crawler", "signal", <-sig)
 	}()
 
+	// Start crawling from the seed URL and extract links using the TI link extractor func
 	var wg sync.WaitGroup
 	for _, seed := range config.SeedURLs {
 		wg.Add(1)
 		go func(seed *url.URL) {
 			defer wg.Done()
-			cr.Crawl(ctx, gocrawler.DefaultLinkExtractor, seed, 0, "")
+			cr.Crawl(ctx, tianalyser.TILinkExtractor, seed, 0, "")
 		}(seed)
 	}
 	wg.Wait()

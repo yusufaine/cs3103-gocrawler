@@ -1,4 +1,4 @@
-package linkextractor
+package tianalyser
 
 import (
 	"bytes"
@@ -33,7 +33,7 @@ func ReportLinkExtractor(c *gocrawler.Client, currURL *url.URL, resp []byte) []*
 			return
 		}
 
-		if !strings.Contains(newUrl.Path, "dota2/The_International") {
+		if !strings.Contains(newUrl.Path, "dota2/The_International/") {
 			return
 		}
 
@@ -54,8 +54,8 @@ func ReportLinkExtractor(c *gocrawler.Client, currURL *url.URL, resp []byte) []*
 	return urls
 }
 
-// Returns a list of all outgoing links that have not been visited from the page
-func TIAnalyserLinkExtractor(c *gocrawler.Client, currURL *url.URL, resp []byte) []*url.URL {
+// Returns a list of all outgoing links that have not been visited from any page
+func TILinkExtractor(c *gocrawler.Client, currURL *url.URL, resp []byte) []*url.URL {
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(resp))
 	if err != nil {
 		log.Error("unable to parse response body", "error", err)
@@ -75,7 +75,7 @@ func TIAnalyserLinkExtractor(c *gocrawler.Client, currURL *url.URL, resp []byte)
 			return
 		}
 
-		if !strings.Contains(newUrl.Path, "dota2/The_International") {
+		if !strings.Contains(newUrl.Path, "dota2/The_International/") {
 			return
 		}
 

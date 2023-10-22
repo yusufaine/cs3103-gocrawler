@@ -1,12 +1,8 @@
 {
-  "seed": "https://example.com/",
+  "seeds": ["http://example.com/"],
   "max_depth": 3,
-  "blacklist": [
-    "facebook.com",
-    "pti.icann.org",
-    "www.facebook.com",
-    "www.pti.icann.org"
-  ],
+  "blacklist": [],
+  "crawl_time": "21.350842233s",
   "network_info": {
     "example.com": [
       {
@@ -14,7 +10,17 @@
         "remote_addr": "185.24.10.162:80",
         "location": "Australia, New South Wales",
         "as_number": "AS60068",
-        "avg_response_ms": 2095,
+        "avg_response_ms": 1133,
+        "path_count": 1
+      }
+    ],
+    "pti.icann.org": [
+      {
+        "paths": [""],
+        "remote_addr": "185.24.10.162:80",
+        "location": "Australia, New South Wales",
+        "as_number": "AS60068",
+        "avg_response_ms": 11648,
         "path_count": 1
       }
     ],
@@ -24,7 +30,7 @@
         "remote_addr": "185.24.10.162:80",
         "location": "Australia, New South Wales",
         "as_number": "AS60068",
-        "avg_response_ms": 2996,
+        "avg_response_ms": 4114,
         "path_count": 1
       }
     ],
@@ -34,14 +40,25 @@
         "remote_addr": "185.24.10.162:80",
         "location": "Australia, New South Wales",
         "as_number": "AS60068",
-        "avg_response_ms": 2830,
+        "avg_response_ms": 1755,
         "path_count": 3
       }
     ]
   },
   "page_info": {
+    "http://example.com/": {
+      "depth": 0,
+      "parent": "",
+      "links": ["https://www.iana.org/domains/example"]
+    },
+    "http://pti.icann.org": {
+      "depth": 2,
+      "parent": "https://www.iana.org/domains/example",
+      "links": []
+    },
     "http://www.icann.org/": {
       "depth": 2,
+      "parent": "https://www.iana.org/domains/example",
       "links": [
         "https://aso.icann.org",
         "https://atlarge.icann.org",
@@ -55,6 +72,7 @@
         "https://subscribe.icann.org/",
         "https://twitter.com/icann",
         "https://whois.icann.org/en",
+        "https://www.facebook.com/icannorg",
         "https://www.flickr.com/photos/icann/",
         "https://www.icann.org/ceosearch",
         "https://www.icann.org/en/announcements",
@@ -71,31 +89,28 @@
         "https://www.linkedin.com/company/icann",
         "https://www.soundcloud.com/icann/",
         "https://www.youtube.com/user/ICANNnews"
-      ],
-      "parent": ""
-    },
-    "https://example.com/": {
-      "depth": 0,
-      "links": ["https://www.iana.org/domains/example"],
-      "parent": ""
+      ]
     },
     "https://www.iana.org/domains/example": {
       "depth": 1,
+      "parent": "http://example.com/",
       "links": [
+        "http://pti.icann.org",
         "http://www.icann.org/",
         "https://www.icann.org/privacy/policy",
         "https://www.icann.org/privacy/tos"
-      ],
-      "parent": ""
+      ]
     },
     "https://www.icann.org/privacy/policy": {
       "depth": 2,
+      "parent": "https://www.iana.org/domains/example",
       "links": [
         "http://aoctracking.icann.org/",
         "http://gnso.icann.org/en/group-activities/inactive/2012/improvements",
         "http://learn.icann.org/",
         "http://mm.icann.org/pipermail/ecadmin/",
         "http://stats.research.icann.org/dns/tld_report/",
+        "http://www.facebook.com/icannorg",
         "http://www.flickr.com/photos/icann",
         "http://www.iana.org/dnssec",
         "http://www.iana.org/domains/root/db",
@@ -127,6 +142,7 @@
         "https://newgtlds.icann.org/en/about/trademark-clearinghouse",
         "https://newgtlds.icann.org/en/announcements-and-media/case-studies",
         "https://opendata.icann.org/",
+        "https://pti.icann.org/",
         "https://subscribe.icann.org/",
         "https://www.iana.org/",
         "https://www.iana.org/dnssec/ceremonies",
@@ -160,17 +176,18 @@
         "https://www.icann.org/technology",
         "https://www.linkedin.com/company/icann",
         "https://www.twitter.com/icann"
-      ],
-      "parent": ""
+      ]
     },
     "https://www.icann.org/privacy/tos": {
       "depth": 2,
+      "parent": "https://www.iana.org/domains/example",
       "links": [
         "http://aoctracking.icann.org/",
         "http://gnso.icann.org/en/group-activities/inactive/2012/improvements",
         "http://learn.icann.org/",
         "http://mm.icann.org/pipermail/ecadmin/",
         "http://stats.research.icann.org/dns/tld_report/",
+        "http://www.facebook.com/icannorg",
         "http://www.flickr.com/photos/icann",
         "http://www.iana.org/dnssec",
         "http://www.iana.org/domains/root/db",
@@ -202,6 +219,7 @@
         "https://newgtlds.icann.org/en/about/trademark-clearinghouse",
         "https://newgtlds.icann.org/en/announcements-and-media/case-studies",
         "https://opendata.icann.org/",
+        "https://pti.icann.org/",
         "https://subscribe.icann.org/",
         "https://www.iana.org/",
         "https://www.iana.org/dnssec/ceremonies",
@@ -235,8 +253,7 @@
         "https://www.icann.org/technology",
         "https://www.linkedin.com/company/icann",
         "https://www.twitter.com/icann"
-      ],
-      "parent": ""
+      ]
     }
   }
 }

@@ -18,8 +18,8 @@ type NetworkInfo struct {
 
 type PageInfo struct {
 	Depth  int      `json:"depth"`
-	Links  []string `json:"links"`
 	Parent string   `json:"parent"`
+	Links  []string `json:"links"`
 
 	// These values are not exported to JSON
 	Content []byte `json:"-"`

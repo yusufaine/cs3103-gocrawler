@@ -66,7 +66,7 @@ func New(ctx context.Context, config *Config, rm []ResponseMatcher) *Client {
 // Crawl is called recursively to crawl the supplied URL and all outgoing links which is
 // extracted by the supplied LinkExtractor. The crawl will stop when the MaxDepth is reached
 // or if the context is cancelled.
-func (c *Client) Crawl(ctx context.Context, le LinkExtractor, parsedURL *url.URL, currDepth int) {
+func (c *Client) Crawl(ctx context.Context, le LinkExtractor, parsedURL *url.URL, currDepth int, parent string) {
 	// skip if the current depth is greater than the max depth
 	if currDepth > c.MaxDepth {
 		return
@@ -100,20 +100,21 @@ func (c *Client) Crawl(ctx context.Context, le LinkExtractor, parsedURL *url.URL
 		Content: resp,
 		Depth:   currDepth,
 		Links:   strLinks,
+		Parent:  parent,
 	}
 	c.PageMutex.Unlock()
 
 	// crawl all outgoing links concurrently
 	currDepth++
 	var wg sync.WaitGroup
-	for _, l := range links {
+	for _, nextLink := range links {
 		wg.Add(1)
-		go func(l *url.URL, currDepth int) {
+		go func(nextLink, parentLink *url.URL, currDepth int) {
 			defer wg.Done()
 			// ensure RPS is enforced
 			_ = c.rl.Wait(ctx)
-			c.Crawl(ctx, le, l, currDepth)
-		}(l, currDepth)
+			c.Crawl(ctx, le, nextLink, currDepth, parentLink.String())
+		}(nextLink, parsedURL, currDepth)
 	}
 	wg.Wait()
 }
@@ -123,9 +124,7 @@ func (c *Client) Crawl(ctx context.Context, le LinkExtractor, parsedURL *url.URL
 func (c *Client) extractResponseBody(link string, depth int) []byte {
 	parsedUrl, err := url.Parse(link)
 	if err != nil {
-		log.Error("unable to parse url",
-			"url", link,
-			"error", err)
+		log.Error("unable to parse url", "url", link, "error", err)
 		return nil
 	}
 
@@ -138,9 +137,7 @@ func (c *Client) extractResponseBody(link string, depth int) []byte {
 		},
 	}))
 	if err != nil {
-		log.Error("unable to create request",
-			"url", parsedUrl.String(),
-			"error", err)
+		log.Error("unable to create request", "url", parsedUrl.String(), "error", err)
 		return nil
 	}
 
@@ -152,9 +149,7 @@ func (c *Client) extractResponseBody(link string, depth int) []byte {
 		c.PageMutex.Lock()
 		c.VisitedPageInfo[link] = PageInfo{Depth: depth}
 		defer c.PageMutex.Unlock()
-		log.Error("unable to get response",
-			"host", parsedUrl.Host,
-			"error", err)
+		log.Error("unable to get response", "host", parsedUrl.Host, "error", err)
 		return nil
 	}
 	defer resp.Body.Close()
@@ -197,9 +192,7 @@ func (c *Client) extractResponseBody(link string, depth int) []byte {
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		log.Error("unable to read response body",
-			"url", link,
-			"error", err)
+		log.Error("unable to read response body", "url", link, "error", err)
 		return nil
 	}
 	return body

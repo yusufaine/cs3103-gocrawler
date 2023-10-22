@@ -2,6 +2,7 @@ package sitemap
 
 import (
 	"slices"
+	"time"
 
 	"github.com/charmbracelet/log"
 	"github.com/yusufaine/gocrawler"
@@ -9,25 +10,32 @@ import (
 )
 
 type ReportFormat struct {
-	Seed      string   `json:"seed"`
+	Seeds     []string `json:"seeds"`
 	Depth     int      `json:"max_depth"`
 	Blacklist []string `json:"blacklist"`
+	CrawlTime string   `json:"crawl_time"`
 
 	VisitedNetInfo  map[string][]gocrawler.NetworkInfo `json:"network_info"`
 	VisitedPageResp map[string]gocrawler.PageInfo      `json:"page_info"`
 }
 
-func Generate(config *Config, cr *gocrawler.Client) {
+func Generate(config *Config, cr *gocrawler.Client, elapsed time.Duration) {
 	bls := make([]string, 0, len(cr.HostBlacklist))
 	for k := range cr.HostBlacklist {
 		bls = append(bls, k)
 	}
 	slices.Sort(bls)
+	seeds := make([]string, 0, len(config.SeedURLs))
+	for _, s := range config.SeedURLs {
+		seeds = append(seeds, s.String())
+	}
+	slices.Sort(seeds)
 
 	report := ReportFormat{
-		Seed:            config.SeedURL.String(),
+		Seeds:           seeds,
 		Depth:           config.MaxDepth,
 		Blacklist:       bls,
+		CrawlTime:       elapsed.String(),
 		VisitedNetInfo:  cr.VisitedNetInfo,
 		VisitedPageResp: cr.VisitedPageInfo,
 	}
@@ -51,9 +59,7 @@ func Generate(config *Config, cr *gocrawler.Client) {
 	}
 
 	if err := filewriter.ToJSON(report, config.ReportPath); err != nil {
-		log.Error("unable to write to file",
-			"file", config.ReportPath,
-			"error", err)
+		log.Error("unable to write to file", "file", config.ReportPath, "error", err)
 	} else {
 		log.Info("exported crawler report", "file", config.ReportPath)
 	}
