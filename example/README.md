@@ -5,7 +5,7 @@ This repo contains the source code for a generic parallel webcrawler written in 
 1. Sitemap generator, and
 2. [Liquipedia](https://liquipedia.net/dota2/The_International) webcrawler
 
-As part of our CS3103 mini-project, we built upon this generic webcrawler to analyse the relevance of each country and region when it comes to the topic of "The International", a global DOTA 2 tournament, over the past few years based on what can be found on.
+As part of our CS3103 mini-project, we continued building on top of the webcrawler to analyse the relevance of each country and region when it comes to the topic of "The International", a global DOTA 2 tournament, over the past few years based on what can be found on.
 
 <!-- omit in toc -->
 ## Table of Contents
@@ -28,6 +28,7 @@ A concurrent web crawler that crawls a given URL and returns a list of URLs foun
 
 A simple wrapper over `net/http` that provides a few default backoff and retry policies that can also easily extend to a user's need.
 
+<!-- TODO: Update this part to show the liquipediacrawler example -->
 #### Package Usage
 
 > [!NOTE]
@@ -47,6 +48,7 @@ cr := crawler.New(ctx, &config.Config, config.MaxRPS)
 defer sitemap.Generate(config, cr)
 ```
 
+<!-- TODO: Update this part to show the liquipediacrawler example -->
 #### Standalone Usage
 
 > [!NOTE]
