@@ -17,17 +17,17 @@ import (
 )
 
 type Client struct {
-	ctx context.Context
-	hc  *rhttp.Client
-	rl  *rate.Limiter
-	rm  []ResponseMatcher
+	ctx       context.Context
+	hc        *rhttp.Client
+	rl        *rate.Limiter
+	rm        []ResponseMatcher
+	netMutex  sync.Mutex
+	pageMutex sync.RWMutex
 
 	MaxDepth        int
 	HostBlacklist   map[string]struct{}
 	VisitedNetInfo  map[string][]NetworkInfo
-	NetMutex        sync.Mutex
 	VisitedPageInfo map[string]PageInfo
-	PageMutex       sync.RWMutex
 }
 
 // New creates a new crawler client using the context to allow for cancellation, the crawler
@@ -68,10 +68,10 @@ func New(ctx context.Context, config *Config, rm []ResponseMatcher) *Client {
 // or if the context is cancelled.
 func (c *Client) Crawl(ctx context.Context, le LinkExtractor, currDepth int, currLink, parent string) {
 
-	// skip if the URL has been visited
-	c.PageMutex.Lock()
+	// sanity check to ensure crawler does not re-visits the same link
+	c.pageMutex.RLock()
 	_, ok := c.VisitedPageInfo[currLink]
-	c.PageMutex.Unlock()
+	c.pageMutex.RUnlock()
 	if ok {
 		return
 	}
@@ -87,14 +87,14 @@ func (c *Client) Crawl(ctx context.Context, le LinkExtractor, currDepth int, cur
 	links := le(c.HostBlacklist, currLink, resp)
 
 	// mark the current URL as visited
-	c.PageMutex.Lock()
+	c.pageMutex.Lock()
 	c.VisitedPageInfo[currLink] = PageInfo{
 		Content: resp,
 		Depth:   currDepth,
 		Links:   links,
 		Parent:  parent,
 	}
-	c.PageMutex.Unlock()
+	c.pageMutex.Unlock()
 
 	// crawl all outgoing links concurrently
 	nextDepth := currDepth + 1
@@ -108,9 +108,9 @@ func (c *Client) Crawl(ctx context.Context, le LinkExtractor, currDepth int, cur
 				return
 			}
 
-			c.PageMutex.RLock()
+			c.pageMutex.RLock()
 			_, ok := c.VisitedPageInfo[nextLink]
-			c.PageMutex.RUnlock()
+			c.pageMutex.RUnlock()
 			if ok {
 				return
 			}
@@ -151,9 +151,9 @@ func (c *Client) extractResponseBody(link string, depth int) []byte {
 		if errors.Is(err, context.Canceled) {
 			return nil
 		}
-		c.PageMutex.Lock()
+		c.pageMutex.Lock()
 		c.VisitedPageInfo[link] = PageInfo{Depth: depth}
-		defer c.PageMutex.Unlock()
+		c.pageMutex.Unlock()
 		log.Error("unable to get response", "host", parsedUrl.Host, "error", err)
 		return nil
 	}
@@ -168,7 +168,7 @@ func (c *Client) extractResponseBody(link string, depth int) []byte {
 		}
 	}
 
-	c.NetMutex.Lock()
+	c.netMutex.Lock()
 	if infos, ok := c.VisitedNetInfo[parsedUrl.Host]; ok {
 		for i, info := range infos {
 			if _, ok := info.VisitedPathSet[parsedUrl.Path]; !ok {
@@ -199,7 +199,7 @@ func (c *Client) extractResponseBody(link string, depth int) []byte {
 			},
 		}
 	}
-	c.NetMutex.Unlock()
+	c.netMutex.Unlock()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
