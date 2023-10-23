@@ -12,6 +12,9 @@ func ToJSON(v any, filename string) error {
 		return err
 	}
 
+	// add new line
+	d = append(d, "\n"...)
+
 	// create folder if not exists
 	if err := os.MkdirAll(filepath.Dir(filename), 0755); err != nil {
 		return err
@@ -26,8 +29,6 @@ func ToJSON(v any, filename string) error {
 	if _, err := f.Write(d); err != nil {
 		return err
 	}
-	if _, err := f.Write([]byte("\n")); err != nil {
-		return err
-	}
+
 	return nil
 }

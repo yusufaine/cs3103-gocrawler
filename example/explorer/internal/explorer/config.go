@@ -1,4 +1,4 @@
-package tianalyser
+package explorer
 
 import (
 	"flag"
@@ -17,11 +17,11 @@ type Config struct {
 	ReportPath string
 }
 
-// Read config from flags to setup the crawler
 func SetupConfig() *Config {
 	var (
 		c       Config
 		blHosts string
+		seeds   string
 		proxy   string
 		verbose bool
 	)
@@ -29,15 +29,19 @@ func SetupConfig() *Config {
 	flag.IntVar(&c.MaxRetries, "retries", 3, "Max retries for HTTP requests")
 	flag.Float64Var(&c.MaxRPS, "rps", 20, "Max requests per second")
 	flag.DurationVar(&c.Timeout, "timeout", 10*time.Second, "Timeout for HTTP requests")
-	flag.StringVar(&c.ReportPath, "report", "ti_stats.json", "Path to export report to")
+	flag.StringVar(&c.ReportPath, "report", "sitemap.json", "Path to export report to")
 	flag.StringVar(&blHosts, "bl", "", "Comma separated list of hosts to blacklist, hosts will be blacklisted with and without 'www.' prefix")
-	flag.StringVar(&proxy, "proxy", "", "Proxy URL (e.g http://localhost:8080)")
-	flag.BoolVar(&verbose, "verbose", false, "For devs -- verbose logging, includes debug and short caller info")
+	flag.StringVar(&proxy, "proxy", "", "Proxy URL")
+	flag.StringVar(&seeds, "seed", "", "Comma separated seed URL(s), required (e.g https://example.com)")
+	flag.BoolVar(&verbose, "verbose", false, "Verbose logging, includes short caller info")
 	flag.Parse()
 	logger.Setup(verbose)
 
+	c.SeedURLs = strings.Split(seeds, ",")
+
 	// Parse proxy URL, if any
-	c.ProxyURL, _ = url.Parse(proxy)
+	parsedProxy, _ := url.Parse(proxy)
+	c.ProxyURL = parsedProxy
 
 	// Parse blacklist hosts into set for fast lookups
 	c.BlacklistHosts = make(map[string]struct{})
@@ -58,7 +62,6 @@ func SetupConfig() *Config {
 	return &c
 }
 
-// Panics if config is invalid
 func (c *Config) MustValidate() {
 	c.Config.MustValidate()
 	if c.ReportPath == "" {
@@ -66,7 +69,6 @@ func (c *Config) MustValidate() {
 	}
 }
 
-// Sanity check
 func (c *Config) PrintConfig() {
 	blHosts := make([]string, 0, len(c.BlacklistHosts))
 	for k := range c.BlacklistHosts {

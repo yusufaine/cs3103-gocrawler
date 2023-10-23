@@ -11,7 +11,7 @@ import (
 
 	"github.com/charmbracelet/log"
 	"github.com/yusufaine/gocrawler"
-	"github.com/yusufaine/gocrawler/example/sitemapgenerator/sitemap"
+	"github.com/yusufaine/gocrawler/example/sitemapper/internal/sitemapper"
 )
 
 func main() {
@@ -27,18 +27,19 @@ func main() {
 		}
 	}()
 
-	// sitemap.Config embeds gocrawler.Config
-	config := sitemap.SetupConfig()
+	// sitemapper.Config embeds gocrawler.Config
+	config := sitemapper.SetupConfig()
 	config.MustValidate()
 	config.PrintConfig()
 	time.Sleep(3 * time.Second)
 	start := time.Now()
 
-	cr := gocrawler.New(ctx, &config.Config,
+	cr := gocrawler.New(ctx,
+		&config.Config,
 		[]gocrawler.ResponseMatcher{gocrawler.IsHtmlContent})
 	defer func() {
 		log.Info("generating sitemap", "file", config.ReportPath)
-		sitemap.Generate(config, cr, time.Since(start))
+		sitemapper.Generate(config, cr, time.Since(start))
 	}()
 
 	go func() {
@@ -57,7 +58,7 @@ func main() {
 		wg.Add(1)
 		go func(seed string) {
 			defer wg.Done()
-			cr.Crawl(ctx, gocrawler.DefaultLinkExtractor, 0, seed, "")
+			cr.Crawl(ctx, sitemapper.SameHostLinkExtractor, 0, seed, "")
 		}(seed)
 	}
 	wg.Wait()

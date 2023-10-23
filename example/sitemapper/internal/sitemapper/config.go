@@ -1,4 +1,4 @@
-package sitemap
+package sitemapper
 
 import (
 	"flag"
@@ -21,7 +21,7 @@ func SetupConfig() *Config {
 	var (
 		c       Config
 		blHosts string
-		seeds   string
+		seed    string
 		proxy   string
 		verbose bool
 	)
@@ -32,12 +32,12 @@ func SetupConfig() *Config {
 	flag.StringVar(&c.ReportPath, "report", "sitemap.json", "Path to export report to")
 	flag.StringVar(&blHosts, "bl", "", "Comma separated list of hosts to blacklist, hosts will be blacklisted with and without 'www.' prefix")
 	flag.StringVar(&proxy, "proxy", "", "Proxy URL")
-	flag.StringVar(&seeds, "seed", "", "Comma separated seed URL(s), required (e.g https://example.com); invalid URLs will be ignored")
+	flag.StringVar(&seed, "seed", "", "Seed URL, required (e.g https://example.com)")
 	flag.BoolVar(&verbose, "verbose", false, "Verbose logging, includes short caller info")
 	flag.Parse()
 	logger.Setup(verbose)
 
-	c.SeedURLs = strings.Split(seeds, ",")
+	c.SeedURLs = strings.Split(seed, ",")
 
 	// Parse proxy URL, if any
 	parsedProxy, _ := url.Parse(proxy)
@@ -66,6 +66,8 @@ func (c *Config) MustValidate() {
 	c.Config.MustValidate()
 	if c.ReportPath == "" {
 		panic("--report is required")
+	} else if len(c.SeedURLs) > 1 {
+		panic("--seed must be a single URL, ensure that there are no commas in the URL")
 	}
 }
 
