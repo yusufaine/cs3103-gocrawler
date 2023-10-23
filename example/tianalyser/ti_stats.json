@@ -2,10 +2,25 @@
   "seeds": ["https://liquipedia.net/dota2/The_International"],
   "max_depth": 5,
   "blacklist": [],
-  "crawl_time": "8m14.661692989s",
+  "max_rps": 10,
+  "crawl_time": "7m37.597617366s",
   "network_info": {
     "liquipedia.net": [
       {
+        "remote_ip_info": [
+          {
+            "ip": "144.217.237.5",
+            "location": "Canada, Quebec",
+            "as_number": "AS16276"
+          },
+          {
+            "ip": "2607:5300:60:cd52:304b:760d:da7:d5",
+            "location": "Canada, Quebec",
+            "as_number": "AS16276"
+          }
+        ],
+        "avg_response_ms": 426,
+        "path_count": 293,
         "paths": [
           "/dota2/The_International",
           "/dota2/The_International/2011",
@@ -283,7 +298,6 @@
           "/dota2/The_International/2023/Statistics/Main_Event",
           "/dota2/The_International/2023/Statistics/Qualifiers",
           "/dota2/The_International/2023/Western_Europe",
-          "/dota2/The_International/2024",
           "/dota2/The_International/Coach_Statistics",
           "/dota2/The_International/Gallery",
           "/dota2/The_International/Hero_Statistics/2011",
@@ -301,12 +315,7 @@
           "/dota2/The_International/Player_Statistics",
           "/dota2/The_International/Player_tournament_appearances",
           "/dota2/The_International/Team_Statistics"
-        ],
-        "remote_addr": "45.248.77.69:80",
-        "location": "Australia, Queensland",
-        "as_number": "AS136557",
-        "avg_response_ms": 539,
-        "path_count": 294
+        ]
       }
     ]
   },

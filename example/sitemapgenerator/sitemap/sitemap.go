@@ -13,6 +13,7 @@ type ReportFormat struct {
 	Seeds     []string `json:"seeds"`
 	Depth     int      `json:"max_depth"`
 	Blacklist []string `json:"blacklist"`
+	MaxRPS    float64  `json:"max_rps"`
 	CrawlTime string   `json:"crawl_time"`
 
 	VisitedNetInfo  map[string][]gocrawler.NetworkInfo `json:"network_info"`
@@ -25,16 +26,12 @@ func Generate(config *Config, cr *gocrawler.Client, elapsed time.Duration) {
 		bls = append(bls, k)
 	}
 	slices.Sort(bls)
-	seeds := make([]string, 0, len(config.SeedURLs))
-	for _, s := range config.SeedURLs {
-		seeds = append(seeds, s.String())
-	}
-	slices.Sort(seeds)
 
 	report := ReportFormat{
-		Seeds:           seeds,
+		Seeds:           config.SeedURLs,
 		Depth:           config.MaxDepth,
 		Blacklist:       bls,
+		MaxRPS:          config.MaxRPS,
 		CrawlTime:       elapsed.String(),
 		VisitedNetInfo:  cr.VisitedNetInfo,
 		VisitedPageResp: cr.VisitedPageInfo,

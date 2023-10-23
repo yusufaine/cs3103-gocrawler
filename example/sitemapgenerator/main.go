@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"net/url"
 	"os"
 	"os/signal"
 	"sync"
@@ -36,7 +35,7 @@ func main() {
 	start := time.Now()
 
 	cr := gocrawler.New(ctx, &config.Config,
-		[]gocrawler.ResponseMatcher{gocrawler.HtmlContentFilter})
+		[]gocrawler.ResponseMatcher{gocrawler.IsHtmlContent})
 	defer func() {
 		log.Info("generating sitemap", "file", config.ReportPath)
 		sitemap.Generate(config, cr, time.Since(start))
@@ -56,9 +55,9 @@ func main() {
 	var wg sync.WaitGroup
 	for _, seed := range config.SeedURLs {
 		wg.Add(1)
-		go func(seed *url.URL) {
+		go func(seed string) {
 			defer wg.Done()
-			cr.Crawl(ctx, gocrawler.DefaultLinkExtractor, seed, 0, "")
+			cr.Crawl(ctx, gocrawler.DefaultLinkExtractor, 0, seed, "")
 		}(seed)
 	}
 	wg.Wait()
