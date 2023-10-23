@@ -1,5 +1,6 @@
 **/bin/
 **/test/
+**/dist/
 
 *.json
 *.log

@@ -34,7 +34,7 @@ A simple wrapper over `net/http` that provides a few default backoff and retry p
 ## Usage
 
 > [!IMPORTANT]
-> If you have a proxy, you can specify it using the `--proxy` flag and increase the `--rps` to account for the different proxies that will be used. Please ensure that the RPS per proxy is kept to at most 2 per second, in accordance to Liquipedia's [Terms of Use](https://liquipedia.net/api-terms-of-use).
+> We recommend downloading the binary from the [releases page](https://github.com/yusufaine/gocrawler/releases). If you have a proxy, you can specify it using the `--proxy` flag and increase the `--rps` to account for the different proxies that will be used. Please ensure that the RPS per proxy is kept to at most 2 per second, in accordance to Liquipedia's [Terms of Use](https://liquipedia.net/api-terms-of-use).
 
 Refer to [`example/tianalyser/ti_stats.json`](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/tianalyser/tianalyser.json) for an example of the output for the command below.
 
