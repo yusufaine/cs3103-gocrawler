@@ -2,8 +2,8 @@
   "seeds": ["https://liquipedia.net/dota2/The_International"],
   "max_depth": 5,
   "blacklist": [],
-  "max_rps": 8,
-  "crawl_time": "9m30.733814832s",
+  "max_rps": 10,
+  "crawl_time": "7m37.597617366s",
   "network_info": {
     "liquipedia.net": [
       {
@@ -19,8 +19,8 @@
             "as_number": "AS16276"
           }
         ],
-        "avg_response_ms": 1631,
-        "path_count": 292,
+        "avg_response_ms": 426,
+        "path_count": 293,
         "paths": [
           "/dota2/The_International",
           "/dota2/The_International/2011",
@@ -30,6 +30,7 @@
           "/dota2/The_International/2012",
           "/dota2/The_International/2012/East_Qualifiers",
           "/dota2/The_International/2012/Match_Summary",
+          "/dota2/The_International/2012/Match_Summary/Finals",
           "/dota2/The_International/2012/Match_Summary/Losers",
           "/dota2/The_International/2012/Match_Summary/Winners",
           "/dota2/The_International/2012/Preliminaries/Match_Summary",
