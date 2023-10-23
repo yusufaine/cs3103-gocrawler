@@ -37,7 +37,7 @@ type Client struct {
 // false will cause the link to be skipped.
 func New(ctx context.Context, config *Config, rm []ResponseMatcher) *Client {
 	if len(rm) == 0 {
-		rm = []ResponseMatcher{NoopResponseFilter}
+		rm = []ResponseMatcher{IsNoopResponse}
 		log.Warn("no response matchers supplied, accepting all responses")
 	}
 
@@ -121,7 +121,7 @@ func (c *Client) Crawl(ctx context.Context, le LinkExtractor, currDepth int, cur
 		}(currLink, nextLink, nextDepth)
 	}
 	wg.Wait()
-	log.Info("visited all links", "depth", currDepth, "link", currLink)
+	log.Info("visited all links in the branch", "depth", currDepth, "branch", currLink)
 }
 
 // Does the actual HTTP GET request and returns the response body if the response is

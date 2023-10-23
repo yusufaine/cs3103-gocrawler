@@ -35,7 +35,7 @@ func main() {
 	// New crawler that skips non-OK, non-HTML responses
 	cr := gocrawler.New(ctx,
 		&config.Config,
-		[]gocrawler.ResponseMatcher{gocrawler.HtmlContentFilter},
+		[]gocrawler.ResponseMatcher{gocrawler.IsHtmlContent},
 	)
 
 	// Write to file if a panic, cancellation, or completion occurs

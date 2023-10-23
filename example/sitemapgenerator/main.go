@@ -35,7 +35,7 @@ func main() {
 	start := time.Now()
 
 	cr := gocrawler.New(ctx, &config.Config,
-		[]gocrawler.ResponseMatcher{gocrawler.HtmlContentFilter})
+		[]gocrawler.ResponseMatcher{gocrawler.IsHtmlContent})
 	defer func() {
 		log.Info("generating sitemap", "file", config.ReportPath)
 		sitemap.Generate(config, cr, time.Since(start))
