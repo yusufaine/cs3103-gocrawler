@@ -1,9 +1,12 @@
 # CS3103 Golang Webcrawler
 
-This repo contains the source code for a generic parallel webcrawler written in Golang. In this directory there are 2 examples of how the crawler can be used as a package:
+This repo contains the source code for a generic parallel webcrawler written in Golang. In this directory there are 3 examples of how the crawler can be used as a package:
 
-1. Sitemap generator, and
-2. [Liquipedia](https://liquipedia.net/dota2/The_International) webcrawler
+| Example      | Description                                                                                                                                | Sample Output                                                                                         |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| `explorer`   | Starting from any seed URL(s), crawl and collect all outgoing links until max depth, all links have been exhausted, or if the user cancels | [`link`](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/explorer/example.com.json)   |
+| `sitemapper` | Starting from a single URL, crawl all accessible sites if it contains the the host has been fully crawled, or if the user cancels          | [`link`](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/sitemapper/example.com.json) |
+| `tianalyser` | Crawls from [Liquipedia](https://liquipedia.net/dota2/The_International) and extract all the country's representative information          | [`link`](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/tianalyser/tianalyser.json)  |
 
 As part of our CS3103 mini-project, we continued building on top of the webcrawler to analyse the relevance of each country and region when it comes to the topic of "The International", a global DOTA 2 tournament, over the past few years based on what can be found on.
 
@@ -30,25 +33,25 @@ A simple wrapper over `net/http` that provides a few default backoff and retry p
 
 ## Usage
 
-> [!NOTE]
-> Refer to [`example/sitemapgenerator/sitemap.json`](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/crawler_report.json) for an example of the output for the command below.
+> [!IMPORTANT]
+> We recommend downloading the binary from the [releases page](https://github.com/yusufaine/gocrawler/releases). If you have a proxy, you can specify it using the `--proxy` flag and increase the `--rps` to account for the different proxies that will be used. Please ensure that the RPS per proxy is kept to at most 2 per second, in accordance to Liquipedia's [Terms of Use](https://liquipedia.net/api-terms-of-use).
+
+Refer to [`example/tianalyser/ti_stats.json`](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/tianalyser/tianalyser.json) for an example of the output for the command below.
 
 ```bash
 # Running the binary
 ./tianalyser \
-  --seed=https://liquipedia.net/dota2/The_International \ 
   --depth=5 \ 
   --report=example/tianalyser/ti_stats.json \ 
-  --rps=10 
+  --rps=0.5
 
 # ./tianalyser --help to see all options
 
-# Without binary (requires Go 1.21+)
+# Without binary (requires Go 1.20+)
 go run example/tianalyser/main.go \ 
-  --seed=https://liquipedia.net/dota2/The_International \ 
   --depth=5 \ 
   --report=example/tianalyser/ti_stats.json \ 
-  --rps=10 
+  --rps=0.5
 ```
 
 ### Sequence Diagram

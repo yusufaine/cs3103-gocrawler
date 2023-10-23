@@ -1,8 +1,11 @@
 **/bin/
 **/test/
+**/dist/
 
 *.json
 *.log
 
 !example/**
 example/bin
+
+dist/
