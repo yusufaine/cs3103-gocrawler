@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"net/url"
 	"os"
 	"os/signal"
 	"sync"
@@ -56,9 +55,9 @@ func main() {
 	var wg sync.WaitGroup
 	for _, seed := range config.SeedURLs {
 		wg.Add(1)
-		go func(seed *url.URL) {
+		go func(seed string) {
 			defer wg.Done()
-			cr.Crawl(ctx, gocrawler.DefaultLinkExtractor, seed, 0, "")
+			cr.Crawl(ctx, gocrawler.DefaultLinkExtractor, 0, seed, "")
 		}(seed)
 	}
 	wg.Wait()

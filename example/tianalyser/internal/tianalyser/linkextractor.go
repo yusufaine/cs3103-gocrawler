@@ -2,25 +2,23 @@ package tianalyser
 
 import (
 	"bytes"
-	"cmp"
 	"net/url"
 	"slices"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/charmbracelet/log"
-	"github.com/yusufaine/gocrawler"
 )
 
 // Returns a list of all outgoing links from the page
-func ReportLinkExtractor(c *gocrawler.Client, currURL *url.URL, resp []byte) []*url.URL {
+func ReportLinkExtractor(bl map[string]struct{}, currLink string, resp []byte) []string {
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(resp))
 	if err != nil {
 		log.Error("unable to parse response body", "error", err)
 		return nil
 	}
 
-	linkSet := map[string]*url.URL{}
+	linkSet := make(map[string]struct{})
 	doc.Find("a").Each(func(i int, s *goquery.Selection) {
 		link, ok := s.Attr("href")
 		if !ok {
@@ -37,32 +35,33 @@ func ReportLinkExtractor(c *gocrawler.Client, currURL *url.URL, resp []byte) []*
 			return
 		}
 
-		updatedURL := *currURL
+		updatedURL, err := url.Parse(currLink)
+		if err != nil {
+			return
+		}
 		updatedURL.Path = newUrl.Path
 
-		linkSet[updatedURL.String()] = &updatedURL
+		linkSet[updatedURL.String()] = struct{}{}
 	})
 
-	urls := make([]*url.URL, 0, len(linkSet))
-	for _, v := range linkSet {
-		urls = append(urls, v)
+	links := make([]string, 0, len(linkSet))
+	for k := range linkSet {
+		links = append(links, k)
 	}
-	slices.SortFunc(urls, func(a, b *url.URL) int {
-		return cmp.Compare(a.String(), b.String())
-	})
+	slices.Sort(links)
 
-	return urls
+	return links
 }
 
 // Returns a list of all outgoing links that have not been visited from any page
-func TILinkExtractor(c *gocrawler.Client, currURL *url.URL, resp []byte) []*url.URL {
+func TILinkExtractor(bl map[string]struct{}, currLink string, resp []byte) []string {
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(resp))
 	if err != nil {
 		log.Error("unable to parse response body", "error", err)
 		return nil
 	}
 
-	linkSet := map[string]*url.URL{}
+	linkSet := make(map[string]struct{})
 	doc.Find("a").Each(func(i int, s *goquery.Selection) {
 		link, ok := s.Attr("href")
 		if !ok {
@@ -79,25 +78,20 @@ func TILinkExtractor(c *gocrawler.Client, currURL *url.URL, resp []byte) []*url.
 			return
 		}
 
-		updatedURL := *currURL
-		updatedURL.Path = newUrl.Path
-
-		c.PageMutex.Lock()
-		defer c.PageMutex.Unlock()
-		if _, ok := c.VisitedPageInfo[updatedURL.String()]; ok {
+		updatedURL, err := url.Parse(currLink)
+		if err != nil {
 			return
 		}
+		updatedURL.Path = newUrl.Path
 
-		linkSet[updatedURL.String()] = &updatedURL
+		linkSet[updatedURL.String()] = struct{}{}
 	})
 
-	urls := make([]*url.URL, 0, len(linkSet))
-	for _, v := range linkSet {
-		urls = append(urls, v)
+	links := make([]string, 0, len(linkSet))
+	for k := range linkSet {
+		links = append(links, k)
 	}
-	slices.SortFunc(urls, func(a, b *url.URL) int {
-		return cmp.Compare(a.String(), b.String())
-	})
+	slices.Sort(links)
 
-	return urls
+	return links
 }

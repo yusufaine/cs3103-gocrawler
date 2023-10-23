@@ -25,14 +25,9 @@ func Generate(config *Config, cr *gocrawler.Client, elapsed time.Duration) {
 		bls = append(bls, k)
 	}
 	slices.Sort(bls)
-	seeds := make([]string, 0, len(config.SeedURLs))
-	for _, s := range config.SeedURLs {
-		seeds = append(seeds, s.String())
-	}
-	slices.Sort(seeds)
 
 	report := ReportFormat{
-		Seeds:           seeds,
+		Seeds:           config.SeedURLs,
 		Depth:           config.MaxDepth,
 		Blacklist:       bls,
 		CrawlTime:       elapsed.String(),

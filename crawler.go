@@ -5,10 +5,9 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
+	"net"
 	"net/http"
-	"net/http/httptrace"
 	"net/url"
-	"strings"
 	"sync"
 	"time"
 
@@ -28,7 +27,7 @@ type Client struct {
 	VisitedNetInfo  map[string][]NetworkInfo
 	NetMutex        sync.Mutex
 	VisitedPageInfo map[string]PageInfo
-	PageMutex       sync.Mutex
+	PageMutex       sync.RWMutex
 }
 
 // New creates a new crawler client using the context to allow for cancellation, the crawler
@@ -67,57 +66,62 @@ func New(ctx context.Context, config *Config, rm []ResponseMatcher) *Client {
 // Crawl is called recursively to crawl the supplied URL and all outgoing links which is
 // extracted by the supplied LinkExtractor. The crawl will stop when the MaxDepth is reached
 // or if the context is cancelled.
-func (c *Client) Crawl(ctx context.Context, le LinkExtractor, parsedURL *url.URL, currDepth int, parent string) {
-	// skip if the current depth is greater than the max depth
-	if currDepth > c.MaxDepth {
-		return
-	}
+func (c *Client) Crawl(ctx context.Context, le LinkExtractor, currDepth int, currLink, parent string) {
 
 	// skip if the URL has been visited
 	c.PageMutex.Lock()
-	if _, ok := c.VisitedPageInfo[parsedURL.String()]; ok {
-		c.PageMutex.Unlock()
+	_, ok := c.VisitedPageInfo[currLink]
+	c.PageMutex.Unlock()
+	if ok {
 		return
 	}
-	c.PageMutex.Unlock()
 
-	log.Info("visiting", "depth", currDepth, "link", parsedURL.String())
+	log.Info("visiting", "depth", currDepth, "link", currLink)
 
-	resp := c.extractResponseBody(parsedURL.String(), currDepth)
+	resp := c.extractResponseBody(currLink, currDepth)
 	if resp == nil {
 		return
 	}
 
 	// returns a list of links whose hosts are not in the blacklist
-	links := le(c, parsedURL, resp)
-	strLinks := make([]string, 0, len(links))
-	for _, l := range links {
-		strLinks = append(strLinks, l.String())
-	}
+	links := le(c.HostBlacklist, currLink, resp)
 
 	// mark the current URL as visited
 	c.PageMutex.Lock()
-	c.VisitedPageInfo[parsedURL.String()] = PageInfo{
+	c.VisitedPageInfo[currLink] = PageInfo{
 		Content: resp,
 		Depth:   currDepth,
-		Links:   strLinks,
+		Links:   links,
 		Parent:  parent,
 	}
 	c.PageMutex.Unlock()
 
 	// crawl all outgoing links concurrently
-	currDepth++
+	nextDepth := currDepth + 1
 	var wg sync.WaitGroup
 	for _, nextLink := range links {
 		wg.Add(1)
-		go func(nextLink, parentLink *url.URL, currDepth int) {
+		go func(currLink, nextLink string, nextDepth int) {
 			defer wg.Done()
+			// Do not continue crawling if the nextDepth has exceeded the max depth
+			if nextDepth > c.MaxDepth {
+				return
+			}
+
+			c.PageMutex.RLock()
+			_, ok := c.VisitedPageInfo[nextLink]
+			c.PageMutex.RUnlock()
+			if ok {
+				return
+			}
+
 			// ensure RPS is enforced
 			_ = c.rl.Wait(ctx)
-			c.Crawl(ctx, le, nextLink, currDepth, parentLink.String())
-		}(nextLink, parsedURL, currDepth)
+			c.Crawl(ctx, le, nextDepth, nextLink, currLink)
+		}(currLink, nextLink, nextDepth)
 	}
 	wg.Wait()
+	log.Info("visited all links", "depth", currDepth, "link", currLink)
 }
 
 // Does the actual HTTP GET request and returns the response body if the response is
@@ -129,14 +133,14 @@ func (c *Client) extractResponseBody(link string, depth int) []byte {
 		return nil
 	}
 
-	var remoteAddr string
+	remoteAddrs, err := net.LookupIP(parsedUrl.Host)
+	if err != nil {
+		log.Error("unable to resolve host", "host", parsedUrl.Host, "error", err)
+		return nil
+	}
+
 	reqStart := time.Now()
 	req, err := http.NewRequestWithContext(c.ctx, "GET", parsedUrl.String(), nil)
-	req = req.WithContext(httptrace.WithClientTrace(req.Context(), &httptrace.ClientTrace{
-		GotConn: func(connInfo httptrace.GotConnInfo) {
-			remoteAddr = connInfo.Conn.RemoteAddr().String()
-		},
-	}))
 	if err != nil {
 		log.Error("unable to create request", "url", parsedUrl.String(), "error", err)
 		return nil
@@ -175,15 +179,21 @@ func (c *Client) extractResponseBody(link string, depth int) []byte {
 			c.VisitedNetInfo[parsedUrl.Host][i] = info
 		}
 	} else {
-		asn, location, err := c.resolveIPInfo(strings.Split(remoteAddr, ":")[0])
-		if err != nil {
-			log.Warn("unable to resolve ip location", "error", err)
+		remoteIpInfo := make([]IPInfo, 0, len(remoteAddrs))
+		for _, addr := range remoteAddrs {
+			asn, location, err := c.resolveIPInfo(addr.String())
+			if err != nil {
+				log.Warn("unable to resolve ip location", "error", err)
+			}
+			remoteIpInfo = append(remoteIpInfo, IPInfo{
+				IP:       addr.String(),
+				Location: location,
+				ASNumber: asn,
+			})
 		}
 		c.VisitedNetInfo[parsedUrl.Host] = []NetworkInfo{
 			{
-				RemoteAddr:          remoteAddr,
-				Location:            location,
-				ASNumber:            asn,
+				RemoteIPInfo:        remoteIpInfo,
 				VisitedPathSet:      map[string]struct{}{parsedUrl.Path: {}},
 				TotalResponseTimeMs: respTime.Milliseconds(),
 			},

@@ -37,15 +37,7 @@ func SetupConfig() *Config {
 	flag.Parse()
 	logger.Setup(verbose)
 
-	// Parse seed URLs
-	for _, s := range strings.Split(seeds, ",") {
-		s = strings.TrimSpace(s)
-		if s == "" {
-			continue
-		}
-		parsedUrl, _ := url.Parse(s)
-		c.SeedURLs = append(c.SeedURLs, parsedUrl)
-	}
+	c.SeedURLs = strings.Split(seeds, ",")
 
 	// Parse proxy URL, if any
 	parsedProxy, _ := url.Parse(proxy)

@@ -17,7 +17,7 @@ type Config struct {
 	MaxRetries     int                 // max retries for HTTP requests
 	MaxRPS         float64             // max requests per second
 	ProxyURL       *url.URL            // proxy URL, if any. useful to avoid IP bans
-	SeedURLs       []*url.URL          // where to start crawling from
+	SeedURLs       []string            // where to start crawling from
 	Timeout        time.Duration       // timeout for HTTP requests
 }
 
@@ -55,14 +55,8 @@ func (c *Config) PrintConfig() {
 	}
 	slices.Sort(blHosts)
 
-	seeds := make([]string, 0, len(c.SeedURLs))
-	for _, s := range c.SeedURLs {
-		seeds = append(seeds, s.String())
-	}
-	slices.Sort(seeds)
-
 	log.Info("Running with config: ")
-	log.Info(" ", "seed", strings.Join(seeds, ", "))
+	log.Info(" ", "seed", strings.Join(c.SeedURLs, ", "))
 	log.Info(" ", "depth", c.MaxDepth)
 	log.Info(" ", "proxy", c.ProxyURL)
 	log.Info(" ", "blacklist", strings.Join(blHosts, ", "))

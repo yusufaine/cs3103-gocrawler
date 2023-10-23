@@ -2,7 +2,6 @@ package gocrawler
 
 import (
 	"bytes"
-	"cmp"
 	"net/url"
 	"regexp"
 	"slices"
@@ -15,18 +14,18 @@ import (
 var URLRegex = regexp.MustCompile(`[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,24}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)`)
 
 // Takes in a map of blacklisted hosts and the response body and returns a slice of links
-type LinkExtractor func(c *Client, currURL *url.URL, resp []byte) []*url.URL
+type LinkExtractor func(bl map[string]struct{}, currLink string, resp []byte) []string
 
 // DefaultLinkExtractor looks for <a href="..."> tags and extracts the link if the host
 // is not blacklisted.
-func DefaultLinkExtractor(c *Client, currURL *url.URL, resp []byte) []*url.URL {
+func DefaultLinkExtractor(bl map[string]struct{}, currLink string, resp []byte) []string {
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(resp))
 	if err != nil {
 		log.Error("unable to parse response body", "error", err)
 		return nil
 	}
 
-	linkSet := map[string]*url.URL{}
+	linkSet := make(map[string]struct{})
 	doc.Find("a").Each(func(i int, s *goquery.Selection) {
 		link, ok := s.Attr("href")
 		if !ok {
@@ -44,7 +43,7 @@ func DefaultLinkExtractor(c *Client, currURL *url.URL, resp []byte) []*url.URL {
 		}
 
 		// skip if host is blacklisted
-		if _, ok := c.HostBlacklist[newUrl.Host]; ok {
+		if _, ok := bl[newUrl.Host]; ok {
 			return
 		}
 
@@ -53,16 +52,14 @@ func DefaultLinkExtractor(c *Client, currURL *url.URL, resp []byte) []*url.URL {
 			return
 		}
 
-		linkSet[newUrl.String()] = newUrl
+		linkSet[newUrl.String()] = struct{}{}
 	})
 
-	urls := make([]*url.URL, 0, len(linkSet))
-	for _, v := range linkSet {
-		urls = append(urls, v)
+	links := make([]string, 0, len(linkSet))
+	for k := range linkSet {
+		links = append(links, k)
 	}
-	slices.SortFunc(urls, func(a, b *url.URL) int {
-		return cmp.Compare(a.String(), b.String())
-	})
+	slices.Sort(links)
 
-	return urls
+	return links
 }
