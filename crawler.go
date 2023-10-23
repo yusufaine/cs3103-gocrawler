@@ -31,7 +31,7 @@ type Client struct {
 	PageMutex       sync.Mutex
 }
 
-// Creates a new crawler client using the context to allw for cancellation, the crawler
+// New creates a new crawler client using the context to allow for cancellation, the crawler
 // config, and list of response matchers to filter out responses.
 //
 // Note that the ordering of the response matchers matter, the first matcher to return
@@ -54,6 +54,7 @@ func New(ctx context.Context, config *Config, rm []ResponseMatcher) *Client {
 		ctx:             ctx,
 		hc:              retryClient,
 		rl:              rate.NewLimiter(rate.Limit(config.MaxRPS), 1),
+		rm:              rm,
 		MaxDepth:        config.MaxDepth - 1,
 		HostBlacklist:   config.BlacklistHosts,
 		VisitedNetInfo:  make(map[string][]NetworkInfo),

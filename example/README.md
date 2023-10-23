@@ -13,8 +13,8 @@ As part of our CS3103 mini-project, we continued building on top of the webcrawl
 - [Components](#components)
   - [`crawler`](#crawler)
   - [`rhttp`](#rhttp)
-    - [Package Usage](#package-usage)
-    - [Standalone Usage](#standalone-usage)
+- [Usage](#usage)
+  - [Sequence Diagram](#sequence-diagram)
 - [Members](#members)
 - [Acknowledgements](#acknowledgements)
 
@@ -28,29 +28,7 @@ A concurrent web crawler that crawls a given URL and returns a list of URLs foun
 
 A simple wrapper over `net/http` that provides a few default backoff and retry policies that can also easily extend to a user's need.
 
-#### Package Usage
-
-> [!NOTE]
-> **Purpose**: Repurpose the extracted information from crawler for other purposes (e.g. `sitemapgenerator`).
-
-```go
-config := tianalyser.SetupConfig()
-config.MustValidate()
-config.PrintConfig()
-time.Sleep(3 * time.Second)
-
-cr := gocrawler.New(ctx,
-  &config.Config,
-  []gocrawler.ResponseMatcher{gocrawler.HtmlContentFilter},
-)
-
-// Generates report using the collected data from the crawler
-//  - cr.VisitedNetInfo
-//  - cr.VisitedPageInfo
-defer tianalyser.Generate(cr, config)
-```
-
-#### Standalone Usage
+## Usage
 
 > [!NOTE]
 > Refer to [`example/sitemapgenerator/sitemap.json`](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/crawler_report.json) for an example of the output for the command below.
@@ -71,6 +49,39 @@ go run example/tianalyser/main.go \
   --depth=5 \ 
   --report=example/tianalyser/ti_stats.json \ 
   --rps=10 
+```
+
+### Sequence Diagram
+
+> [!NOTE]
+> This is a rough outline of how the `tianalyser` works and mainly shows the happy path.
+
+```mermaid
+sequenceDiagram
+    Note left of gocrawler: User specifies the <br> crawler configurations
+
+    par each link resolution runs in its own goroutine while abiding to the max RPS
+        loop for every unvisited outgoing link starting from the seed URL and, <br> max depth not reached, and if user did not cancel
+            gocrawler ->> gocrawler: create a GET request for the link
+            gocrawler ->> rhttp: resolve request
+            alt has non-retriable error or Content-Type != html/text
+                Note over rhttp: content is ignored
+            else has retriable error or timed out
+                loop follows retry policy until <br> max retries
+                    rhttp ->> rhttp: follows retry policy until max retries or <br> a HTML content is returned
+                end
+            else received HTML content
+                rhttp -->> gocrawler: return HTML content
+                gocrawler ->> linkextractor: sends HTML content
+                linkextractor -->> gocrawler: extracted links where host is "liquipedia", <br>and path contains "/dota2/the_internationals"
+                gocrawler ->> gocrawler: mark link as visited, store network and page info
+                Note over gocrawler,linkextractor: returned links are then recurseively resolved if not visited
+            end
+        end
+    end
+
+    gocrawler ->> tianalyser: pass network and page info
+    tianalyser ->> tianalyser: process and extract info from HTML,<br> and write to JSON file
 ```
 
 ## Members

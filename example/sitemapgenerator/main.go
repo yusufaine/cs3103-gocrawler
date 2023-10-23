@@ -23,9 +23,9 @@ func main() {
 	sig := make(chan os.Signal, 1)
 	signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
 	defer func() {
-		// if r := recover(); r != nil {
-		// 	log.Fatal(r)
-		// }
+		if r := recover(); r != nil {
+			log.Fatal(r)
+		}
 	}()
 
 	// sitemap.Config embeds gocrawler.Config

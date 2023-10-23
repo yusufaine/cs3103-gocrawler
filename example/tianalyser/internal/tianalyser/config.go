@@ -26,10 +26,10 @@ func SetupConfig() *Config {
 		proxy   string
 		verbose bool
 	)
-	flag.IntVar(&c.MaxDepth, "depth", 10, "Max depth from seed")
+	flag.IntVar(&c.MaxDepth, "depth", 5, "Max depth from seed")
 	flag.IntVar(&c.MaxRetries, "retries", 3, "Max retries for HTTP requests")
-	flag.Float64Var(&c.MaxRPS, "rps", 15, "Max requests per second")
-	flag.DurationVar(&c.Timeout, "timeout", 5*time.Second, "Timeout for HTTP requests")
+	flag.Float64Var(&c.MaxRPS, "rps", 20, "Max requests per second")
+	flag.DurationVar(&c.Timeout, "timeout", 10*time.Second, "Timeout for HTTP requests")
 	flag.StringVar(&c.ReportPath, "report", "ti_stats.json", "Path to export report to")
 	flag.StringVar(&blHosts, "bl", "", "Comma separated list of hosts to blacklist, hosts will be blacklisted with and without 'www.' prefix")
 	flag.StringVar(&proxy, "proxy", "", "Proxy URL (e.g http://localhost:8080)")
