@@ -17,4 +17,4 @@ jobs:
           cache-dependency-path: go.sum
           check-latest: true
       - name: Run all tests
-        run: make ci
+        run: go test ./...
