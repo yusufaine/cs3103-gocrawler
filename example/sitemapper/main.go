@@ -29,7 +29,6 @@ func main() {
 
 	// sitemapper.Config embeds gocrawler.Config
 	config := sitemapper.SetupConfig()
-	config.MustValidate()
 	config.PrintConfig()
 	time.Sleep(3 * time.Second)
 	start := time.Now()

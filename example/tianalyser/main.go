@@ -29,8 +29,7 @@ func main() {
 	config := tianalyser.SetupConfig()
 
 	// hardcode the seed URL to the TI page
-	config.SeedURLs = []string{"https://liquipedia.net/dota2/The_International/"}
-	config.MustValidate()
+	config.SeedURLs = []string{"https://liquipedia.net/dota2/The_International"}
 
 	// Give the user a few seconds to review the config and a chance to cancel the crawl
 	config.PrintConfig()

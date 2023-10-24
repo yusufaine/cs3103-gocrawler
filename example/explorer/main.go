@@ -29,7 +29,6 @@ func main() {
 
 	// depthcrawler.Config embeds gocrawler.Config
 	config := explorer.SetupConfig()
-	config.MustValidate()
 	config.PrintConfig()
 	time.Sleep(3 * time.Second)
 	start := time.Now()
