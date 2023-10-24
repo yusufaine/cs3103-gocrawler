@@ -2,8 +2,8 @@
   "seed": "https://liquipedia.net/dota2/The_International",
   "max_depth": 10,
   "blacklist": [],
-  "max_rps": 10,
-  "crawl_time": "8m23.533193549s",
+  "max_rps": 20,
+  "crawl_time": "3m47.230280942s",
   "network_info": {
     "liquipedia.net": [
       {
@@ -19,8 +19,8 @@
             "as_number": "AS16276"
           }
         ],
-        "avg_response_ms": 1268,
-        "path_count": 291,
+        "avg_response_ms": 572,
+        "path_count": 293,
         "paths": [
           "/dota2/The_International",
           "/dota2/The_International/2011",
@@ -92,6 +92,8 @@
           "/dota2/The_International/2014/Playoffs/Phase_Three",
           "/dota2/The_International/2014/Playoffs/Phase_Two",
           "/dota2/The_International/2014/Playoffs/Phase_Two_Series_10_to_14",
+          "/dota2/The_International/2014/Playoffs/Phase_Two_Series_15_to_18",
+          "/dota2/The_International/2014/Playoffs/Phase_Two_Series_19_to_23",
           "/dota2/The_International/2014/Playoffs/Phase_Two_Series_1_to_5",
           "/dota2/The_International/2014/Playoffs/Phase_Two_Series_24_to_27",
           "/dota2/The_International/2014/Playoffs/Phase_Two_Series_28_to_30",

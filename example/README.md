@@ -1,4 +1,4 @@
-# CS3103 Golang Webcrawler
+# CS3103 G46 Golang Webcrawler
 
 This repo contains the source code for a generic parallel webcrawler ([project root](https://github.com/yusufaine/gocrawler/tree/main)) written in Golang. As part of our CS3103 mini-project, we continued building on top of the webcrawler to analyse the relevance of each country and region when it comes to the topic of "The International", a global DOTA 2 tournament, over the past few years based on what can be found on.
 
