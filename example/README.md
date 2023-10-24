@@ -2,11 +2,11 @@
 
 This repo contains the source code for a generic parallel webcrawler written in Golang. In this directory there are 3 examples of how the crawler can be used as a package:
 
-| Example      | Description                                                                                                                                | Sample Output                                                                                         |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| `explorer`   | Starting from any seed URL(s), crawl and collect all outgoing links until max depth, all links have been exhausted, or if the user cancels | [`link`](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/explorer/example.com.json)   |
-| `sitemapper` | Starting from a single URL, crawl all accessible sites if it contains the the host has been fully crawled, or if the user cancels          | [`link`](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/sitemapper/example.com.json) |
-| `tianalyser` | Crawls from [Liquipedia](https://liquipedia.net/dota2/The_International) and extract all the country's representative information          | [`link`](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/tianalyser/tianalyser.json)  |
+| Example                                                                                                                  | Description                                                                                                                                |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `explorer` <br> [output](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/explorer/example.com.json)      | Starting from any seed URL(s), crawl and collect all outgoing links until max depth, all links have been exhausted, or if the user cancels |
+| `sitemapper` <br> [output](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/sitemapper/example.com.json)  | Starting from a single URL, crawl all accessible sites if it contains the the host has been fully crawled, or if the user cancels          |
+| `tianalyser`  <br>  [output](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/tianalyser/tianalyser.json) | Crawls from [Liquipedia](https://liquipedia.net/dota2/The_International) and extract all the country's representative information          |
 
 As part of our CS3103 mini-project, we continued building on top of the webcrawler to analyse the relevance of each country and region when it comes to the topic of "The International", a global DOTA 2 tournament, over the past few years based on what can be found on.
 
