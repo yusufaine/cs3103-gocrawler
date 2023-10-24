@@ -152,7 +152,7 @@ The program will stop crawling when:
 2. The user cancels the program.
 
 > [!IMPORTANT]
-> Yes, the RPS is indeed set to 0.5 -- this is because Liquipedia has a [rate limit of 2 requests per second](http://liquipedia.net/api-terms-of-use), and we should be nice to them. A barely-tested "workaround" would be to use a proxy by specifying the `--proxy` flag, which has been implemented. From this, we can increase the RPS accordingly with how many proxies we have, and assuming that they are in a simple round-robin rotation (e.g. max RPS = N / 2, where N is the number of proxies).
+> Yes, the RPS is indeed set to 0.5 -- this is because Liquipedia has a [rate limit of 2 requests per second](http://liquipedia.net/api-terms-of-use), and we should be nice to them. A barely-tested "workaround" would be to use a proxy by specifying the `--proxy` flag, which has been implemented. From this, we can increase the RPS accordingly with how many proxies we have, and assuming that they are in a simple round-robin rotation (e.g. max RPS ≈ N / 2, where N is the number of proxies).
 
 ```bash
 # Running the binary (recommended)
@@ -163,7 +163,7 @@ go run example/tianalyser/main.go --depth=5 --rps=0.5
 ```
 
 > [!NOTE]
-> The output for this can be uses a proxy of 20 and has RPS set to 10 [here](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/tianalyser/ti_stats.json).
+> The output for this can be uses a proxy has RPS set to 40 [here](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/tianalyser/ti_stats.json).
 
 ## Members
 
