@@ -115,8 +115,6 @@ func (c *Client) Crawl(ctx context.Context, le LinkExtractor, currDepth int, cur
 				return
 			}
 
-			// ensure RPS is enforced
-			_ = c.rl.Wait(ctx)
 			c.Crawl(ctx, le, nextDepth, nextLink, currLink)
 		}(currLink, nextLink, nextDepth)
 	}
@@ -146,6 +144,8 @@ func (c *Client) extractResponseBody(link string, depth int) []byte {
 		return nil
 	}
 
+	// ensure RPS is enforced
+	_ = c.rl.Wait(req.Context())
 	resp, err := c.hc.Do(req)
 	if err != nil {
 		if errors.Is(err, context.Canceled) {
