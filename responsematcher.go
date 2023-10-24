@@ -5,6 +5,8 @@ import (
 	"strings"
 )
 
+// ResponseMatcher is a function that takes an http.Response and returns a boolean to indicate
+// whether or not the contents of the URL should be processed (e.g extract links)
 type ResponseMatcher func(resp *http.Response) bool
 
 // This matches all responses

@@ -58,7 +58,7 @@ func main() {
 
 		<-ctx.Done()
 		fmt.Println()
-		log.Info("stopping crawler", "signal", <-sig)
+		log.Info("stopping crawler, press ctrl+c again to force quit", "signal", <-sig)
 	}()
 
 	// Start crawling from the seed URL and extract links using the TI link extractor func

@@ -1,0 +1,141 @@
+{
+  "seed": "https://yusufaine.dev/",
+  "max_depth": 9223372036854775807,
+  "blacklist": [],
+  "max_rps": 20,
+  "crawl_time": "1.708536991s",
+  "network_info": {
+    "yusufaine.dev": [
+      {
+        "remote_ip_info": [
+          {
+            "ip": "76.76.21.21",
+            "location": "United States, California",
+            "as_number": "AS16509"
+          }
+        ],
+        "avg_response_ms": 62,
+        "path_count": 10,
+        "paths": [
+          "/",
+          "/about",
+          "/apple-sg-notifier",
+          "/hello-world",
+          "/tag/apple",
+          "/tag/bits",
+          "/tag/bytes",
+          "/tag/gcp",
+          "/tag/golang",
+          "/tag/google-cloud-functions"
+        ]
+      }
+    ]
+  },
+  "page_info": {
+    "https://yusufaine.dev/": {
+      "depth": 0,
+      "parent": "",
+      "links": [
+        "https://yusufaine.dev/",
+        "https://yusufaine.dev/about",
+        "https://yusufaine.dev/apple-sg-notifier",
+        "https://yusufaine.dev/hello-world",
+        "https://yusufaine.dev/rss.xml"
+      ]
+    },
+    "https://yusufaine.dev/about": {
+      "depth": 1,
+      "parent": "https://yusufaine.dev/",
+      "links": [
+        "https://yusufaine.dev/",
+        "https://yusufaine.dev/about",
+        "https://yusufaine.dev/rss.xml"
+      ]
+    },
+    "https://yusufaine.dev/apple-sg-notifier": {
+      "depth": 1,
+      "parent": "https://yusufaine.dev/",
+      "links": [
+        "https://yusufaine.dev/",
+        "https://yusufaine.dev/1-start-with-a-tdd",
+        "https://yusufaine.dev/apple-sg-notifier",
+        "https://yusufaine.dev/rss.xml",
+        "https://yusufaine.dev/tag/apple",
+        "https://yusufaine.dev/tag/bytes",
+        "https://yusufaine.dev/tag/gcp",
+        "https://yusufaine.dev/tag/golang",
+        "https://yusufaine.dev/tag/google-cloud-functions"
+      ]
+    },
+    "https://yusufaine.dev/hello-world": {
+      "depth": 1,
+      "parent": "https://yusufaine.dev/",
+      "links": [
+        "https://yusufaine.dev/",
+        "https://yusufaine.dev/hello-world",
+        "https://yusufaine.dev/rss.xml",
+        "https://yusufaine.dev/tag/bits"
+      ]
+    },
+    "https://yusufaine.dev/tag/apple": {
+      "depth": 2,
+      "parent": "https://yusufaine.dev/apple-sg-notifier",
+      "links": [
+        "https://yusufaine.dev/",
+        "https://yusufaine.dev/about",
+        "https://yusufaine.dev/apple-sg-notifier",
+        "https://yusufaine.dev/rss.xml"
+      ]
+    },
+    "https://yusufaine.dev/tag/bits": {
+      "depth": 2,
+      "parent": "https://yusufaine.dev/hello-world",
+      "links": [
+        "https://yusufaine.dev/",
+        "https://yusufaine.dev/about",
+        "https://yusufaine.dev/hello-world",
+        "https://yusufaine.dev/rss.xml"
+      ]
+    },
+    "https://yusufaine.dev/tag/bytes": {
+      "depth": 2,
+      "parent": "https://yusufaine.dev/apple-sg-notifier",
+      "links": [
+        "https://yusufaine.dev/",
+        "https://yusufaine.dev/about",
+        "https://yusufaine.dev/apple-sg-notifier",
+        "https://yusufaine.dev/rss.xml"
+      ]
+    },
+    "https://yusufaine.dev/tag/gcp": {
+      "depth": 2,
+      "parent": "https://yusufaine.dev/apple-sg-notifier",
+      "links": [
+        "https://yusufaine.dev/",
+        "https://yusufaine.dev/about",
+        "https://yusufaine.dev/apple-sg-notifier",
+        "https://yusufaine.dev/rss.xml"
+      ]
+    },
+    "https://yusufaine.dev/tag/golang": {
+      "depth": 2,
+      "parent": "https://yusufaine.dev/apple-sg-notifier",
+      "links": [
+        "https://yusufaine.dev/",
+        "https://yusufaine.dev/about",
+        "https://yusufaine.dev/apple-sg-notifier",
+        "https://yusufaine.dev/rss.xml"
+      ]
+    },
+    "https://yusufaine.dev/tag/google-cloud-functions": {
+      "depth": 2,
+      "parent": "https://yusufaine.dev/apple-sg-notifier",
+      "links": [
+        "https://yusufaine.dev/",
+        "https://yusufaine.dev/about",
+        "https://yusufaine.dev/apple-sg-notifier",
+        "https://yusufaine.dev/rss.xml"
+      ]
+    }
+  }
+}

@@ -49,7 +49,7 @@ func main() {
 
 		<-ctx.Done()
 		fmt.Println()
-		log.Info("stopping crawler", "signal", <-sig)
+		log.Info("stopping crawler, press ctrl+c again to force quit", "signal", <-sig)
 	}()
 
 	var wg sync.WaitGroup

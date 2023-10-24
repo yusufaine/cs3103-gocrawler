@@ -82,7 +82,7 @@ func (c *Config) mustValidate() {
 	if parsedSeed, err := url.Parse(c.SeedURLs[0]); err != nil {
 		panic("--seed is not valid!")
 	} else if c.ReportPath == "" {
-		c.ReportPath = fmt.Sprintf("%s_sitemap.json", parsedSeed.Host)
+		c.ReportPath = fmt.Sprintf("sitemap_%s.json", parsedSeed.Host)
 	}
 
 	if c.MaxDepth < 1 {

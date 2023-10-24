@@ -3,7 +3,7 @@
   "max_depth": 3,
   "blacklist": [],
   "max_rps": 20,
-  "crawl_time": "20.10250929s",
+  "crawl_time": "14.762249534s",
   "network_info": {
     "example.com": [
       {
@@ -19,7 +19,7 @@
             "as_number": "AS15133"
           }
         ],
-        "avg_response_ms": 702,
+        "avg_response_ms": 372,
         "path_count": 1,
         "paths": ["/"]
       }
@@ -38,7 +38,7 @@
             "as_number": "AS40528"
           }
         ],
-        "avg_response_ms": 1727,
+        "avg_response_ms": 464,
         "path_count": 20,
         "paths": [
           "/",
@@ -78,7 +78,7 @@
             "as_number": "AS40528"
           }
         ],
-        "avg_response_ms": 2738,
+        "avg_response_ms": 1292,
         "path_count": 3,
         "paths": ["/", "/privacy/policy", "/privacy/tos"]
       }
@@ -89,6 +89,11 @@
       "depth": 0,
       "parent": "",
       "links": ["https://www.iana.org/domains/example"]
+    },
+    "http://pti.icann.org": {
+      "depth": 2,
+      "parent": "",
+      "links": null
     },
     "http://www.icann.org/": {
       "depth": 2,
@@ -9470,7 +9475,6 @@
         "https://www.iana.org/./rfc1035",
         "https://www.iana.org/./rfc1591",
         "https://www.iana.org/./rfc2606",
-        "https://www.iana.org/cdn-cgi/l/email-protection",
         "https://www.iana.org/errata/rfc2606",
         "https://www.iana.org/rfc/pdfrfc/rfc2606.txt.pdf",
         "https://www.iana.org/rfc/rfc2606.html",
@@ -9517,7 +9521,6 @@
         "https://www.iana.org/./rfc5741",
         "https://www.iana.org/./rfc5771",
         "https://www.iana.org/./rfc6761",
-        "https://www.iana.org/cdn-cgi/l/email-protection",
         "https://www.iana.org/errata/rfc6761",
         "https://www.iana.org/rfc/pdfrfc/rfc6761.txt.pdf",
         "https://www.iana.org/rfc/rfc6761.html",
