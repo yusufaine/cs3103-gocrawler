@@ -1,9 +1,7 @@
 {
   "seed": "https://yusufaine.dev/",
-  "max_depth": 9223372036854775807,
-  "blacklist": [],
   "max_rps": 20,
-  "crawl_time": "1.708536991s",
+  "crawl_time": "1.566141352s",
   "network_info": {
     "yusufaine.dev": [
       {
@@ -14,7 +12,7 @@
             "as_number": "AS16509"
           }
         ],
-        "avg_response_ms": 62,
+        "avg_response_ms": 37,
         "path_count": 10,
         "paths": [
           "/",

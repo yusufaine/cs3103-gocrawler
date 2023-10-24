@@ -1,7 +1,5 @@
 {
   "seed": "https://liquipedia.net/dota2/The_International",
-  "max_depth": 10,
-  "blacklist": [],
   "max_rps": 40,
   "crawl_time": "1m53.955287615s",
   "network_info": {

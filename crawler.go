@@ -19,6 +19,7 @@ import (
 type Client struct {
 	ctx       context.Context
 	hc        *rhttp.Client
+	le        LinkExtractor
 	rl        *rate.Limiter
 	rm        []ResponseMatcher
 	netMutex  sync.Mutex
@@ -35,7 +36,7 @@ type Client struct {
 //
 // Note that the ordering of the response matchers matter, the first matcher to return
 // false will cause the link to be skipped.
-func New(ctx context.Context, config *Config, rm []ResponseMatcher) *Client {
+func New(ctx context.Context, config *Config, rm []ResponseMatcher, le LinkExtractor) *Client {
 	if len(rm) == 0 {
 		rm = []ResponseMatcher{IsNoopResponse}
 		log.Warn("no response matchers supplied, accepting all responses")
@@ -52,6 +53,7 @@ func New(ctx context.Context, config *Config, rm []ResponseMatcher) *Client {
 	c := &Client{
 		ctx:             ctx,
 		hc:              retryClient,
+		le:              le,
 		rl:              rate.NewLimiter(rate.Limit(config.MaxRPS), 1),
 		rm:              rm,
 		MaxDepth:        config.MaxDepth - 1,
@@ -66,7 +68,7 @@ func New(ctx context.Context, config *Config, rm []ResponseMatcher) *Client {
 // Crawl is called recursively to crawl the supplied URL and all outgoing links which is
 // extracted by the supplied LinkExtractor. The crawl will stop when the MaxDepth is reached
 // or if the context is cancelled.
-func (c *Client) Crawl(ctx context.Context, le LinkExtractor, currDepth int, currLink, parent string) {
+func (c *Client) Crawl(ctx context.Context, currDepth int, currLink, parent string) {
 
 	// sanity check to ensure crawler does not re-visits the same link
 	c.pageMutex.RLock()
@@ -78,23 +80,7 @@ func (c *Client) Crawl(ctx context.Context, le LinkExtractor, currDepth int, cur
 
 	log.Info("visiting", "depth", currDepth, "link", currLink)
 
-	resp := c.extractResponseBody(currLink, currDepth)
-	if resp == nil {
-		return
-	}
-
-	// returns a list of links whose hosts are not in the blacklist
-	links := le(c.HostBlacklist, currLink, resp)
-
-	// mark the current URL as visited
-	c.pageMutex.Lock()
-	c.VisitedPageInfo[currLink] = PageInfo{
-		Content: resp,
-		Depth:   currDepth,
-		Links:   links,
-		Parent:  parent,
-	}
-	c.pageMutex.Unlock()
+	links := c.storeBodyExtractLinks(currLink, parent, currDepth)
 
 	// crawl all outgoing links concurrently
 	nextDepth := currDepth + 1
@@ -115,7 +101,9 @@ func (c *Client) Crawl(ctx context.Context, le LinkExtractor, currDepth int, cur
 				return
 			}
 
-			c.Crawl(ctx, le, nextDepth, nextLink, currLink)
+			// ensure RPS is enforced
+			_ = c.rl.Wait(ctx)
+			c.Crawl(ctx, nextDepth, nextLink, currLink)
 		}(currLink, nextLink, nextDepth)
 	}
 	wg.Wait()
@@ -124,7 +112,7 @@ func (c *Client) Crawl(ctx context.Context, le LinkExtractor, currDepth int, cur
 
 // Does the actual HTTP GET request and returns the response body if the response is
 // successful and the content type is text.
-func (c *Client) extractResponseBody(link string, depth int) []byte {
+func (c *Client) storeBodyExtractLinks(link, parent string, depth int) []string {
 	parsedUrl, err := url.Parse(link)
 	if err != nil {
 		log.Error("unable to parse url", "url", link, "error", err)
@@ -137,15 +125,13 @@ func (c *Client) extractResponseBody(link string, depth int) []byte {
 		return nil
 	}
 
-	reqStart := time.Now()
 	req, err := http.NewRequestWithContext(c.ctx, "GET", parsedUrl.String(), nil)
 	if err != nil {
 		log.Error("unable to create request", "url", parsedUrl.String(), "error", err)
 		return nil
 	}
 
-	// ensure RPS is enforced
-	_ = c.rl.Wait(req.Context())
+	reqStart := time.Now()
 	resp, err := c.hc.Do(req)
 	if err != nil {
 		if errors.Is(err, context.Canceled) {
@@ -168,7 +154,33 @@ func (c *Client) extractResponseBody(link string, depth int) []byte {
 		}
 	}
 
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Error("unable to read response body", "url", link, "error", err)
+		return nil
+	}
+
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		c.updateNetInfo(parsedUrl, remoteAddrs, respTime)
+	}()
+
+	var links []string
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		links = c.updatePageInfo(depth, link, parent, body)
+	}()
+	wg.Wait()
+
+	return links
+}
+
+func (c *Client) updateNetInfo(parsedUrl *url.URL, remoteAddrs []net.IP, respTime time.Duration) {
 	c.netMutex.Lock()
+	defer c.netMutex.Unlock()
 	if infos, ok := c.VisitedNetInfo[parsedUrl.Host]; ok {
 		for i, info := range infos {
 			if _, ok := info.VisitedPathSet[parsedUrl.Path]; !ok {
@@ -199,14 +211,6 @@ func (c *Client) extractResponseBody(link string, depth int) []byte {
 			},
 		}
 	}
-	c.netMutex.Unlock()
-
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		log.Error("unable to read response body", "url", link, "error", err)
-		return nil
-	}
-	return body
 }
 
 func (c *Client) resolveIPInfo(ip string) (string, string, error) {
@@ -236,4 +240,20 @@ func (c *Client) resolveIPInfo(ip string) (string, string, error) {
 	}
 
 	return ipInfo.ASNumber, ipInfo.Country + ", " + ipInfo.Region, nil
+}
+
+func (c *Client) updatePageInfo(currDepth int, currLink, parent string, body []byte) []string {
+	links := c.le(c.HostBlacklist, currLink, body)
+
+	// mark the current URL as visited
+	c.pageMutex.Lock()
+	defer c.pageMutex.Unlock()
+	c.VisitedPageInfo[currLink] = PageInfo{
+		Content: body,
+		Depth:   currDepth,
+		Links:   links,
+		Parent:  parent,
+	}
+
+	return links
 }
