@@ -1,9 +1,9 @@
 {
-  "seeds": ["https://liquipedia.net/dota2/The_International"],
-  "max_depth": 5,
+  "seed": "https://liquipedia.net/dota2/The_International",
+  "max_depth": 10,
   "blacklist": [],
-  "max_rps": 10,
-  "crawl_time": "7m37.597617366s",
+  "max_rps": 40,
+  "crawl_time": "1m53.955287615s",
   "network_info": {
     "liquipedia.net": [
       {
@@ -19,7 +19,7 @@
             "as_number": "AS16276"
           }
         ],
-        "avg_response_ms": 426,
+        "avg_response_ms": 2763,
         "path_count": 293,
         "paths": [
           "/dota2/The_International",

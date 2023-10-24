@@ -29,7 +29,6 @@ func main() {
 
 	// sitemapper.Config embeds gocrawler.Config
 	config := sitemapper.SetupConfig()
-	config.MustValidate()
 	config.PrintConfig()
 	time.Sleep(3 * time.Second)
 	start := time.Now()
@@ -50,7 +49,7 @@ func main() {
 
 		<-ctx.Done()
 		fmt.Println()
-		log.Info("stopping crawler", "signal", <-sig)
+		log.Info("stopping crawler, press ctrl+c again to force quit", "signal", <-sig)
 	}()
 
 	var wg sync.WaitGroup

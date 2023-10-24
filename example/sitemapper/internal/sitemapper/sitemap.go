@@ -10,7 +10,7 @@ import (
 )
 
 type ReportFormat struct {
-	Seeds     []string `json:"seeds"`
+	Seed      string   `json:"seed"`
 	Depth     int      `json:"max_depth"`
 	Blacklist []string `json:"blacklist"`
 	MaxRPS    float64  `json:"max_rps"`
@@ -28,7 +28,7 @@ func Generate(config *Config, cr *gocrawler.Client, elapsed time.Duration) {
 	slices.Sort(bls)
 
 	report := ReportFormat{
-		Seeds:           config.SeedURLs,
+		Seed:            config.SeedURLs[0],
 		Depth:           config.MaxDepth,
 		Blacklist:       bls,
 		MaxRPS:          config.MaxRPS,
