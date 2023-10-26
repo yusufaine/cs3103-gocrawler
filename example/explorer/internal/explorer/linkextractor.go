@@ -8,10 +8,10 @@ import (
 	"github.com/yusufaine/gocrawler"
 )
 
-func ExplorerLinkExtractor(bl map[string]struct{}, currLink string, resp []byte) []string {
-	links := gocrawler.DefaultLinkExtractor(bl, currLink, resp)
-	blHosts := make([]string, 0, len(bl))
-	for k := range bl {
+func ExplorerLinkExtractor(c *gocrawler.Client, currLink string, resp []byte) []string {
+	links := gocrawler.DefaultLinkExtractor(c, currLink, resp)
+	blHosts := make([]string, 0, len(c.HostBlacklist))
+	for k := range c.HostBlacklist {
 		blHosts = append(blHosts, k)
 	}
 

@@ -22,11 +22,11 @@ type Client struct {
 	le        LinkExtractor
 	rl        *rate.Limiter
 	rm        []ResponseMatcher
-	netMutex  sync.Mutex
 	pageMutex sync.RWMutex
 
 	MaxDepth        int
 	HostBlacklist   map[string]struct{}
+	NetMutex        sync.RWMutex
 	VisitedNetInfo  map[string][]NetworkInfo
 	VisitedPageInfo map[string]PageInfo
 }
@@ -179,8 +179,8 @@ func (c *Client) storeBodyExtractLinks(link, parent string, depth int) []string 
 }
 
 func (c *Client) updateNetInfo(parsedUrl *url.URL, remoteAddrs []net.IP, respTime time.Duration) {
-	c.netMutex.Lock()
-	defer c.netMutex.Unlock()
+	c.NetMutex.Lock()
+	defer c.NetMutex.Unlock()
 	if infos, ok := c.VisitedNetInfo[parsedUrl.Host]; ok {
 		for i, info := range infos {
 			if _, ok := info.VisitedPathSet[parsedUrl.Path]; !ok {
@@ -243,7 +243,7 @@ func (c *Client) resolveIPInfo(ip string) (string, string, error) {
 }
 
 func (c *Client) updatePageInfo(currDepth int, currLink, parent string, body []byte) []string {
-	links := c.le(c.HostBlacklist, currLink, body)
+	links := c.le(c, currLink, body)
 
 	// mark the current URL as visited
 	c.pageMutex.Lock()
