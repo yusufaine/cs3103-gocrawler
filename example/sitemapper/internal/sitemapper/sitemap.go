@@ -18,6 +18,10 @@ type ReportFormat struct {
 	VisitedPageResp map[string]gocrawler.PageInfo      `json:"page_info"`
 }
 
+// Generates a report in JSON format from the crawler client and config. The report contains
+// the initial crawler info, the network info for each host visited, and the page info for
+// each page visited such as all the links found in the page if the link belongs to the same
+// host as the seed URL.
 func Generate(config *Config, cr *gocrawler.Client, elapsed time.Duration) {
 	report := ReportFormat{
 		Seed:            config.SeedURLs[0],

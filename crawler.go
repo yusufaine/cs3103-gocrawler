@@ -138,7 +138,10 @@ func (c *Client) storeBodyExtractLinks(link, parent string, depth int) []string 
 			return nil
 		}
 		c.pageMutex.Lock()
-		c.VisitedPageInfo[link] = PageInfo{Depth: depth}
+		if pi, ok := c.VisitedPageInfo[link]; ok {
+			pi.Depth = min(pi.Depth, depth)
+			c.VisitedPageInfo[link] = pi
+		}
 		c.pageMutex.Unlock()
 		log.Error("unable to get response", "host", parsedUrl.Host, "error", err)
 		return nil
@@ -178,6 +181,8 @@ func (c *Client) storeBodyExtractLinks(link, parent string, depth int) []string 
 	return links
 }
 
+// Collects/updates the network info for the current link which includes the total response time,
+// the remote IP addresses, the location of the remote IP addresses, and the visited paths.
 func (c *Client) updateNetInfo(parsedUrl *url.URL, remoteAddrs []net.IP, respTime time.Duration) {
 	c.NetMutex.Lock()
 	defer c.NetMutex.Unlock()
@@ -213,6 +218,7 @@ func (c *Client) updateNetInfo(parsedUrl *url.URL, remoteAddrs []net.IP, respTim
 	}
 }
 
+// Resolves the remote IP address to its location and AS number. This uses the ipapi.co API.
 func (c *Client) resolveIPInfo(ip string) (string, string, error) {
 	req, err := http.NewRequestWithContext(c.ctx, "GET", "https://ipapi.co/"+ip+"/json/", nil)
 	if err != nil {
@@ -242,17 +248,27 @@ func (c *Client) resolveIPInfo(ip string) (string, string, error) {
 	return ipInfo.ASNumber, ipInfo.Country + ", " + ipInfo.Region, nil
 }
 
+// Collects/updates the page info for the current link which includes the response body, the
+// depth, the outgoing links, and the parent link. The outgoing links are extracted by the
+// LinkExtractor, and the depth is the lowest/shallowest depth.
 func (c *Client) updatePageInfo(currDepth int, currLink, parent string, body []byte) []string {
 	links := c.le(c, currLink, body)
 
 	// mark the current URL as visited
 	c.pageMutex.Lock()
 	defer c.pageMutex.Unlock()
-	c.VisitedPageInfo[currLink] = PageInfo{
-		Content: body,
-		Depth:   currDepth,
-		Links:   links,
-		Parent:  parent,
+
+	// ensures that the depth is always the lowest
+	if pi, ok := c.VisitedPageInfo[currLink]; ok {
+		pi.Depth = min(pi.Depth, currDepth)
+		c.VisitedPageInfo[currLink] = pi
+	} else {
+		c.VisitedPageInfo[currLink] = PageInfo{
+			Content: body,
+			Depth:   currDepth,
+			Links:   links,
+			Parent:  parent,
+		}
 	}
 
 	return links

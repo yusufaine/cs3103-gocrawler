@@ -10,7 +10,8 @@ import (
 )
 
 // Returns a list of all outgoing links with the same host as the current link and the path contains
-// "dota2/The_International/"
+// "dota2/The_International/". It also checks agains the VisitedNetInfo map to ensure that the link
+// has not been visited before as we are not collecting the outgoing links of all pages.
 func TILinkExtractor(c *gocrawler.Client, currLink string, resp []byte) []string {
 	var (
 		filteredLinks []string

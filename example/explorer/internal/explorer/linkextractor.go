@@ -8,6 +8,7 @@ import (
 	"github.com/yusufaine/gocrawler"
 )
 
+// Extracts links that are not blacklisted, and has the scheme "http" or "https"
 func ExplorerLinkExtractor(c *gocrawler.Client, currLink string, resp []byte) []string {
 	links := gocrawler.DefaultLinkExtractor(c, currLink, resp)
 	blHosts := make([]string, 0, len(c.HostBlacklist))
