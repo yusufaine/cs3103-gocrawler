@@ -26,7 +26,7 @@ func SetupConfig() *Config {
 		verbose bool
 	)
 	flag.IntVar(&c.MaxRetries, "retries", 3, "Max retries for HTTP requests")
-	flag.Float64Var(&c.MaxRPS, "rps", 0.2, "Max requests per second")
+	flag.Float64Var(&c.MaxRPS, "rps", 0.5, "Max requests per second")
 	flag.DurationVar(&c.Timeout, "timeout", 10*time.Second, "Timeout for HTTP requests")
 	flag.StringVar(&c.ReportPath, "report", "ti_stats.json", "Path to export report to")
 	flag.StringVar(&proxy, "proxy", "", "Proxy URL (e.g http://localhost:8080)")
