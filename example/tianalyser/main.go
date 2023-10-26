@@ -37,10 +37,13 @@ func main() {
 
 	start := time.Now()
 
-	// New crawler that skips non-OK, non-HTML responses
+	// New crawler that skips non-OK, non-HTML responses and assumes that every TI page
+	// with a country representation links to other TI pages with country representation
 	cr := gocrawler.New(ctx,
 		&config.Config,
-		[]gocrawler.ResponseMatcher{gocrawler.IsHtmlContent},
+		[]gocrawler.ResponseMatcher{
+			gocrawler.IsHtmlContent,
+			tianalyser.HasCountryRepresentationHeader},
 		tianalyser.TILinkExtractor,
 	)
 

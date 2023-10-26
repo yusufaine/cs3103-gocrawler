@@ -84,9 +84,17 @@ func extractCountryRepresentationTable(resp []byte) []CountryTableRow {
 	}
 
 	var repTable []CountryTableRow
+	// Table is typically found under the "Country Representation" header
 	doc.Find("#Country_Representation").
-		Parent().Next().Each(func(i int, s *goquery.Selection) {
+		Parent().
+		Next().Each(func(i int, s *goquery.Selection) {
 		var row CountryTableRow
+
+		// Assumes that the table will only have 4 headers:
+		//	1. Row number -- ignored
+		//	2. Country/region
+		//	3. Representation
+		//	4. Players
 		s.Find("td").Each(func(i int, s *goquery.Selection) {
 			switch i % 4 {
 			case 1:

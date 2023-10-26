@@ -17,16 +17,16 @@ import (
 )
 
 type Client struct {
-	ctx       context.Context
-	hc        *rhttp.Client
-	le        LinkExtractor
-	rl        *rate.Limiter
-	rm        []ResponseMatcher
-	pageMutex sync.RWMutex
+	ctx context.Context
+	hc  *rhttp.Client
+	le  LinkExtractor
+	rl  *rate.Limiter
+	rm  []ResponseMatcher
 
 	MaxDepth        int
-	HostBlacklist   map[string]struct{}
 	NetMutex        sync.RWMutex
+	PageMutex       sync.RWMutex
+	HostBlacklist   map[string]struct{}
 	VisitedNetInfo  map[string][]NetworkInfo
 	VisitedPageInfo map[string]PageInfo
 }
@@ -71,9 +71,9 @@ func New(ctx context.Context, config *Config, rm []ResponseMatcher, le LinkExtra
 func (c *Client) Crawl(ctx context.Context, currDepth int, currLink, parent string) {
 
 	// sanity check to ensure crawler does not re-visits the same link
-	c.pageMutex.RLock()
+	c.PageMutex.RLock()
 	_, ok := c.VisitedPageInfo[currLink]
-	c.pageMutex.RUnlock()
+	c.PageMutex.RUnlock()
 	if ok {
 		return
 	}
@@ -94,9 +94,9 @@ func (c *Client) Crawl(ctx context.Context, currDepth int, currLink, parent stri
 				return
 			}
 
-			c.pageMutex.RLock()
+			c.PageMutex.RLock()
 			_, ok := c.VisitedPageInfo[nextLink]
-			c.pageMutex.RUnlock()
+			c.PageMutex.RUnlock()
 			if ok {
 				return
 			}
@@ -137,12 +137,12 @@ func (c *Client) storeBodyExtractLinks(link, parent string, depth int) []string 
 		if errors.Is(err, context.Canceled) {
 			return nil
 		}
-		c.pageMutex.Lock()
+		c.PageMutex.Lock()
 		if pi, ok := c.VisitedPageInfo[link]; ok {
 			pi.Depth = min(pi.Depth, depth)
 			c.VisitedPageInfo[link] = pi
 		}
-		c.pageMutex.Unlock()
+		c.PageMutex.Unlock()
 		log.Error("unable to get response", "host", parsedUrl.Host, "error", err)
 		return nil
 	}
@@ -255,8 +255,8 @@ func (c *Client) updatePageInfo(currDepth int, currLink, parent string, body []b
 	links := c.le(c, currLink, body)
 
 	// mark the current URL as visited
-	c.pageMutex.Lock()
-	defer c.pageMutex.Unlock()
+	c.PageMutex.Lock()
+	defer c.PageMutex.Unlock()
 
 	// ensures that the depth is always the lowest
 	if pi, ok := c.VisitedPageInfo[currLink]; ok {
