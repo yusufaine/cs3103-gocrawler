@@ -35,9 +35,11 @@ func main() {
 
 	cr := gocrawler.New(ctx,
 		&config.Config,
-		[]gocrawler.ResponseMatcher{gocrawler.IsHtmlContent})
+		[]gocrawler.ResponseMatcher{gocrawler.IsHtmlContent},
+		explorer.ExplorerLinkExtractor,
+	)
 	defer func() {
-		log.Info("generating sitemap", "file", config.ReportPath)
+		log.Info("generating explorer report", "file", config.ReportPath)
 		explorer.Generate(config, cr, time.Since(start))
 	}()
 
@@ -57,7 +59,7 @@ func main() {
 		wg.Add(1)
 		go func(seed string) {
 			defer wg.Done()
-			cr.Crawl(ctx, gocrawler.DefaultLinkExtractor, 0, seed, "")
+			cr.Crawl(ctx, 0, seed, "")
 		}(seed)
 	}
 	wg.Wait()

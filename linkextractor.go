@@ -11,12 +11,12 @@ import (
 )
 
 // Takes in a map of blacklisted hosts and the response body and returns a slice of links
-type LinkExtractor func(bl map[string]struct{}, currLink string, resp []byte) []string
+type LinkExtractor func(c *Client, currLink string, resp []byte) []string
 
 // DefaultLinkExtractor looks for <a href="..."> tags and extracts the link if the host
 // is not blacklisted. This function assumes that if the href value is a relative path,
 // it is relative to the current URL.
-func DefaultLinkExtractor(bl map[string]struct{}, currLink string, resp []byte) []string {
+func DefaultLinkExtractor(c *Client, currLink string, resp []byte) []string {
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(resp))
 	if err != nil {
 		log.Error("unable to parse response body", "error", err)
@@ -49,7 +49,7 @@ func DefaultLinkExtractor(bl map[string]struct{}, currLink string, resp []byte) 
 		}
 
 		// skip if host is blacklisted
-		if _, ok := bl[outURL.Host]; ok {
+		if _, ok := c.HostBlacklist[outURL.Host]; ok {
 			return
 		}
 

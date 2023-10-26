@@ -37,10 +37,12 @@ func main() {
 
 	start := time.Now()
 
-	// New crawler that skips non-OK, non-HTML responses
+	// New crawler that skips non-OK, non-HTML responses and assumes that every TI page
+	// with a country representation links to other TI pages with country representation
 	cr := gocrawler.New(ctx,
 		&config.Config,
 		[]gocrawler.ResponseMatcher{gocrawler.IsHtmlContent},
+		tianalyser.TILinkExtractor,
 	)
 
 	// Write to file if a panic, cancellation, or completion occurs
@@ -67,7 +69,7 @@ func main() {
 		wg.Add(1)
 		go func(seed string) {
 			defer wg.Done()
-			cr.Crawl(ctx, tianalyser.TILinkExtractor, 0, seed, "")
+			cr.Crawl(ctx, 0, seed, "")
 		}(seed)
 	}
 	wg.Wait()

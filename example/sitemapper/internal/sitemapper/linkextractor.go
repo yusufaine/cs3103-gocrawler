@@ -8,18 +8,20 @@ import (
 	"github.com/yusufaine/gocrawler"
 )
 
-func SameHostLinkExtractor(bl map[string]struct{}, currLink string, resp []byte) []string {
+// Extracts links that are on the same host as the current link
+func SameHostLinkExtractor(c *gocrawler.Client, currLink string, resp []byte) []string {
 	var (
 		filteredLinks []string
 		filterMutex   sync.Mutex
 		wg            sync.WaitGroup
 	)
+
 	currURL, err := url.Parse(currLink)
 	if err != nil {
 		return nil
 	}
 
-	allLinks := gocrawler.DefaultLinkExtractor(bl, currLink, resp)
+	allLinks := gocrawler.DefaultLinkExtractor(c, currLink, resp)
 	wg.Add(len(allLinks))
 	for _, link := range allLinks {
 		go func(link string) {

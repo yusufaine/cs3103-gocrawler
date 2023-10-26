@@ -10,8 +10,9 @@ import (
 )
 
 // Returns a list of all outgoing links with the same host as the current link and the path contains
-// "dota2/The_International/"
-func TILinkExtractor(bl map[string]struct{}, currLink string, resp []byte) []string {
+// "dota2/The_International/". It also checks agains the VisitedNetInfo map to ensure that the link
+// has not been visited before as we are not collecting the outgoing links of all pages.
+func TILinkExtractor(c *gocrawler.Client, currLink string, resp []byte) []string {
 	var (
 		filteredLinks []string
 		filterMutex   sync.Mutex
@@ -23,11 +24,19 @@ func TILinkExtractor(bl map[string]struct{}, currLink string, resp []byte) []str
 		return nil
 	}
 
-	allLinks := gocrawler.DefaultLinkExtractor(bl, currLink, resp)
+	allLinks := gocrawler.DefaultLinkExtractor(c, currLink, resp)
 	wg.Add(len(allLinks))
 	for _, link := range allLinks {
 		go func(link string) {
 			defer wg.Done()
+
+			c.NetMutex.RLock()
+			_, ok := c.VisitedNetInfo[link]
+			c.NetMutex.RUnlock()
+			if ok {
+				return
+			}
+
 			toFilterURL, err := url.Parse(link)
 			if err != nil {
 				return

@@ -2,6 +2,7 @@ package tianalyser
 
 import (
 	"flag"
+	"math"
 	"net/url"
 	"slices"
 	"strings"
@@ -21,39 +22,22 @@ type Config struct {
 func SetupConfig() *Config {
 	var (
 		c       Config
-		blHosts string
 		proxy   string
 		verbose bool
 	)
-	flag.IntVar(&c.MaxDepth, "depth", 5, "Max depth from seed")
 	flag.IntVar(&c.MaxRetries, "retries", 3, "Max retries for HTTP requests")
-	flag.Float64Var(&c.MaxRPS, "rps", 0.2, "Max requests per second")
+	flag.Float64Var(&c.MaxRPS, "rps", 0.5, "Max requests per second")
 	flag.DurationVar(&c.Timeout, "timeout", 10*time.Second, "Timeout for HTTP requests")
 	flag.StringVar(&c.ReportPath, "report", "ti_stats.json", "Path to export report to")
-	flag.StringVar(&blHosts, "bl", "", "Comma separated list of hosts to blacklist, hosts will be blacklisted with and without 'www.' prefix")
 	flag.StringVar(&proxy, "proxy", "", "Proxy URL (e.g http://localhost:8080)")
 	flag.BoolVar(&verbose, "verbose", false, "For devs -- verbose logging, includes debug and short caller info")
 	flag.Parse()
 	logger.Setup(verbose)
 
+	c.MaxDepth = math.MaxInt
+
 	// Parse proxy URL, if any
 	c.ProxyURL, _ = url.Parse(proxy)
-
-	// Parse blacklist hosts into set for fast lookups
-	c.BlacklistHosts = make(map[string]struct{})
-	for _, host := range strings.Split(blHosts, ",") {
-		host = strings.TrimSpace(host)
-		if host == "" {
-			continue
-		}
-		c.BlacklistHosts[host] = struct{}{}
-
-		if strings.HasPrefix(host, "www.") {
-			c.BlacklistHosts[host[4:]] = struct{}{}
-		} else {
-			c.BlacklistHosts["www."+host] = struct{}{}
-		}
-	}
 
 	c.mustValidate()
 
@@ -92,9 +76,7 @@ func (c *Config) PrintConfig() {
 
 	log.Info("Running with config (ctrl-c to cancel crawling): ")
 	log.Info(" ", "seed", strings.Join(c.SeedURLs, ", "))
-	log.Info(" ", "depth", c.MaxDepth)
 	log.Info(" ", "proxy", c.ProxyURL)
-	log.Info(" ", "blacklist", strings.Join(blHosts, ", "))
 	log.Info(" ", "retries", c.MaxRetries)
 	log.Info(" ", "rps", c.MaxRPS)
 	log.Info(" ", "timeout", c.Timeout)
