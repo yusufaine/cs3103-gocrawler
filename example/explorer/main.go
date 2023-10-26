@@ -36,10 +36,10 @@ func main() {
 	cr := gocrawler.New(ctx,
 		&config.Config,
 		[]gocrawler.ResponseMatcher{gocrawler.IsHtmlContent},
-		gocrawler.DefaultLinkExtractor,
+		explorer.ExplorerLinkExtractor,
 	)
 	defer func() {
-		log.Info("generating sitemap", "file", config.ReportPath)
+		log.Info("generating explorer report", "file", config.ReportPath)
 		explorer.Generate(config, cr, time.Since(start))
 	}()
 
