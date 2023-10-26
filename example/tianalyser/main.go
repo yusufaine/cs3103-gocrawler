@@ -41,9 +41,7 @@ func main() {
 	// with a country representation links to other TI pages with country representation
 	cr := gocrawler.New(ctx,
 		&config.Config,
-		[]gocrawler.ResponseMatcher{
-			gocrawler.IsHtmlContent,
-			tianalyser.HasCountryRepresentationHeader},
+		[]gocrawler.ResponseMatcher{gocrawler.IsHtmlContent},
 		tianalyser.TILinkExtractor,
 	)
 
