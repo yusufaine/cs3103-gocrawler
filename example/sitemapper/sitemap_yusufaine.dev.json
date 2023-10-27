@@ -14,7 +14,7 @@
         ],
         "avg_response_ms": 37,
         "path_count": 10,
-        "paths": [
+        "visited_paths": [
           "/",
           "/about",
           "/apple-sg-notifier",

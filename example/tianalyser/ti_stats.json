@@ -19,7 +19,7 @@
         ],
         "avg_response_ms": 2763,
         "path_count": 293,
-        "paths": [
+        "visited_paths": [
           "/dota2/The_International",
           "/dota2/The_International/2011",
           "/dota2/The_International/2011/Group_Stage",
