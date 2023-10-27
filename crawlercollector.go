@@ -13,7 +13,7 @@ type NetworkInfo struct {
 	RemoteIPInfo  []IPInfo `json:"remote_ip_info"`
 	AvgResponseMs int64    `json:"avg_response_ms"`
 	PathCount     int      `json:"path_count"`
-	VisitedPaths  []string `json:"paths"`
+	VisitedPaths  []string `json:"visited_paths"`
 
 	// These values are not exported to JSON
 	TotalResponseTimeMs int64               `json:"-"`

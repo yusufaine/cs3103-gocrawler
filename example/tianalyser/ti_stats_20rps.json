@@ -19,7 +19,7 @@
         ],
         "avg_response_ms": 793,
         "path_count": 293,
-        "paths": [
+        "visited_paths": [
           "/dota2/The_International",
           "/dota2/The_International/2011",
           "/dota2/The_International/2011/Group_Stage",
@@ -375,143 +375,82 @@
       {
         "country": "France",
         "representation": "5 / 80 (6%)",
-        "players": [
-          "Maldejambes",
-          "Ph0eniX",
-          "Pseudo",
-          "Sockshka",
-          "VladTepes"
-        ]
+        "players": ["Maldejambes", "Ph0eniX", "Pseudo", "Sockshka", "VladTepes"]
       },
       {
         "country": "Malaysia",
         "representation": "5 / 80 (6%)",
-        "players": [
-          "kYxY",
-          "Net",
-          "Sharky",
-          "SilverCross",
-          "xiaoling"
-        ]
+        "players": ["kYxY", "Net", "Sharky", "SilverCross", "xiaoling"]
       },
       {
         "country": "Philippines",
         "representation": "5 / 80 (6%)",
-        "players": [
-          "John",
-          "Julz",
-          "Owa",
-          "VASH",
-          "Wootz"
-        ]
+        "players": ["John", "Julz", "Owa", "VASH", "Wootz"]
       },
       {
         "country": "Singapore",
         "representation": "5 / 80 (6%)",
-        "players": [
-          "Chawy",
-          "Hyhy",
-          "Roy",
-          "ToFu",
-          "Xy-"
-        ]
+        "players": ["Chawy", "Hyhy", "Roy", "ToFu", "Xy-"]
       },
       {
         "country": "Thailand",
         "representation": "5 / 80 (6%)",
-        "players": [
-          "aabBAA",
-          "l3nu",
-          "LaKelz",
-          "Lookball",
-          "TnK"
-        ]
+        "players": ["aabBAA", "l3nu", "LaKelz", "Lookball", "TnK"]
       },
       {
         "country": "Czechia",
         "representation": "3 / 80 (4%)",
-        "players": [
-          "CraNich",
-          "lacek",
-          "Tonci"
-        ]
+        "players": ["CraNich", "lacek", "Tonci"]
       },
       {
         "country": "Germany",
         "representation": "3 / 80 (4%)",
-        "players": [
-          "Kebap",
-          "Kev-",
-          "KuroKy"
-        ]
+        "players": ["Kebap", "Kev-", "KuroKy"]
       },
       {
         "country": "Ukraine",
         "representation": "3 / 80 (4%)",
-        "players": [
-          "Artstyle",
-          "Dendi",
-          "XBOCT"
-        ]
+        "players": ["Artstyle", "Dendi", "XBOCT"]
       },
       {
         "country": "Slovakia",
         "representation": "2 / 80 (3%)",
-        "players": [
-          "Tulex",
-          "Warlog"
-        ]
+        "players": ["Tulex", "Warlog"]
       },
       {
         "country": "Sweden",
         "representation": "2 / 80 (3%)",
-        "players": [
-          "Mirakel",
-          "Pajkatt"
-        ]
+        "players": ["Mirakel", "Pajkatt"]
       },
       {
         "country": "United States",
         "representation": "2 / 80 (3%)",
-        "players": [
-          "DeMoN",
-          "Fear"
-        ]
+        "players": ["DeMoN", "Fear"]
       },
       {
         "country": "Canada",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "1437"
-        ]
+        "players": ["1437"]
       },
       {
         "country": "Croatia",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "Lacoste"
-        ]
+        "players": ["Lacoste"]
       },
       {
         "country": "Estonia",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "Puppey"
-        ]
+        "players": ["Puppey"]
       },
       {
         "country": "Macau",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "DDC"
-        ]
+        "players": ["DDC"]
       },
       {
         "country": "Romania",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "ComeWithMe"
-        ]
+        "players": ["ComeWithMe"]
       }
     ],
     "https://liquipedia.net/dota2/The_International/2012": [
@@ -574,122 +513,67 @@
       {
         "country": "Malaysia",
         "representation": "6 / 80 (8%)",
-        "players": [
-          "ChuaN",
-          "Ice",
-          "Mushi",
-          "WinteR",
-          "XtiNcT",
-          "YamateH"
-        ]
+        "players": ["ChuaN", "Ice", "Mushi", "WinteR", "XtiNcT", "YamateH"]
       },
       {
         "country": "Ukraine",
         "representation": "6 / 80 (8%)",
-        "players": [
-          "Artstyle",
-          "Dendi",
-          "Funn1k",
-          "Goblak",
-          "Mag~",
-          "XBOCT"
-        ]
+        "players": ["Artstyle", "Dendi", "Funn1k", "Goblak", "Mag~", "XBOCT"]
       },
       {
         "country": "Australia",
         "representation": "4 / 80 (5%)",
-        "players": [
-          "blackshatan",
-          "Godot",
-          "Snoopy",
-          "xMusiCa"
-        ]
+        "players": ["blackshatan", "Godot", "Snoopy", "xMusiCa"]
       },
       {
         "country": "Canada",
         "representation": "4 / 80 (5%)",
-        "players": [
-          "1437",
-          "bLeeK",
-          "Jeyo",
-          "TC"
-        ]
+        "players": ["1437", "bLeeK", "Jeyo", "TC"]
       },
       {
         "country": "Singapore",
         "representation": "4 / 80 (5%)",
-        "players": [
-          "Hyhy",
-          "iceiceice",
-          "xFreedom",
-          "xy-"
-        ]
+        "players": ["Hyhy", "iceiceice", "xFreedom", "xy-"]
       },
       {
         "country": "Sweden",
         "representation": "4 / 80 (5%)",
-        "players": [
-          "Akke",
-          "Loda",
-          "Mirakel",
-          "Pajkatt"
-        ]
+        "players": ["Akke", "Loda", "Mirakel", "Pajkatt"]
       },
       {
         "country": "Denmark",
         "representation": "3 / 80 (4%)",
-        "players": [
-          "Maelk",
-          "MiSeRy",
-          "syndereN"
-        ]
+        "players": ["Maelk", "MiSeRy", "syndereN"]
       },
       {
         "country": "France",
         "representation": "3 / 80 (4%)",
-        "players": [
-          "7ckngMad",
-          "Funzii",
-          "Sockshka"
-        ]
+        "players": ["7ckngMad", "Funzii", "Sockshka"]
       },
       {
         "country": "Germany",
         "representation": "3 / 80 (4%)",
-        "players": [
-          "Black^",
-          "Kebap",
-          "KuroKy"
-        ]
+        "players": ["Black^", "Kebap", "KuroKy"]
       },
       {
         "country": "Netherlands",
         "representation": "2 / 80 (3%)",
-        "players": [
-          "SexyBamboe",
-          "SingSing"
-        ]
+        "players": ["SexyBamboe", "SingSing"]
       },
       {
         "country": "Croatia",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "Lacoste"
-        ]
+        "players": ["Lacoste"]
       },
       {
         "country": "Estonia",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "Puppey"
-        ]
+        "players": ["Puppey"]
       },
       {
         "country": "Macau",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "DDC"
-        ]
+        "players": ["DDC"]
       }
     ],
     "https://liquipedia.net/dota2/The_International/2013": [
@@ -771,91 +655,52 @@
       {
         "country": "Germany",
         "representation": "6 / 80 (8%)",
-        "players": [
-          "Black^",
-          "FATA-",
-          "H4nn1",
-          "KuroKy",
-          "paS",
-          "qojqva"
-        ]
+        "players": ["Black^", "FATA-", "H4nn1", "KuroKy", "paS", "qojqva"]
       },
       {
         "country": "Russia",
         "representation": "5 / 80 (6%)",
-        "players": [
-          "ARS-ART",
-          "Crazy",
-          "God",
-          "Illidan",
-          "NS"
-        ]
+        "players": ["ARS-ART", "Crazy", "God", "Illidan", "NS"]
       },
       {
         "country": "Canada",
         "representation": "4 / 80 (5%)",
-        "players": [
-          "1437",
-          "Aui_2000",
-          "TC",
-          "Waytosexy"
-        ]
+        "players": ["1437", "Aui_2000", "TC", "Waytosexy"]
       },
       {
         "country": "Ukraine",
         "representation": "4 / 80 (5%)",
-        "players": [
-          "Dendi",
-          "Funn1k",
-          "KSi",
-          "XBOCT"
-        ]
+        "players": ["Dendi", "Funn1k", "KSi", "XBOCT"]
       },
       {
         "country": "Denmark",
         "representation": "3 / 80 (4%)",
-        "players": [
-          "BigDaddy",
-          "MiSeRY",
-          "syndereN"
-        ]
+        "players": ["BigDaddy", "MiSeRY", "syndereN"]
       },
       {
         "country": "Singapore",
         "representation": "3 / 80 (4%)",
-        "players": [
-          "iceiceice",
-          "xFreedom",
-          "xy-"
-        ]
+        "players": ["iceiceice", "xFreedom", "xy-"]
       },
       {
         "country": "Estonia",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "Puppey"
-        ]
+        "players": ["Puppey"]
       },
       {
         "country": "Finland",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "Trixi"
-        ]
+        "players": ["Trixi"]
       },
       {
         "country": "Israel",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "Fly"
-        ]
+        "players": ["Fly"]
       },
       {
         "country": "Macau",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "ddc"
-        ]
+        "players": ["ddc"]
       }
     ],
     "https://liquipedia.net/dota2/The_International/2014": [
@@ -967,14 +812,7 @@
       {
         "country": "Germany",
         "representation": "6 / 95 (6%)",
-        "players": [
-          "Black^",
-          "FATA",
-          "H4nn1",
-          "KuroKy",
-          "paS",
-          "qojqva"
-        ]
+        "players": ["Black^", "FATA", "H4nn1", "KuroKy", "paS", "qojqva"]
       },
       {
         "country": "Ukraine",
@@ -991,70 +829,47 @@
       {
         "country": "South Korea",
         "representation": "5 / 95 (5%)",
-        "players": [
-          "Forev",
-          "Heen",
-          "March",
-          "QO",
-          "Reisen"
-        ]
+        "players": ["Forev", "Heen", "March", "QO", "Reisen"]
       },
       {
         "country": "Denmark",
         "representation": "2 / 95 (2%)",
-        "players": [
-          "BigDaddy",
-          "MiSeRy"
-        ]
+        "players": ["BigDaddy", "MiSeRy"]
       },
       {
         "country": "Estonia",
         "representation": "1 / 95 (1%)",
-        "players": [
-          "Puppey"
-        ]
+        "players": ["Puppey"]
       },
       {
         "country": "Finland",
         "representation": "1 / 95 (1%)",
-        "players": [
-          "Trixi"
-        ]
+        "players": ["Trixi"]
       },
       {
         "country": "Israel",
         "representation": "1 / 95 (1%)",
-        "players": [
-          "Fly"
-        ]
+        "players": ["Fly"]
       },
       {
         "country": "Macau",
         "representation": "1 / 95 (1%)",
-        "players": [
-          "DDC"
-        ]
+        "players": ["DDC"]
       },
       {
         "country": "Netherlands",
         "representation": "1 / 95 (1%)",
-        "players": [
-          "SingSing"
-        ]
+        "players": ["SingSing"]
       },
       {
         "country": "Romania",
         "representation": "1 / 95 (1%)",
-        "players": [
-          "bOne7"
-        ]
+        "players": ["bOne7"]
       },
       {
         "country": "Singapore",
         "representation": "1 / 95 (1%)",
-        "players": [
-          "iceiceice"
-        ]
+        "players": ["iceiceice"]
       }
     ],
     "https://liquipedia.net/dota2/The_International/2015": [
@@ -1109,154 +924,92 @@
       {
         "country": "South Korea",
         "representation": "7 / 80 (9%)",
-        "players": [
-          "Febby",
-          "FoREv",
-          "Heen",
-          "March",
-          "MP",
-          "QO",
-          "SunBhie"
-        ]
+        "players": ["Febby", "FoREv", "Heen", "March", "MP", "QO", "SunBhie"]
       },
       {
         "country": "Malaysia",
         "representation": "6 / 80 (8%)",
-        "players": [
-          "ChuaN",
-          "JoHnNy",
-          "Kecik Imba",
-          "kYxY",
-          "Mushi",
-          "Ohaiyo"
-        ]
+        "players": ["ChuaN", "JoHnNy", "Kecik Imba", "kYxY", "Mushi", "Ohaiyo"]
       },
       {
         "country": "Russia",
         "representation": "5 / 80 (6%)",
-        "players": [
-          "God",
-          "Illidan",
-          "Silent",
-          "SoNNeikO",
-          "yoky-"
-        ]
+        "players": ["God", "Illidan", "Silent", "SoNNeikO", "yoky-"]
       },
       {
         "country": "United States",
         "representation": "5 / 80 (6%)",
-        "players": [
-          "Fear",
-          "ppd",
-          "swindlemelonzz",
-          "UNiVeRsE",
-          "Zfreek"
-        ]
+        "players": ["Fear", "ppd", "swindlemelonzz", "UNiVeRsE", "Zfreek"]
       },
       {
         "country": "Canada",
         "representation": "4 / 80 (5%)",
-        "players": [
-          "Arteezy",
-          "Aui_2000",
-          "EternaLEnVy",
-          "MoonMeander"
-        ]
+        "players": ["Arteezy", "Aui_2000", "EternaLEnVy", "MoonMeander"]
       },
       {
         "country": "Denmark",
         "representation": "2 / 80 (3%)",
-        "players": [
-          "BigDaddy",
-          "MiSeRy"
-        ]
+        "players": ["BigDaddy", "MiSeRy"]
       },
       {
         "country": "Germany",
         "representation": "2 / 80 (3%)",
-        "players": [
-          "FATA-",
-          "KuroKy"
-        ]
+        "players": ["FATA-", "KuroKy"]
       },
       {
         "country": "Singapore",
         "representation": "2 / 80 (3%)",
-        "players": [
-          "iceiceice",
-          "NutZ"
-        ]
+        "players": ["iceiceice", "NutZ"]
       },
       {
         "country": "Sweden",
         "representation": "2 / 80 (3%)",
-        "players": [
-          "s4",
-          "zai"
-        ]
+        "players": ["s4", "zai"]
       },
       {
         "country": "Australia",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "kphoenii"
-        ]
+        "players": ["kphoenii"]
       },
       {
         "country": "Belarus",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "Fng"
-        ]
+        "players": ["Fng"]
       },
       {
         "country": "Estonia",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "Puppey"
-        ]
+        "players": ["Puppey"]
       },
       {
         "country": "Finland",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "JerAx"
-        ]
+        "players": ["JerAx"]
       },
       {
         "country": "Israel",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "Fly"
-        ]
+        "players": ["Fly"]
       },
       {
         "country": "Macau",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "DDC"
-        ]
+        "players": ["DDC"]
       },
       {
         "country": "Mexico",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "Zyzz"
-        ]
+        "players": ["Zyzz"]
       },
       {
         "country": "Pakistan",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "SumaiL"
-        ]
+        "players": ["SumaiL"]
       },
       {
         "country": "Romania",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "bOne7"
-        ]
+        "players": ["bOne7"]
       }
     ],
     "https://liquipedia.net/dota2/The_International/2016": [
@@ -1304,173 +1057,102 @@
       {
         "country": "United States",
         "representation": "6 / 80 (8%)",
-        "players": [
-          "BuLba",
-          "DeMoN",
-          "Fear",
-          "Moo",
-          "ppd",
-          "UNiVeRsE"
-        ]
+        "players": ["BuLba", "DeMoN", "Fear", "Moo", "ppd", "UNiVeRsE"]
       },
       {
         "country": "Malaysia",
         "representation": "5 / 80 (6%)",
-        "players": [
-          "343",
-          "ChuaN",
-          "MidOne",
-          "Mushi",
-          "Ohaiyo"
-        ]
+        "players": ["343", "ChuaN", "MidOne", "Mushi", "Ohaiyo"]
       },
       {
         "country": "Philippines",
         "representation": "5 / 80 (6%)",
-        "players": [
-          "DJ",
-          "eyyou",
-          "Kuku",
-          "Raven",
-          "Sam_H"
-        ]
+        "players": ["DJ", "eyyou", "Kuku", "Raven", "Sam_H"]
       },
       {
         "country": "South Korea",
         "representation": "5 / 80 (6%)",
-        "players": [
-          "DuBu",
-          "Febby",
-          "Forev",
-          "MP",
-          "QO"
-        ]
+        "players": ["DuBu", "Febby", "Forev", "MP", "QO"]
       },
       {
         "country": "Denmark",
         "representation": "4 / 80 (5%)",
-        "players": [
-          "Cr1t-",
-          "MiSeRy",
-          "n0tail",
-          "syndereN"
-        ]
+        "players": ["Cr1t-", "MiSeRy", "n0tail", "syndereN"]
       },
       {
         "country": "Germany",
         "representation": "4 / 80 (5%)",
-        "players": [
-          "FATA-",
-          "KheZu",
-          "KuroKy",
-          "qojqva"
-        ]
+        "players": ["FATA-", "KheZu", "KuroKy", "qojqva"]
       },
       {
         "country": "Ukraine",
         "representation": "4 / 80 (5%)",
-        "players": [
-          "Artstyle",
-          "Dendi",
-          "GeneRaL",
-          "Resolut1on"
-        ]
+        "players": ["Artstyle", "Dendi", "GeneRaL", "Resolut1on"]
       },
       {
         "country": "Canada",
         "representation": "3 / 80 (4%)",
-        "players": [
-          "Arteezy",
-          "EternaLEnVy",
-          "MoonMeander"
-        ]
+        "players": ["Arteezy", "EternaLEnVy", "MoonMeander"]
       },
       {
         "country": "Finland",
         "representation": "2 / 80 (3%)",
-        "players": [
-          "JerAx",
-          "MATUMBAMAN"
-        ]
+        "players": ["JerAx", "MATUMBAMAN"]
       },
       {
         "country": "Jordan",
         "representation": "2 / 80 (3%)",
-        "players": [
-          "Miracle-",
-          "YapzOr"
-        ]
+        "players": ["Miracle-", "YapzOr"]
       },
       {
         "country": "Russia",
         "representation": "2 / 80 (3%)",
-        "players": [
-          "Ditya Ra",
-          "SoNNeikO"
-        ]
+        "players": ["Ditya Ra", "SoNNeikO"]
       },
       {
         "country": "Australia",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "kpii"
-        ]
+        "players": ["kpii"]
       },
       {
         "country": "Bulgaria",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "MinD_ContRoL"
-        ]
+        "players": ["MinD_ContRoL"]
       },
       {
         "country": "Estonia",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "Puppey"
-        ]
+        "players": ["Puppey"]
       },
       {
         "country": "Israel",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "Fly"
-        ]
+        "players": ["Fly"]
       },
       {
         "country": "Macau",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "DDC"
-        ]
+        "players": ["DDC"]
       },
       {
         "country": "North Macedonia",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "Saksa"
-        ]
+        "players": ["Saksa"]
       },
       {
         "country": "Pakistan",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "SumaiL"
-        ]
+        "players": ["SumaiL"]
       },
       {
         "country": "Romania",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "w33"
-        ]
+        "players": ["w33"]
       },
       {
         "country": "Singapore",
         "representation": "1 / 80 (1%)",
-        "players": [
-          "iceiceice"
-        ]
+        "players": ["iceiceice"]
       }
     ],
     "https://liquipedia.net/dota2/The_International/2017": [
@@ -1522,197 +1204,117 @@
       {
         "country": "Peru",
         "representation": "5 / 90 (6%)",
-        "players": [
-          "Accel",
-          "Benjaz",
-          "Kingteka",
-          "Matthew",
-          "Timado"
-        ]
+        "players": ["Accel", "Benjaz", "Kingteka", "Matthew", "Timado"]
       },
       {
         "country": "Russia",
         "representation": "5 / 90 (6%)",
-        "players": [
-          "9pasha",
-          "Miposhka",
-          "RAMZES666",
-          "RodjER",
-          "Solo"
-        ]
+        "players": ["9pasha", "Miposhka", "RAMZES666", "RodjER", "Solo"]
       },
       {
         "country": "South Korea",
         "representation": "5 / 90 (6%)",
-        "players": [
-          "DuBu",
-          "Febby",
-          "Forev",
-          "MP",
-          "QO"
-        ]
+        "players": ["DuBu", "Febby", "Forev", "MP", "QO"]
       },
       {
         "country": "Ukraine",
         "representation": "5 / 90 (6%)",
-        "players": [
-          "fn",
-          "Ghostik",
-          "Lil",
-          "No[o]ne",
-          "Resolut1on"
-        ]
+        "players": ["fn", "Ghostik", "Lil", "No[o]ne", "Resolut1on"]
       },
       {
         "country": "Canada",
         "representation": "4 / 90 (4%)",
-        "players": [
-          "1437",
-          "Arteezy",
-          "Aui_2000",
-          "EternaLEnVy"
-        ]
+        "players": ["1437", "Arteezy", "Aui_2000", "EternaLEnVy"]
       },
       {
         "country": "Malaysia",
         "representation": "4 / 90 (4%)",
-        "players": [
-          "Ahfu",
-          "Ahjit",
-          "MidOne",
-          "Ohaiyo"
-        ]
+        "players": ["Ahfu", "Ahjit", "MidOne", "Ohaiyo"]
       },
       {
         "country": "United States",
         "representation": "4 / 90 (4%)",
-        "players": [
-          "BuLba",
-          "mason",
-          "MSS",
-          "UNiVeRsE"
-        ]
+        "players": ["BuLba", "mason", "MSS", "UNiVeRsE"]
       },
       {
         "country": "Germany",
         "representation": "3 / 90 (3%)",
-        "players": [
-          "FATA-",
-          "KheZu",
-          "KuroKy"
-        ]
+        "players": ["FATA-", "KheZu", "KuroKy"]
       },
       {
         "country": "Sweden",
         "representation": "3 / 90 (3%)",
-        "players": [
-          "pieliedie",
-          "s4",
-          "zai"
-        ]
+        "players": ["pieliedie", "s4", "zai"]
       },
       {
         "country": "Australia",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "ana",
-          "kpii"
-        ]
+        "players": ["ana", "kpii"]
       },
       {
         "country": "Denmark",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "Cr1t-",
-          "n0tail"
-        ]
+        "players": ["Cr1t-", "n0tail"]
       },
       {
         "country": "Finland",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "JerAx",
-          "MATUMBAMAN"
-        ]
+        "players": ["JerAx", "MATUMBAMAN"]
       },
       {
         "country": "Israel",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "33",
-          "Fly"
-        ]
+        "players": ["33", "Fly"]
       },
       {
         "country": "Jordan",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "Miracle-",
-          "YapzOr"
-        ]
+        "players": ["Miracle-", "YapzOr"]
       },
       {
         "country": "Belarus",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "j4"
-        ]
+        "players": ["j4"]
       },
       {
         "country": "Bosnia and Herzegovina",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "MiLAN"
-        ]
+        "players": ["MiLAN"]
       },
       {
         "country": "Bulgaria",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "MinD_ContRoL"
-        ]
+        "players": ["MinD_ContRoL"]
       },
       {
         "country": "Estonia",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Puppey"
-        ]
+        "players": ["Puppey"]
       },
       {
         "country": "Greece",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Keyser"
-        ]
+        "players": ["Keyser"]
       },
       {
         "country": "Lebanon",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "GH"
-        ]
+        "players": ["GH"]
       },
       {
         "country": "Macau",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "ddc"
-        ]
+        "players": ["ddc"]
       },
       {
         "country": "Pakistan",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "SumaiL"
-        ]
+        "players": ["SumaiL"]
       },
       {
         "country": "Serbia",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Swiftending"
-        ]
+        "players": ["Swiftending"]
       }
     ],
     "https://liquipedia.net/dota2/The_International/2018": [
@@ -1791,170 +1393,107 @@
       {
         "country": "Brazil",
         "representation": "4 / 90 (4%)",
-        "players": [
-          "Duster",
-          "hFn",
-          "Kingrd",
-          "tavo"
-        ]
+        "players": ["Duster", "hFn", "Kingrd", "tavo"]
       },
       {
         "country": "Malaysia",
         "representation": "4 / 90 (4%)",
-        "players": [
-          "MidOne",
-          "Moon",
-          "Mushi",
-          "xNova"
-        ]
+        "players": ["MidOne", "Moon", "Mushi", "xNova"]
       },
       {
         "country": "Sweden",
         "representation": "4 / 90 (4%)",
-        "players": [
-          "Pajkatt",
-          "pieliedie",
-          "s4",
-          "zai"
-        ]
+        "players": ["Pajkatt", "pieliedie", "s4", "zai"]
       },
       {
         "country": "Ukraine",
         "representation": "4 / 90 (4%)",
-        "players": [
-          "ALWAYSWANNAFLY",
-          "Iceberg",
-          "No[o]ne",
-          "Resolut1on"
-        ]
+        "players": ["ALWAYSWANNAFLY", "Iceberg", "No[o]ne", "Resolut1on"]
       },
       {
         "country": "Denmark",
         "representation": "3 / 90 (3%)",
-        "players": [
-          "Ace",
-          "Cr1t-",
-          "N0tail"
-        ]
+        "players": ["Ace", "Cr1t-", "N0tail"]
       },
       {
         "country": "Finland",
         "representation": "3 / 90 (3%)",
-        "players": [
-          "JerAx",
-          "MATUMBAMAN",
-          "Topson"
-        ]
+        "players": ["JerAx", "MATUMBAMAN", "Topson"]
       },
       {
         "country": "Australia",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "ana",
-          "kpii"
-        ]
+        "players": ["ana", "kpii"]
       },
       {
         "country": "Canada",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "EternaLEnVy",
-          "rtz"
-        ]
+        "players": ["EternaLEnVy", "rtz"]
       },
       {
         "country": "Germany",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "Fata",
-          "KuroKy"
-        ]
+        "players": ["Fata", "KuroKy"]
       },
       {
         "country": "Israel",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "33",
-          "Fly"
-        ]
+        "players": ["33", "Fly"]
       },
       {
         "country": "Jordan",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "Miracle-",
-          "YapzOr"
-        ]
+        "players": ["Miracle-", "YapzOr"]
       },
       {
         "country": "Bulgaria",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "MinD_ContRoL"
-        ]
+        "players": ["MinD_ContRoL"]
       },
       {
         "country": "Estonia",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Puppey"
-        ]
+        "players": ["Puppey"]
       },
       {
         "country": "France",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Ceb"
-        ]
+        "players": ["Ceb"]
       },
       {
         "country": "Lebanon",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "GH"
-        ]
+        "players": ["GH"]
       },
       {
         "country": "Macau",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "ddc"
-        ]
+        "players": ["ddc"]
       },
       {
         "country": "Non-representing",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Nofear"
-        ]
+        "players": ["Nofear"]
       },
       {
         "country": "Pakistan",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "SumaiL"
-        ]
+        "players": ["SumaiL"]
       },
       {
         "country": "Romania",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "w33"
-        ]
+        "players": ["w33"]
       },
       {
         "country": "Singapore",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "iceiceice"
-        ]
+        "players": ["iceiceice"]
       },
       {
         "country": "Thailand",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Jabz"
-        ]
+        "players": ["Jabz"]
       }
     ],
     "https://liquipedia.net/dota2/The_International/2019": [
@@ -2000,233 +1539,142 @@
       {
         "country": "Sweden",
         "representation": "6 / 90 (7%)",
-        "players": [
-          "Boxi",
-          "iNSaNiA",
-          "miCKe",
-          "pieliedie",
-          "s4",
-          "zai"
-        ]
+        "players": ["Boxi", "iNSaNiA", "miCKe", "pieliedie", "s4", "zai"]
       },
       {
         "country": "Malaysia",
         "representation": "5 / 90 (6%)",
-        "players": [
-          "ah fu",
-          "MidOne",
-          "Moon",
-          "vtFαded",
-          "xNova"
-        ]
+        "players": ["ah fu", "MidOne", "Moon", "vtFαded", "xNova"]
       },
       {
         "country": "Russia",
         "representation": "5 / 90 (6%)",
-        "players": [
-          "9pasha",
-          "RAMZES666",
-          "RodjER",
-          "Solo",
-          "SoNNeikO"
-        ]
+        "players": ["9pasha", "RAMZES666", "RodjER", "Solo", "SoNNeikO"]
       },
       {
         "country": "United States",
         "representation": "5 / 90 (6%)",
-        "players": [
-          "CCnC",
-          "MSS",
-          "ppd",
-          "Sneyking",
-          "YawaR"
-        ]
+        "players": ["CCnC", "MSS", "ppd", "Sneyking", "YawaR"]
       },
       {
         "country": "Denmark",
         "representation": "4 / 90 (4%)",
-        "players": [
-          "Ace",
-          "Cr1t-",
-          "MISERY",
-          "N0tail"
-        ]
+        "players": ["Ace", "Cr1t-", "MISERY", "N0tail"]
       },
       {
         "country": "Germany",
         "representation": "4 / 90 (4%)",
-        "players": [
-          "Fata",
-          "KheZu",
-          "KuroKy",
-          "qojqva"
-        ]
+        "players": ["Fata", "KheZu", "KuroKy", "qojqva"]
       },
       {
         "country": "Peru",
         "representation": "4 / 90 (4%)",
-        "players": [
-          "Chris Luck",
-          "K1",
-          "Scofield",
-          "Stinger"
-        ]
+        "players": ["Chris Luck", "K1", "Scofield", "Stinger"]
       },
       {
         "country": "Finland",
         "representation": "3 / 90 (3%)",
-        "players": [
-          "JerAx",
-          "MATUMBAMAN",
-          "Topson"
-        ]
+        "players": ["JerAx", "MATUMBAMAN", "Topson"]
       },
       {
         "country": "Israel",
         "representation": "3 / 90 (3%)",
-        "players": [
-          "33",
-          "Fly",
-          "MagicaL"
-        ]
+        "players": ["33", "Fly", "MagicaL"]
       },
       {
         "country": "Australia",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "ana",
-          "kpii"
-        ]
+        "players": ["ana", "kpii"]
       },
       {
         "country": "Bulgaria",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "MinD_ContRoL",
-          "Nikobaby"
-        ]
+        "players": ["MinD_ContRoL", "Nikobaby"]
       },
       {
         "country": "Jordan",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "Miracle-",
-          "YapzOr"
-        ]
+        "players": ["Miracle-", "YapzOr"]
       },
       {
         "country": "Kyrgyzstan",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "Blizzy",
-          "Zayac"
-        ]
+        "players": ["Blizzy", "Zayac"]
       },
       {
         "country": "Ukraine",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "Crystallize",
-          "No[o]ne"
-        ]
+        "players": ["Crystallize", "No[o]ne"]
       },
       {
         "country": "Bolivia",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Wisper"
-        ]
+        "players": ["Wisper"]
       },
       {
         "country": "Bosnia and Herzegovina",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "MiLAN"
-        ]
+        "players": ["MiLAN"]
       },
       {
         "country": "Canada",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Arteezy"
-        ]
+        "players": ["Arteezy"]
       },
       {
         "country": "Estonia",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Puppey"
-        ]
+        "players": ["Puppey"]
       },
       {
         "country": "France",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Ceb"
-        ]
+        "players": ["Ceb"]
       },
       {
         "country": "Lebanon",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "GH"
-        ]
+        "players": ["GH"]
       },
       {
         "country": "North Macedonia",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Saksa"
-        ]
+        "players": ["Saksa"]
       },
       {
         "country": "Norway",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Taiga"
-        ]
+        "players": ["Taiga"]
       },
       {
         "country": "Pakistan",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "SumaiL"
-        ]
+        "players": ["SumaiL"]
       },
       {
         "country": "Poland",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Nisha"
-        ]
+        "players": ["Nisha"]
       },
       {
         "country": "Romania",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "w33"
-        ]
+        "players": ["w33"]
       },
       {
         "country": "Singapore",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "iceiceice"
-        ]
+        "players": ["iceiceice"]
       },
       {
         "country": "South Korea",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "DuBu"
-        ]
+        "players": ["DuBu"]
       },
       {
         "country": "Thailand",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Jabz"
-        ]
+        "players": ["Jabz"]
       }
     ],
     "https://liquipedia.net/dota2/The_International/2021": [
@@ -2290,203 +1738,127 @@
       {
         "country": "Brazil",
         "representation": "6 / 90 (7%)",
-        "players": [
-          "4dr",
-          "Costabile",
-          "KJ",
-          "Lelis",
-          "Tavo",
-          "Thiolicor"
-        ]
+        "players": ["4dr", "Costabile", "KJ", "Lelis", "Tavo", "Thiolicor"]
       },
       {
         "country": "Philippines",
         "representation": "5 / 90 (6%)",
-        "players": [
-          "Abed",
-          "DJ",
-          "Karl",
-          "Kuku",
-          "Raven"
-        ]
+        "players": ["Abed", "DJ", "Karl", "Kuku", "Raven"]
       },
       {
         "country": "Malaysia",
         "representation": "4 / 90 (4%)",
-        "players": [
-          "ChYuan",
-          "JT-",
-          "NothingToSay",
-          "Oli"
-        ]
+        "players": ["ChYuan", "JT-", "NothingToSay", "Oli"]
       },
       {
         "country": "Sweden",
         "representation": "4 / 90 (4%)",
-        "players": [
-          "Handsken",
-          "LIMMP",
-          "s4",
-          "zai"
-        ]
+        "players": ["Handsken", "LIMMP", "s4", "zai"]
       },
       {
         "country": "United States",
         "representation": "4 / 90 (4%)",
-        "players": [
-          "MSS",
-          "Quinn",
-          "SVG",
-          "YawaR"
-        ]
+        "players": ["MSS", "Quinn", "SVG", "YawaR"]
       },
       {
         "country": "Canada",
         "representation": "3 / 90 (3%)",
-        "players": [
-          "Arteezy",
-          "Bryle",
-          "MoonMeander"
-        ]
+        "players": ["Arteezy", "Bryle", "MoonMeander"]
       },
       {
         "country": "Denmark",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "Cr1t-",
-          "N0tail"
-        ]
+        "players": ["Cr1t-", "N0tail"]
       },
       {
         "country": "Finland",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "MATUMBAMAN",
-          "Topson"
-        ]
+        "players": ["MATUMBAMAN", "Topson"]
       },
       {
         "country": "Indonesia",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "Whitemon",
-          "Xepher"
-        ]
+        "players": ["Whitemon", "Xepher"]
       },
       {
         "country": "Singapore",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "Deth",
-          "iceiceice"
-        ]
+        "players": ["Deth", "iceiceice"]
       },
       {
         "country": "Thailand",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "23savage",
-          "Jabz"
-        ]
+        "players": ["23savage", "Jabz"]
       },
       {
         "country": "Ukraine",
         "representation": "2 / 90 (2%)",
-        "players": [
-          "Mira",
-          "Yatoro"
-        ]
+        "players": ["Mira", "Yatoro"]
       },
       {
         "country": "Belarus",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "fng"
-        ]
+        "players": ["fng"]
       },
       {
         "country": "Bolivia",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Wisper"
-        ]
+        "players": ["Wisper"]
       },
       {
         "country": "Bulgaria",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Nikobaby"
-        ]
+        "players": ["Nikobaby"]
       },
       {
         "country": "Czechia",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "SabeRLight-"
-        ]
+        "players": ["SabeRLight-"]
       },
       {
         "country": "Estonia",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Puppey"
-        ]
+        "players": ["Puppey"]
       },
       {
         "country": "France",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Ceb"
-        ]
+        "players": ["Ceb"]
       },
       {
         "country": "Israel",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Fly"
-        ]
+        "players": ["Fly"]
       },
       {
         "country": "Jordan",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "YapzOr"
-        ]
+        "players": ["YapzOr"]
       },
       {
         "country": "Moldova",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Save-"
-        ]
+        "players": ["Save-"]
       },
       {
         "country": "North Macedonia",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Saksa"
-        ]
+        "players": ["Saksa"]
       },
       {
         "country": "Pakistan",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "SumaiL"
-        ]
+        "players": ["SumaiL"]
       },
       {
         "country": "Poland",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Nisha"
-        ]
+        "players": ["Nisha"]
       },
       {
         "country": "South Korea",
         "representation": "1 / 90 (1%)",
-        "players": [
-          "Dubu"
-        ]
+        "players": ["Dubu"]
       }
     ],
     "https://liquipedia.net/dota2/The_International/2022": [
@@ -2563,224 +1935,142 @@
       {
         "country": "Germany",
         "representation": "4 / 100 (4%)",
-        "players": [
-          "Fata",
-          "Nine",
-          "Stormstormer",
-          "tOfu"
-        ]
+        "players": ["Fata", "Nine", "Stormstormer", "tOfu"]
       },
       {
         "country": "Sweden",
         "representation": "4 / 100 (4%)",
-        "players": [
-          "Boxi",
-          "iNSaNiA",
-          "miCKe",
-          "zai"
-        ]
+        "players": ["Boxi", "iNSaNiA", "miCKe", "zai"]
       },
       {
         "country": "Ukraine",
         "representation": "4 / 100 (4%)",
-        "players": [
-          "Mira",
-          "Resolut1on",
-          "Yatoro",
-          "Yuragi"
-        ]
+        "players": ["Mira", "Resolut1on", "Yatoro", "Yuragi"]
       },
       {
         "country": "United States",
         "representation": "4 / 100 (4%)",
-        "players": [
-          "MSS",
-          "Quinn",
-          "Sneyking",
-          "YawaR"
-        ]
+        "players": ["MSS", "Quinn", "Sneyking", "YawaR"]
       },
       {
         "country": "Brazil",
         "representation": "3 / 100 (3%)",
-        "players": [
-          "4nalog",
-          "LESLÃO",
-          "Thiolicor"
-        ]
+        "players": ["4nalog", "LESLÃO", "Thiolicor"]
       },
       {
         "country": "Canada",
         "representation": "3 / 100 (3%)",
-        "players": [
-          "Arteezy",
-          "Bryle",
-          "MoonMeander"
-        ]
+        "players": ["Arteezy", "Bryle", "MoonMeander"]
       },
       {
         "country": "Indonesia",
         "representation": "3 / 100 (3%)",
-        "players": [
-          "Fbz",
-          "Hyde",
-          "Mikoto"
-        ]
+        "players": ["Fbz", "Hyde", "Mikoto"]
       },
       {
         "country": "Malaysia",
         "representation": "3 / 100 (3%)",
-        "players": [
-          "Ghost",
-          "NothingToSay",
-          "xNova"
-        ]
+        "players": ["Ghost", "NothingToSay", "xNova"]
       },
       {
         "country": "Thailand",
         "representation": "3 / 100 (3%)",
-        "players": [
-          "23savage",
-          "Jabz",
-          "Q"
-        ]
+        "players": ["23savage", "Jabz", "Q"]
       },
       {
         "country": "Czechia",
         "representation": "2 / 100 (2%)",
-        "players": [
-          "BOOM",
-          "SabeRLight-"
-        ]
+        "players": ["BOOM", "SabeRLight-"]
       },
       {
         "country": "Denmark",
         "representation": "2 / 100 (2%)",
-        "players": [
-          "Ace",
-          "Cr1t-"
-        ]
+        "players": ["Ace", "Cr1t-"]
       },
       {
         "country": "Israel",
         "representation": "2 / 100 (2%)",
-        "players": [
-          "33",
-          "Fly"
-        ]
+        "players": ["33", "Fly"]
       },
       {
         "country": "Netherlands",
         "representation": "2 / 100 (2%)",
-        "players": [
-          "Crystallis",
-          "Seleri"
-        ]
+        "players": ["Crystallis", "Seleri"]
       },
       {
         "country": "Australia",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "kpii"
-        ]
+        "players": ["kpii"]
       },
       {
         "country": "Austria",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "Tobi"
-        ]
+        "players": ["Tobi"]
       },
       {
         "country": "Belarus",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "Fishman"
-        ]
+        "players": ["Fishman"]
       },
       {
         "country": "Bolivia",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "Wisper"
-        ]
+        "players": ["Wisper"]
       },
       {
         "country": "Bulgaria",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "bzm"
-        ]
+        "players": ["bzm"]
       },
       {
         "country": "Estonia",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "Puppey"
-        ]
+        "players": ["Puppey"]
       },
       {
         "country": "Finland",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "MATUMBAMAN"
-        ]
+        "players": ["MATUMBAMAN"]
       },
       {
         "country": "Jordan",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "ATF"
-        ]
+        "players": ["ATF"]
       },
       {
         "country": "Kyrgyzstan",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "Zayac"
-        ]
+        "players": ["Zayac"]
       },
       {
         "country": "Laos",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "JaCkky"
-        ]
+        "players": ["JaCkky"]
       },
       {
         "country": "North Macedonia",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "Saksa"
-        ]
+        "players": ["Saksa"]
       },
       {
         "country": "Norway",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "Taiga"
-        ]
+        "players": ["Taiga"]
       },
       {
         "country": "Poland",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "Nisha"
-        ]
+        "players": ["Nisha"]
       },
       {
         "country": "Slovakia",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "skiter"
-        ]
+        "players": ["skiter"]
       },
       {
         "country": "South Korea",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "DuBu"
-        ]
+        "players": ["DuBu"]
       }
     ],
     "https://liquipedia.net/dota2/The_International/2022/Last_Chance_Qualifier": [
@@ -2817,152 +2107,92 @@
       {
         "country": "Philippines",
         "representation": "6 / 60 (10%)",
-        "players": [
-          "eyyou",
-          "Force",
-          "Kuku",
-          "Lelouch-",
-          "Natsumi-",
-          "Xavius"
-        ]
+        "players": ["eyyou", "Force", "Kuku", "Lelouch-", "Natsumi-", "Xavius"]
       },
       {
         "country": "Russia",
         "representation": "6 / 60 (10%)",
-        "players": [
-          "DM",
-          "gpk",
-          "RAMZES666",
-          "Solo",
-          "Xakoda",
-          "yamich"
-        ]
+        "players": ["DM", "gpk", "RAMZES666", "Solo", "Xakoda", "yamich"]
       },
       {
         "country": "United States",
         "representation": "6 / 60 (10%)",
-        "players": [
-          "Gunnar",
-          "Husky",
-          "Moo",
-          "Sammyboy",
-          "Yves",
-          "ZFreek"
-        ]
+        "players": ["Gunnar", "Husky", "Moo", "Sammyboy", "Yves", "ZFreek"]
       },
       {
         "country": "Sweden",
         "representation": "4 / 60 (7%)",
-        "players": [
-          "Boxi",
-          "iNSaNiA",
-          "miCKe",
-          "zai"
-        ]
+        "players": ["Boxi", "iNSaNiA", "miCKe", "zai"]
       },
       {
         "country": "Ukraine",
         "representation": "4 / 60 (7%)",
-        "players": [
-          "laise",
-          "No[o]ne-",
-          "Resolut1on",
-          "V-Tune"
-        ]
+        "players": ["laise", "No[o]ne-", "Resolut1on", "V-Tune"]
       },
       {
         "country": "Ecuador",
         "representation": "2 / 60 (3%)",
-        "players": [
-          "Sebas",
-          "slad1n-"
-        ]
+        "players": ["Sebas", "slad1n-"]
       },
       {
         "country": "Finland",
         "representation": "2 / 60 (3%)",
-        "players": [
-          "MATUMBAMAN",
-          "Topson"
-        ]
+        "players": ["MATUMBAMAN", "Topson"]
       },
       {
         "country": "Indonesia",
         "representation": "2 / 60 (3%)",
-        "players": [
-          "Whitemon",
-          "Xepher"
-        ]
+        "players": ["Whitemon", "Xepher"]
       },
       {
         "country": "Australia",
         "representation": "1 / 60 (2%)",
-        "players": [
-          "ana"
-        ]
+        "players": ["ana"]
       },
       {
         "country": "Belgium",
         "representation": "1 / 60 (2%)",
-        "players": [
-          "Davai Lama"
-        ]
+        "players": ["Davai Lama"]
       },
       {
         "country": "Bolivia",
         "representation": "1 / 60 (2%)",
-        "players": [
-          "Michael-"
-        ]
+        "players": ["Michael-"]
       },
       {
         "country": "Brazil",
         "representation": "1 / 60 (2%)",
-        "players": [
-          "Costabile"
-        ]
+        "players": ["Costabile"]
       },
       {
         "country": "Estonia",
         "representation": "1 / 60 (2%)",
-        "players": [
-          "Puppey"
-        ]
+        "players": ["Puppey"]
       },
       {
         "country": "Kyrgyzstan",
         "representation": "1 / 60 (2%)",
-        "players": [
-          "Zayac"
-        ]
+        "players": ["Zayac"]
       },
       {
         "country": "Netherlands",
         "representation": "1 / 60 (2%)",
-        "players": [
-          "Crystallis"
-        ]
+        "players": ["Crystallis"]
       },
       {
         "country": "Non-representing",
         "representation": "1 / 60 (2%)",
-        "players": [
-          "swedenstrong"
-        ]
+        "players": ["swedenstrong"]
       },
       {
         "country": "Poland",
         "representation": "1 / 60 (2%)",
-        "players": [
-          "Nisha"
-        ]
+        "players": ["Nisha"]
       },
       {
         "country": "Serbia",
         "representation": "1 / 60 (2%)",
-        "players": [
-          "Alexxo"
-        ]
+        "players": ["Alexxo"]
       }
     ],
     "https://liquipedia.net/dota2/The_International/2023": [
@@ -3030,209 +2260,127 @@
       {
         "country": "Brazil",
         "representation": "6 / 100 (6%)",
-        "players": [
-          "4nalog",
-          "Costabile",
-          "fcr",
-          "Kingrd",
-          "KJ",
-          "Lelis"
-        ]
+        "players": ["4nalog", "Costabile", "fcr", "Kingrd", "KJ", "Lelis"]
       },
       {
         "country": "United States",
         "representation": "5 / 100 (5%)",
-        "players": [
-          "Gunnar",
-          "Moo",
-          "Quinn",
-          "Sneyking",
-          "Yamsun"
-        ]
+        "players": ["Gunnar", "Moo", "Quinn", "Sneyking", "Yamsun"]
       },
       {
         "country": "Malaysia",
         "representation": "4 / 100 (4%)",
-        "players": [
-          "ah fu",
-          "MidOne",
-          "NothingToSay",
-          "Oli~"
-        ]
+        "players": ["ah fu", "MidOne", "NothingToSay", "Oli~"]
       },
       {
         "country": "Sweden",
         "representation": "4 / 100 (4%)",
-        "players": [
-          "Boxi",
-          "Insania",
-          "miCKe",
-          "zai"
-        ]
+        "players": ["Boxi", "Insania", "miCKe", "zai"]
       },
       {
         "country": "Ukraine",
         "representation": "4 / 100 (4%)",
-        "players": [
-          "kaori",
-          "Mira",
-          "No[o]ne-",
-          "Yatoro"
-        ]
+        "players": ["kaori", "Mira", "No[o]ne-", "Yatoro"]
       },
       {
         "country": "Belarus",
         "representation": "3 / 100 (3%)",
-        "players": [
-          "Fishman",
-          "Fng",
-          "Knight~"
-        ]
+        "players": ["Fishman", "Fng", "Knight~"]
       },
       {
         "country": "Germany",
         "representation": "3 / 100 (3%)",
-        "players": [
-          "Nine",
-          "Stormstormer",
-          "tOfu"
-        ]
+        "players": ["Nine", "Stormstormer", "tOfu"]
       },
       {
         "country": "Philippines",
         "representation": "3 / 100 (3%)",
-        "players": [
-          "Abed",
-          "Gabbi",
-          "Jaunuel"
-        ]
+        "players": ["Abed", "Gabbi", "Jaunuel"]
       },
       {
         "country": "Thailand",
         "representation": "3 / 100 (3%)",
-        "players": [
-          "23savage",
-          "Jabz",
-          "Q"
-        ]
+        "players": ["23savage", "Jabz", "Q"]
       },
       {
         "country": "Canada",
         "representation": "2 / 100 (2%)",
-        "players": [
-          "Arteezy",
-          "Bryle"
-        ]
+        "players": ["Arteezy", "Bryle"]
       },
       {
         "country": "Denmark",
         "representation": "2 / 100 (2%)",
-        "players": [
-          "Ace",
-          "Cr1t-"
-        ]
+        "players": ["Ace", "Cr1t-"]
       },
       {
         "country": "Indonesia",
         "representation": "2 / 100 (2%)",
-        "players": [
-          "Mikoto",
-          "Whitemon"
-        ]
+        "players": ["Mikoto", "Whitemon"]
       },
       {
         "country": "Israel",
         "representation": "2 / 100 (2%)",
-        "players": [
-          "33",
-          "Fly"
-        ]
+        "players": ["33", "Fly"]
       },
       {
         "country": "Kazakhstan",
         "representation": "2 / 100 (2%)",
-        "players": [
-          "TA2000",
-          "watson"
-        ]
+        "players": ["TA2000", "watson"]
       },
       {
         "country": "Lebanon",
         "representation": "2 / 100 (2%)",
-        "players": [
-          "No!ob",
-          "OmaR"
-        ]
+        "players": ["No!ob", "OmaR"]
       },
       {
         "country": "Austria",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "Tobi"
-        ]
+        "players": ["Tobi"]
       },
       {
         "country": "Bolivia",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "Wisper"
-        ]
+        "players": ["Wisper"]
       },
       {
         "country": "Bulgaria",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "MinD_ContRoL"
-        ]
+        "players": ["MinD_ContRoL"]
       },
       {
         "country": "Czechia",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "SabeRLight-"
-        ]
+        "players": ["SabeRLight-"]
       },
       {
         "country": "Finland",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "Topson"
-        ]
+        "players": ["Topson"]
       },
       {
         "country": "Moldova",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "Save-"
-        ]
+        "players": ["Save-"]
       },
       {
         "country": "Netherlands",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "Seleri"
-        ]
+        "players": ["Seleri"]
       },
       {
         "country": "Poland",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "Nisha"
-        ]
+        "players": ["Nisha"]
       },
       {
         "country": "Slovakia",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "skiter"
-        ]
+        "players": ["skiter"]
       },
       {
         "country": "United Kingdom",
         "representation": "1 / 100 (1%)",
-        "players": [
-          "Ari"
-        ]
+        "players": ["Ari"]
       }
     ],
     "https://liquipedia.net/dota2/The_International/2023/China": [
@@ -3304,21 +2452,12 @@
       {
         "country": "Malaysia",
         "representation": "6 / 65 (9%)",
-        "players": [
-          "Eren",
-          "GaN-",
-          "Ghost",
-          "JT-",
-          "ponyo",
-          "zeal"
-        ]
+        "players": ["Eren", "GaN-", "Ghost", "JT-", "ponyo", "zeal"]
       },
       {
         "country": "Pakistan",
         "representation": "1 / 65 (2%)",
-        "players": [
-          "SumaiL"
-        ]
+        "players": ["SumaiL"]
       }
     ],
     "https://liquipedia.net/dota2/The_International/2023/Eastern_Europe": [
@@ -3406,17 +2545,12 @@
       {
         "country": "Kyrgyzstan",
         "representation": "2 / 60 (3%)",
-        "players": [
-          "dream`",
-          "k8t"
-        ]
+        "players": ["dream`", "k8t"]
       },
       {
         "country": "Non-representing",
         "representation": "1 / 60 (2%)",
-        "players": [
-          "Otaker"
-        ]
+        "players": ["Otaker"]
       }
     ],
     "https://liquipedia.net/dota2/The_International/2023/North_America": [
@@ -3488,98 +2622,67 @@
       {
         "country": "Brazil",
         "representation": "3 / 65 (5%)",
-        "players": [
-          "Duster",
-          "Lelis",
-          "Yanbura"
-        ]
+        "players": ["Duster", "Lelis", "Yanbura"]
       },
       {
         "country": "Canada",
         "representation": "2 / 65 (3%)",
-        "players": [
-          "boris",
-          "high shaggy"
-        ]
+        "players": ["boris", "high shaggy"]
       },
       {
         "country": "Jordan",
         "representation": "2 / 65 (3%)",
-        "players": [
-          "islA",
-          "wakemeup"
-        ]
+        "players": ["islA", "wakemeup"]
       },
       {
         "country": "Mexico",
         "representation": "2 / 65 (3%)",
-        "players": [
-          "lundd",
-          "N1ne"
-        ]
+        "players": ["lundd", "N1ne"]
       },
       {
         "country": "Belarus",
         "representation": "1 / 65 (2%)",
-        "players": [
-          "Sunlight"
-        ]
+        "players": ["Sunlight"]
       },
       {
         "country": "Bulgaria",
         "representation": "1 / 65 (2%)",
-        "players": [
-          "CTOMAHEH1"
-        ]
+        "players": ["CTOMAHEH1"]
       },
       {
         "country": "Czechia",
         "representation": "1 / 65 (2%)",
-        "players": [
-          "Ade"
-        ]
+        "players": ["Ade"]
       },
       {
         "country": "Finland",
         "representation": "1 / 65 (2%)",
-        "players": [
-          "MTD"
-        ]
+        "players": ["MTD"]
       },
       {
         "country": "Norway",
         "representation": "1 / 65 (2%)",
-        "players": [
-          "Taiga"
-        ]
+        "players": ["Taiga"]
       },
       {
         "country": "Pakistan",
         "representation": "1 / 65 (2%)",
-        "players": [
-          "Aeon"
-        ]
+        "players": ["Aeon"]
       },
       {
         "country": "Russia",
         "representation": "1 / 65 (2%)",
-        "players": [
-          "solji;"
-        ]
+        "players": ["solji;"]
       },
       {
         "country": "Slovakia",
         "representation": "1 / 65 (2%)",
-        "players": [
-          "SlaweE"
-        ]
+        "players": ["SlaweE"]
       },
       {
         "country": "Syria",
         "representation": "1 / 65 (2%)",
-        "players": [
-          "-SouL"
-        ]
+        "players": ["-SouL"]
       }
     ],
     "https://liquipedia.net/dota2/The_International/2023/South_America": [
@@ -3647,32 +2750,22 @@
       {
         "country": "Bolivia",
         "representation": "3 / 55 (5%)",
-        "players": [
-          "Lissex",
-          "Michael~",
-          "Oscar"
-        ]
+        "players": ["Lissex", "Michael~", "Oscar"]
       },
       {
         "country": "Argentina",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "Hermit"
-        ]
+        "players": ["Hermit"]
       },
       {
         "country": "Belarus",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "Knight~"
-        ]
+        "players": ["Knight~"]
       },
       {
         "country": "Ecuador",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "SebaS"
-        ]
+        "players": ["SebaS"]
       }
     ],
     "https://liquipedia.net/dota2/The_International/2023/Southeast_Asia": [
@@ -3749,324 +2842,209 @@
       {
         "country": "Thailand",
         "representation": "5 / 65 (8%)",
-        "players": [
-          "Boombui",
-          "Fearless",
-          "KNP",
-          "LionaX",
-          "Masaros"
-        ]
+        "players": ["Boombui", "Fearless", "KNP", "LionaX", "Masaros"]
       },
       {
         "country": "Mongolia",
         "representation": "3 / 65 (5%)",
-        "players": [
-          "FortuneSoul",
-          "khishka",
-          "NARMAN"
-        ]
+        "players": ["FortuneSoul", "khishka", "NARMAN"]
       },
       {
         "country": "Laos",
         "representation": "2 / 65 (3%)",
-        "players": [
-          "BeeBie",
-          "JaCkky"
-        ]
+        "players": ["BeeBie", "JaCkky"]
       },
       {
         "country": "Vietnam",
         "representation": "2 / 65 (3%)",
-        "players": [
-          "458",
-          "Red"
-        ]
+        "players": ["458", "Red"]
       },
       {
         "country": "Australia",
         "representation": "1 / 65 (2%)",
-        "players": [
-          "kpii"
-        ]
+        "players": ["kpii"]
       },
       {
         "country": "China",
         "representation": "1 / 65 (2%)",
-        "players": [
-          "BoBoKa"
-        ]
+        "players": ["BoBoKa"]
       },
       {
         "country": "India",
         "representation": "1 / 65 (2%)",
-        "players": [
-          "Krish"
-        ]
+        "players": ["Krish"]
       },
       {
         "country": "Romania",
         "representation": "1 / 65 (2%)",
-        "players": [
-          "Ulnit"
-        ]
+        "players": ["Ulnit"]
       },
       {
         "country": "South Africa",
         "representation": "1 / 65 (2%)",
-        "players": [
-          "Castaway"
-        ]
+        "players": ["Castaway"]
       },
       {
         "country": "South Korea",
         "representation": "1 / 65 (2%)",
-        "players": [
-          "DuBu"
-        ]
+        "players": ["DuBu"]
       },
       {
         "country": "Ukraine",
         "representation": "1 / 65 (2%)",
-        "players": [
-          "No[o]ne-"
-        ]
+        "players": ["No[o]ne-"]
       }
     ],
     "https://liquipedia.net/dota2/The_International/2023/Western_Europe": [
       {
         "country": "Russia",
         "representation": "6 / 55 (11%)",
-        "players": [
-          "Daxak",
-          "DM",
-          "Dukalis",
-          "Kataomi`",
-          "WoE",
-          "yamich"
-        ]
+        "players": ["Daxak", "DM", "Dukalis", "Kataomi`", "WoE", "yamich"]
       },
       {
         "country": "Sweden",
         "representation": "5 / 55 (9%)",
-        "players": [
-          "charlie",
-          "Handsken",
-          "Pablo",
-          "s4",
-          "Xibbe"
-        ]
+        "players": ["charlie", "Handsken", "Pablo", "s4", "Xibbe"]
       },
       {
         "country": "Ukraine",
         "representation": "4 / 55 (7%)",
-        "players": [
-          "kaori",
-          "lorenof",
-          "Merlin",
-          "Yuragi"
-        ]
+        "players": ["kaori", "lorenof", "Merlin", "Yuragi"]
       },
       {
         "country": "Germany",
         "representation": "3 / 55 (5%)",
-        "players": [
-          "KuroKy",
-          "Mo13ei",
-          "Stormstormer"
-        ]
+        "players": ["KuroKy", "Mo13ei", "Stormstormer"]
       },
       {
         "country": "Greece",
         "representation": "3 / 55 (5%)",
-        "players": [
-          "dEsire",
-          "Skylark",
-          "SsaSpartan"
-        ]
+        "players": ["dEsire", "Skylark", "SsaSpartan"]
       },
       {
         "country": "Lebanon",
         "representation": "3 / 55 (5%)",
-        "players": [
-          "GH",
-          "No!ob",
-          "OmaR"
-        ]
+        "players": ["GH", "No!ob", "OmaR"]
       },
       {
         "country": "Belarus",
         "representation": "2 / 55 (4%)",
-        "players": [
-          "Fishman",
-          "RESPECT"
-        ]
+        "players": ["Fishman", "RESPECT"]
       },
       {
         "country": "Bulgaria",
         "representation": "2 / 55 (4%)",
-        "players": [
-          "bzm",
-          "MinD_ContRoL"
-        ]
+        "players": ["bzm", "MinD_ContRoL"]
       },
       {
         "country": "Georgia",
         "representation": "2 / 55 (4%)",
-        "players": [
-          "Nande",
-          "W1sh-"
-        ]
+        "players": ["Nande", "W1sh-"]
       },
       {
         "country": "Kazakhstan",
         "representation": "2 / 55 (4%)",
-        "players": [
-          "TA2000",
-          "watson"
-        ]
+        "players": ["TA2000", "watson"]
       },
       {
         "country": "Netherlands",
         "representation": "2 / 55 (4%)",
-        "players": [
-          "Crystallis",
-          "Shad"
-        ]
+        "players": ["Crystallis", "Shad"]
       },
       {
         "country": "Philippines",
         "representation": "2 / 55 (4%)",
-        "players": [
-          "Armel",
-          "Gabbi"
-        ]
+        "players": ["Armel", "Gabbi"]
       },
       {
         "country": "Serbia",
         "representation": "2 / 55 (4%)",
-        "players": [
-          "Alex",
-          "LeBronDota"
-        ]
+        "players": ["Alex", "LeBronDota"]
       },
       {
         "country": "Austria",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "Tobi"
-        ]
+        "players": ["Tobi"]
       },
       {
         "country": "Belgium",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "Davai Lama"
-        ]
+        "players": ["Davai Lama"]
       },
       {
         "country": "Bosnia and Herzegovina",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "MiLAN"
-        ]
+        "players": ["MiLAN"]
       },
       {
         "country": "Brazil",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "Thiolicor"
-        ]
+        "players": ["Thiolicor"]
       },
       {
         "country": "Czechia",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "Supream^"
-        ]
+        "players": ["Supream^"]
       },
       {
         "country": "Denmark",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "OwnedMe"
-        ]
+        "players": ["OwnedMe"]
       },
       {
         "country": "Estonia",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "Puppey"
-        ]
+        "players": ["Puppey"]
       },
       {
         "country": "France",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "Ceb"
-        ]
+        "players": ["Ceb"]
       },
       {
         "country": "Hungary",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "lowskill"
-        ]
+        "players": ["lowskill"]
       },
       {
         "country": "Indonesia",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "Fbz"
-        ]
+        "players": ["Fbz"]
       },
       {
         "country": "Iran",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "Mikey"
-        ]
+        "players": ["Mikey"]
       },
       {
         "country": "Malaysia",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "ChYuan"
-        ]
+        "players": ["ChYuan"]
       },
       {
         "country": "Nicaragua",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "Yuma"
-        ]
+        "players": ["Yuma"]
       },
       {
         "country": "Non-representing",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "swedenstrong"
-        ]
+        "players": ["swedenstrong"]
       },
       {
         "country": "Turkey",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "Mr. Luck"
-        ]
+        "players": ["Mr. Luck"]
       },
       {
         "country": "United Kingdom",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "Adzantick"
-        ]
+        "players": ["Adzantick"]
       },
       {
         "country": "United States",
         "representation": "1 / 55 (2%)",
-        "players": [
-          "Kitrak"
-        ]
+        "players": ["Kitrak"]
       }
     ]
   }

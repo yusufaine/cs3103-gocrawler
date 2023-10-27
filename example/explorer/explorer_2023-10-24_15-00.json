@@ -21,7 +21,7 @@
         ],
         "avg_response_ms": 372,
         "path_count": 1,
-        "paths": ["/"]
+        "visited_paths": ["/"]
       }
     ],
     "www.iana.org": [
@@ -40,7 +40,7 @@
         ],
         "avg_response_ms": 464,
         "path_count": 20,
-        "paths": [
+        "visited_paths": [
           "/",
           "/about",
           "/about/excellence",
@@ -80,7 +80,7 @@
         ],
         "avg_response_ms": 1292,
         "path_count": 3,
-        "paths": ["/", "/privacy/policy", "/privacy/tos"]
+        "visited_paths": ["/", "/privacy/policy", "/privacy/tos"]
       }
     ]
   },
