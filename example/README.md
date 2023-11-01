@@ -36,7 +36,7 @@ A simple wrapper over `net/http` that provides a few default backoff and retry p
 ## `gocrawler` sequence diagram
 
 > [!NOTE]
-> After crawling, the each example runs their own custom logic to generate the appropriate output.
+> After crawling, each example runs their own custom logic to generate the appropriate output.
 
 ```mermaid
 sequenceDiagram
@@ -69,7 +69,7 @@ sequenceDiagram
 
 ## Usage
 
-Examples are ordered from least to most restrictive, where "restrictive" refers to the number of options that can be specified and how lax the crawling heuristics are. recommend downloading the appropriate binary for your OS and architecture from the [releases page](https://github.com/yusufaine/gocrawler/releases), and running the binary with the `--help` flag to see all options. The release would contain the binaries for all the examples as well as the LICENSE and this README.
+Examples are ordered from most to least restrictive, where "restrictive" refers to the number of options that can be specified and how lax the crawling heuristics are. We recommend downloading the appropriate binary for your OS and architecture from the [releases page](https://github.com/yusufaine/gocrawler/releases) which contains all the example binaries, and running a binary with the `--help` flag to see all options that can be supplied.
 
 > [!IMPORTANT]
 > At any time if the user wishes to cancel the program, they can do so by pressing `Ctrl + C`. The program will initiate a graceful shutdown and wait for all goroutines to finish before generating an output. If the user wants to forcefully stop the program, they can do so by pressing `Ctrl + C` again which will cause the program to panic and exit immediately, this may not generate an output.
