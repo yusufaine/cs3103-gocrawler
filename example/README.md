@@ -19,6 +19,7 @@ This repo contains the source code for a generic parallel webcrawler ([project r
   - [`explorer`](#explorer)
   - [`sitemapper`](#sitemapper)
   - [`tianalyser`](#tianalyser)
+    - [Main event pie chart statistics](#main-event-pie-chart-statistics)
 - [Members](#members)
 - [Acknowledgements](#acknowledgements)
 
@@ -95,6 +96,7 @@ In all examples, the user can expect the application to generate their own speci
       1. Similar to `explorer` but limited to the same host as the seed URL
    3. `tianalyser`
       1. Similar to `sitemapper` but limited to Liquipedia (liquipedia.net), and path must contain "/dota2/the_internationals"
+      2. The breakdown of the number of players and teams from each country and region for each year
 
 ### `explorer`
 
@@ -130,10 +132,10 @@ The program will stop crawling when:
 
 ```bash
 # Running the binary (recommended)
-./sitemapper --seed=https://example.com --depth=3
+./sitemapper --seed=https://yusufaine.dev/
 
 # Without binary (requires Go 1.20+)
-go run example/sitemapper/main.go --seed=https://example.com --depth=3
+go run example/sitemapper/main.go --seed=https://yusufaine.dev/
 ```
 
 > [!NOTE]
@@ -152,18 +154,77 @@ The program will stop crawling when:
 2. The user cancels the program.
 
 > [!IMPORTANT]
-> Yes, the RPS is indeed set to 0.5 -- this is because Liquipedia has a [rate limit of 2 requests per second](http://liquipedia.net/api-terms-of-use), and we should be nice to them. A barely-tested "workaround" would be to use a proxy by specifying the `--proxy` flag, which has been implemented. From this, we can increase the RPS accordingly with how many proxies we have, and assuming that they are in a simple round-robin rotation (e.g. max RPS ≈ N / 2, where N is the number of proxies).
+> The RPS (requests per second) is set to 0.3 by default -- this is because Liquipedia has a [maximum rate limit of 2 requests per second](http://liquipedia.net/api-terms-of-use). A "workaround" would be to use a proxy by specifying the `--proxy` flag, which has been implemented, and increasing the RPS accordingly, assuming that they are in a simple round-robin rotation (e.g. max RPS ≈ N * 0.3, where N is the number of proxies -- assumes round robin rotation).
 
 ```bash
 # Running the binary (recommended)
-./tianalyser --depth=5 --rps=0.5
+./tianalyser
 
 # Without binary (requires Go 1.20+)
-go run example/tianalyser/main.go --depth=5 --rps=0.5
+go run example/tianalyser/main.go
 ```
 
 > [!NOTE]
-> The output for this can be uses a proxy has RPS set to 40 [here](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/tianalyser/ti_stats.json).
+> The output for this can be seen [here](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/tianalyser/ti_stats.json).
+
+#### Main event pie chart statistics
+
+<details>
+<summary>Expand to view the diagrams</summary>
+<br>
+
+> [!NOTE]
+> Images may be clipped/text may be unreadable due to how the image is rendered in GitHub. Click on the image to view the full image.
+
+![TI 2011](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2011.svg)
+
+TI 2011 full image [here](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2011.svg).
+
+![TI 2012](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2012.svg)
+
+TI 2012 full image [here](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2012.svg).
+
+![TI 2013](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2013.svg)
+
+TI 2013 full image [here](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2013.svg).
+
+![TI 2014](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2014.svg)
+
+TI 2014 full image [here](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2014.svg).
+
+![TI 2015](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2015.svg)
+
+TI 2015 full image [here](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2015.svg).
+
+![TI 2016](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2016.svg)
+
+TI 2016 full image [here](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2016.svg).
+
+![TI 2017](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2017.svg)
+
+TI 2017 full image [here](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2017.svg).
+
+![TI 2018](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2018.svg)
+
+TI 2018 full image [here](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2018.svg).
+
+![TI 2019](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2019.svg)
+
+TI 2019 full image [here](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2019.svg).
+
+![TI 2021](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2021.svg)
+
+TI 2021 full image [here](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2021.svg).
+
+![TI 2022](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2022.svg)
+
+TI 2022 full image [here](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2022.svg).
+
+![TI 2023](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2023.svg)
+
+TI 2023 full image [here](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2023.svg).
+
+</details>
 
 ## Members
 
