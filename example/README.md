@@ -1,12 +1,12 @@
 # CS3103 G46 Golang Webcrawler
 
-This repo contains the source code for a generic parallel webcrawler ([project root](https://github.com/yusufaine/gocrawler/tree/main)) written in Golang. As part of our CS3103 mini-project, we continued building on top of the webcrawler to analyse the relevance of each country and region when it comes to the topic of "The International", a global DOTA 2 tournament, over the past few years based on what can be found on.
+This repo contains the source code for a generic parallel webcrawler ([project root](https://github.com/yusufaine/gocrawler/tree/main)) written in Golang. As part of our CS3103 mini-project, we continued building on top of the webcrawler to analyse the relevance of each country and region when it comes to the topic of "The International", a global DOTA 2 tournament, over the past few years based on what can be found on. Additionally, just for the fun of it, we also built a sitemap generator and a link explorer which would also demonstrate the flexibility of the webcrawler as well as better demonstrate the concurrency aspect of the webcrawler.
 
 | Example      | Description                                                                                                                                |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `explorer`   | Starting from any seed URL(s), crawl and collect all outgoing links until max depth, all links have been exhausted, or if the user cancels |
-| `sitemapper` | Starting from a single URL, crawl all accessible sites if it contains the the host has been fully crawled, or if the user cancels          |
 | `tianalyser` | Crawls from [Liquipedia](https://liquipedia.net/dota2/The_International) and extract all the country's representative information          |
+| `sitemapper` | Starting from a single URL, crawl all accessible sites if it contains the the host has been fully crawled, or if the user cancels          |
+| `explorer`   | Starting from any seed URL(s), crawl and collect all outgoing links until max depth, all links have been exhausted, or if the user cancels |
 
 <!-- omit in toc -->
 ## Table of Contents
@@ -16,10 +16,10 @@ This repo contains the source code for a generic parallel webcrawler ([project r
   - [`rhttp`](#rhttp)
 - [`gocrawler` sequence diagram](#gocrawler-sequence-diagram)
 - [Usage](#usage)
-  - [`explorer`](#explorer)
-  - [`sitemapper`](#sitemapper)
   - [`tianalyser`](#tianalyser)
     - [Main event pie chart statistics](#main-event-pie-chart-statistics)
+  - [`sitemapper`](#sitemapper)
+  - [`explorer`](#explorer)
 - [Members](#members)
 - [Acknowledgements](#acknowledgements)
 
@@ -96,50 +96,7 @@ In all examples, the user can expect the application to generate their own speci
       1. Similar to `explorer` but limited to the same host as the seed URL
    3. `tianalyser`
       1. Similar to `sitemapper` but limited to Liquipedia (liquipedia.net), and path must contain "/dota2/the_internationals"
-      2. The breakdown of the number of players and teams from each country and region for each year
-
-### `explorer`
-
-`explorer` will crawl all outgoing links from the seed URL(s) until:
-
-1. The specified max depth has been reached,
-2. All links have been exhausted (e.g. all links have been visited or all links have been marked as unvisitable), or
-3. The user cancels the program.
-
-```bash
-# Running the binary (recommended)
-./explorer --seed=https://example.com --depth=3
-
-# Without binary (requires Go 1.20+)
-go run example/explorer/main.go --seed=https://example.com --depth=3
-```
-
-> [!NOTE]
-> The output for this can be seen [here](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/explorer/example.com.json).
-
-### `sitemapper`
-
-`sitemapper` will crawl all outgoing links if from the single seed URL if:
-
-1. The outgoing link's host matches the host of the seed URL, or
-2. The outgoing link only specifies a path, where `sitemapper` will assume that the host is the same as the seed URL.
-   1. If this is not the case, the link will be marked as unvisitable.
-
-The program will stop crawling when:
-
-1. All links within the same host have been exhausted, or
-2. The user cancels the program.
-
-```bash
-# Running the binary (recommended)
-./sitemapper --seed=https://yusufaine.dev/
-
-# Without binary (requires Go 1.20+)
-go run example/sitemapper/main.go --seed=https://yusufaine.dev/
-```
-
-> [!NOTE]
-> The output for this can be seen [here](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/sitemapper/sitemap_yusufaine.dev.json).
+      2. The breakdown of the number of players and teams from each country and region for each year, which is used to generate the pie charts.
 
 ### `tianalyser`
 
@@ -154,7 +111,7 @@ The program will stop crawling when:
 2. The user cancels the program.
 
 > [!IMPORTANT]
-> The RPS (requests per second) is set to 0.3 by default -- this is because Liquipedia has a [maximum rate limit of 2 requests per second](http://liquipedia.net/api-terms-of-use). A "workaround" would be to use a proxy by specifying the `--proxy` flag, which has been implemented, and increasing the RPS accordingly, assuming that they are in a simple round-robin rotation (e.g. max RPS ≈ N * 0.3, where N is the number of proxies -- assumes round robin rotation).
+> Liquipedia has a [maximum rate limit of 2 requests per second](http://liquipedia.net/api-terms-of-use), as such, we have set the rate limit to 0.3 RPS (requests per second) by default. A "workaround" would be to use a proxy by specifying the `--proxy` flag, which has been implemented, and increasing the RPS accordingly, assuming that they are in a simple round-robin rotation (max RPS ≈ N * 0.3, where N is the number of proxies).
 
 ```bash
 # Running the binary (recommended)
@@ -225,6 +182,49 @@ TI 2022 full image [here](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b
 TI 2023 full image [here](https://gist.github.com/yusufaine/9c5b45d0a298fcde4e3b748fd572fc19/raw/f2c03b72a5b0dc6ce3e674d7550e003097002ee3/TI_2023.svg).
 
 </details>
+
+### `sitemapper`
+
+`sitemapper` will crawl all outgoing links if from the single seed URL if:
+
+1. The outgoing link's host matches the host of the seed URL, or
+2. The outgoing link only specifies a path, where `sitemapper` will assume that the host is the same as the seed URL.
+   1. If this is not the case, the link will be marked as unvisitable.
+
+The program will stop crawling when:
+
+1. All links within the same host have been exhausted, or
+2. The user cancels the program.
+
+```bash
+# Running the binary (recommended)
+./sitemapper --seed=https://yusufaine.dev/
+
+# Without binary (requires Go 1.20+)
+go run example/sitemapper/main.go --seed=https://yusufaine.dev/
+```
+
+> [!NOTE]
+> The output for this can be seen [here](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/sitemapper/sitemap_yusufaine.dev.json).
+
+### `explorer`
+
+`explorer` will crawl all outgoing links from the seed URL(s) until:
+
+1. The specified max depth has been reached,
+2. All links have been exhausted (e.g. all links have been visited or all links have been marked as unvisitable), or
+3. The user cancels the program.
+
+```bash
+# Running the binary (recommended)
+./explorer --seed=https://example.com --depth=3
+
+# Without binary (requires Go 1.20+)
+go run example/explorer/main.go --seed=https://example.com --depth=3
+```
+
+> [!NOTE]
+> The output for this can be seen [here](https://github.com/yusufaine/cs3103-gocrawler/blob/main/example/explorer/example.com.json).
 
 ## Members
 

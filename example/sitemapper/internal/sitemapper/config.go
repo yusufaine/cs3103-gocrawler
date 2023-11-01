@@ -24,7 +24,6 @@ type Config struct {
 func SetupConfig() *Config {
 	var (
 		c       Config
-		blHosts string
 		seed    string
 		proxy   string
 		verbose bool
@@ -33,7 +32,6 @@ func SetupConfig() *Config {
 	flag.Float64Var(&c.MaxRPS, "rps", 20, "Max requests per second")
 	flag.DurationVar(&c.Timeout, "timeout", 10*time.Second, "Timeout for HTTP requests")
 	flag.StringVar(&c.ReportPath, "report", "", "Path to export report to. Defaults to 'sitemap_<seed>.json")
-	flag.StringVar(&blHosts, "bl", "", "Comma separated list of hosts to blacklist, hosts will be blacklisted with and without 'www.' prefix")
 	flag.StringVar(&proxy, "proxy", "", "Proxy URL")
 	flag.StringVar(&seed, "seed", "", "Seed URL, required (e.g https://example.com)")
 	flag.BoolVar(&verbose, "verbose", false, "Verbose logging, includes short caller info")
@@ -48,22 +46,6 @@ func SetupConfig() *Config {
 	// Parse proxy URL, if any
 	parsedProxy, _ := url.Parse(proxy)
 	c.ProxyURL = parsedProxy
-
-	// Parse blacklist hosts into set for fast lookups
-	c.BlacklistHosts = make(map[string]struct{})
-	for _, host := range strings.Split(blHosts, ",") {
-		host = strings.TrimSpace(host)
-		if host == "" {
-			continue
-		}
-		c.BlacklistHosts[host] = struct{}{}
-
-		if strings.HasPrefix(host, "www.") {
-			c.BlacklistHosts[host[4:]] = struct{}{}
-		} else {
-			c.BlacklistHosts["www."+host] = struct{}{}
-		}
-	}
 
 	c.mustValidate()
 
